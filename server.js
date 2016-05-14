@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var express = require('express');
 var app = express();
 
@@ -175,4 +174,3 @@ var zapp = new SampleApp();
 zapp.initialize();
 zapp.start();
 
->>>>>>> 0cf906f812c1d7a8ad357f8226f00f66f810d234
