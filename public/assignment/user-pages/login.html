@@ -6,19 +6,35 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
 
 </head>
 <body>
 
-    <h3>Login</h3>
+    <div class="container">
 
-    <form>
+        <h2>Login</h2>
 
-        <input type="text" placeholder="username"> <br>
-        <input type="text" placeholder="password">
+        <form>
 
-    </form>
+            <!-- Username -->
+            <div class="form-group">
+                <input type="text" placeholder="username" id="loginUsername" class="form-control">
+            </div>
 
+            <!-- Password -->
+            <div class="form-group">
+                <input type="password" placeholder="password" id="loginPassword" class="form-control">
+            </div>
+
+
+        </form>
+
+        <a href="profile.html" class="btn btn-primary btn-block" role="button">Login</a>
+
+        <a href="register.html" class="btn btn-success btn-block" role="button">Register</a>
+
+    </div>
 
 
 </body>

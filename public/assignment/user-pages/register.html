@@ -7,18 +7,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 
-    <h3>Register</h3>
+    <div class="container">
 
-    <form>
+        <h2>Register</h2>
 
-        <input type="text" placeholder="username"><br>
-        <input type="text" placeholder="password"><br>
-        <input type="text" placeholder="verify password"><br>
+        <form>
 
-    </form>
+            <input type="text" placeholder="username" class="form-control">
+            <input type="password" placeholder="password" class="form-control">
+            <input type="password" placeholder="verify password" class="form-control">
+
+        </form>
+
+        <a href="profile.html" class="btn btn-primary btn-block" role="button">Register</a>
+        <a href="login.html" class="btn btn-danger btn-block" role="button">Cancel</a>
+
+    </div>
 
 </body>
 </html>
