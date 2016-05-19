@@ -7,28 +7,87 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
 </head>
 <body>
 
-    <h5>Widget Edit</h5>
+    <!-- Fixed Header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
 
-    <form>
+        <div class="container-fluid">
 
-        Name<br>
-        <input type="text"><br>
+            <!-- Back Button -->
+            <a href="widget-list.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
 
-        Text<br>
-        <input type="text"><br>
+            <!-- Brand -->
+            <p class="navbar-brand">Widget Edit</p>
 
-        URL<br>
-        <input type="text"><br>
+            <!-- Confirm -->
+            <a href="widget-list.html" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
 
-        Width<br>
-        <input type="text"><br>
+        </div>
 
-        Upload<br>
+    </nav>
 
-    </form>
+    <!-- Body -->
+    <div class="container underHeader">
+
+        <form>
+
+            <!-- Name -->
+            <div class="form-group">
+                <label for="widgetImageName">Name</label>
+                <input type="text" placeholder="Name" id="widgetImageName" class="form-control">
+            </div>
+
+            <!-- Text -->
+            <div class="form-group">
+                <label for="widgetImageText">Text</label>
+                <input type="text" placeholder="Text" id="widgetImageText" class="form-control">
+            </div>
+
+            <!-- URL -->
+            <div class="form-group">
+                <label for="widgetImageURL">URL</label>
+                <input type="url" placeholder="www.website.meme" id="widgetImageURL"
+                       class="form-control" value="https://pbs.twimg.com/media/CcaxqqzW8AE9m_q.jpg">
+            </div>
+
+            <!-- Width -->
+            <div class="form-group">
+                <label for="widgetImageWidth">Width</label>
+                <input type="text" placeholder="Some Percent%" id="widgetImageWidth"
+                       class="form-control" value="100%">
+            </div>
+
+            <!-- Upload -->
+            <div class="form-group">
+                <label for="widgetImageUpload">Upload</label>
+                <input type="file" id="widgetImageUpload" class="form-control">
+            </div>
+
+        </form>
+
+        <!-- Upload Button -->
+        <a href="widget-list.html" class="btn btn-primary btn-block">Upload</a>
+
+        <!-- Delete Button -->
+        <a href="widget-list.html" class="btn btn-danger btn-block">Delete</a>
+
+    </div>
+
+    <!-- Fixed Footer -->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+
+        <div class="container-fluid">
+
+            <!-- To Profile -->
+            <a href="../user-pages/profile.html" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
+
+        </div>
+
+    </nav>
 
 </body>
 </html>

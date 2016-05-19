@@ -9,3 +9,7 @@ input {
 .underHeader {
     padding-top : 90px;
 }
+
+.ulNoDot {
+    list-style-type : none;
+}
