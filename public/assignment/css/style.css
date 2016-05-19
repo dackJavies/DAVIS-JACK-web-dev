@@ -6,6 +6,6 @@ input {
     border-radius: 18px;
 }
 
-#profileBody {
+.underHeader {
     padding-top : 90px;
 }
