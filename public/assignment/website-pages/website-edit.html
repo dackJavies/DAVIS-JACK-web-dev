@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
     <meta charset="UTF-8">
     <title>Edit</title>
 
@@ -29,19 +32,20 @@
 
     </nav>
 
-    <div class="container underHeader">
+    <div class="container underHeader overFooter">
 
         <form>
 
             <div class="form-group">
-                <label for="editWebsiteApplicationName">Application Name</label>
-                <input type="text" placeholder="Blogger" id="editWebsiteApplicationName" class="form-control">
+                <label for="editWebsiteName">Website Name</label>
+                <input type="text" placeholder="Name" id="editWebsiteName" class="form-control"
+                       value="Didgeridoo Memes For Distressed Clowns in Training">
             </div>
 
             <div class="form-group">
-                <label for="editWebsiteApplicationDescription">Application Description</label>
-                <textarea type="text" placeholder="Description" id="editWebsiteApplicationDescription"
-                          class="form-control"></textarea>
+                <label for="editWebsiteDescription">Website Description</label>
+                <textarea type="text" placeholder="Description" id="editWebsiteDescription"
+                          class="form-control" rows="5">Are you distressed? Are you a clown in training? These are questions that touch the lives of so many people in need of relief. Ask your clown doctor if didgeridoo memes are the right choice for you.</textarea>
             </div>
 
         </form>
