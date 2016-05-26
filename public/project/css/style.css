@@ -54,17 +54,21 @@ label {
 
 .jgd-friend-li:link {
     background-color : orange;
-    color : #cc6600;
     text-decoration: none;
 }
 
 .jgd-friend-li:hover {
     background-color : orange;
-    color : #cc6600;
+    color : #2f79b9;
     text-decoration: underline;
 }
 
 .jgd-remove-friend {
     background-color : #ff4d4d;
     color : white;
+}
+
+.jgd-remove-friend:hover {
+    background-color : #ff4d4d;
+    color : black;
 }
