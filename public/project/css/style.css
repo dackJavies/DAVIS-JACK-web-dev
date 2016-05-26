@@ -1,0 +1,70 @@
+@import url(https://fonts.googleapis.com/css?family=Fredoka+One);
+
+
+* {
+    font-family: 'Fredoka One';
+    background-color : orange;
+}
+
+.jgd-banner {
+    text-align : center;
+    color : #cc6600;
+    font-size : 2.5em;
+    display : inline;
+}
+
+.jgd-button {
+    background-color : #cc6600;
+    color : #ff9933;
+    border-radius: 18px;
+}
+
+a:hover {
+    background-color : #e67300;
+}
+
+.jgd-text {
+    text-align : center;
+    color : #cc6600;
+}
+
+.jgd-bot-space {
+    margin-bottom : 10px;
+}
+
+.jgd-underHeader {
+    padding-top : 90px;
+}
+
+.jgd-input {
+    background-color : #ffe6cc;
+    border : none;
+}
+
+label {
+    color : #cc6600;
+}
+
+.list-group-item {
+    border : none;
+    color : #cc6600;
+    background-color : orange;
+    font-size : 1.5em;
+}
+
+.jgd-friend-li:link {
+    background-color : orange;
+    color : #cc6600;
+    text-decoration: none;
+}
+
+.jgd-friend-li:hover {
+    background-color : orange;
+    color : #cc6600;
+    text-decoration: underline;
+}
+
+.jgd-remove-friend {
+    background-color : #ff4d4d;
+    color : white;
+}
