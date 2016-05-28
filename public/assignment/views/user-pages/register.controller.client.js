@@ -13,9 +13,8 @@
 
             if (!UserService.alreadyHas(uname) && pass == vpass) {
 
-                UserService.createUser(uname, pass, fname, lname);
-                $location.url("/profile/" + UserService.getNumUsers());
-                
+                var user = UserService.createUser(uname, pass, fname, lname);
+                $location.url("/profile/" + user._id);
 
             } else {
                 vm.error = "Username is already taken, or passwords do not match. Try again."

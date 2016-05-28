@@ -20,7 +20,8 @@
             updateUser: updateUser,
             deleteUser: deleteUser,
             alreadyHas: alreadyHas,
-            getNumUsers: getNumUsers
+            getNumUsers: getNumUsers,
+            getUsers: getUsers
 
         };
         return api;
@@ -34,11 +35,13 @@
          * @param newpassword The new User's password
          * @param newfirstName The new User's first name
          * @param newlastName The new User's last name
+         * @returns {*} The new user
          */
         function createUser(newusername, newpassword, newfirstName, newlastName) {
             var toAdd = {_id: users.length, username: newusername, password: newpassword,
                         firstName: newfirstName, lastName: newlastName};
             users.push(toAdd);
+            return toAdd;
         }
 
         /**
@@ -72,8 +75,9 @@
 
             for (var i in users) {
 
-                if (users[i]._id === id) {
+                if (users[i]._id == id) {
 
+                    console.log(users[i]);
                     return users[i];
 
                 }
@@ -162,6 +166,12 @@
         function getNumUsers() {
 
             return users.length;
+
+        }
+
+        function getUsers() {
+
+            return users;
 
         }
 
