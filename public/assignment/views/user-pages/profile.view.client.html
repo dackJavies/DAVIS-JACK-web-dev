@@ -58,7 +58,7 @@
     <a href="#/login" class="btn btn-danger btn-block">Logout</a>
 
     <!-- Navigate to this Developer's website list -->
-    <a href="../website-pages/website-list.view.client.html" class="btn btn-primary btn-block">Websites</a>
+    <a href="#/user/{{model.user._id}}/website" class="btn btn-primary btn-block">Websites</a>
 
 </div>
 
@@ -67,7 +67,7 @@
 
     <div class="container-fluid">
 
-        <a href="#/profile" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
+        <a href="#/profile/{{model.user._id}}" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
 
     </div>
 

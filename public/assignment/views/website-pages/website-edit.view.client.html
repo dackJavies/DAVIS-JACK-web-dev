@@ -5,12 +5,12 @@
     <div class="container-fluid">
 
         <!-- Go back to the website list -->
-        <a href="website-list.view.client.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}/website" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
 
         <p class="navbar-brand">Edit Website</p>
 
         <!-- Confirm -->
-        <a href="website-list.view.client.html" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
+        <a ng-click="model.updateWebsite()" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
 
     </div>
 
@@ -18,12 +18,19 @@
 
 <div class="container underHeader overFooter">
 
+    <div ng-show="model.success" class="alert alert-success">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <form>
 
         <div class="form-group">
             <label for="editWebsiteName">Website Name</label>
-            <input type="text" placeholder="Name" id="editWebsiteName" class="form-control"
-                   value="Didgeridoo Memes For Distressed Clowns in Training">
+            <input ng-model="model.website.name" type="text" placeholder="Name" id="editWebsiteName" class="form-control">
         </div>
 
         <div class="form-group">
@@ -42,7 +49,7 @@
     <div class="container-fluid">
 
         <!-- Go back to Profile page -->
-        <a href="../user-pages/profile.view.client.html" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
+        <a href="#/profile/{{model.userId}}" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
 
     </div>
 

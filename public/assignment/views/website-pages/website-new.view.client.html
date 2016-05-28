@@ -5,13 +5,13 @@
     <div class="container-fluid">
 
         <!-- Navigate back to the Website List -->
-        <a href="website-list.view.client.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}/website" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
 
         <!-- Header -->
         <p class="navbar-brand">New Website</p>
 
         <!-- Confirm -->
-        <a href="website-list.view.client.html" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
+        <a ng-click="model.addWebsite(newName)" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
 
     </div>
 
@@ -25,7 +25,7 @@
         <!-- Name -->
         <div class="form-group">
             <label for="newWebsiteName">Name</label>
-            <input type="text" placeholder="Name" id="newWebsiteName" class="form-control">
+            <input ng-model="newName" type="text" placeholder="Name" id="newWebsiteName" class="form-control">
         </div>
 
         <!-- Description -->
@@ -44,7 +44,7 @@
     <div class="container-fluid">
 
         <!-- Navigate back to the Profile page -->
-        <a href="../user-pages/profile.view.client.html" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
+        <a href="#/profile/{{model.userId}}" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
 
     </div>
 

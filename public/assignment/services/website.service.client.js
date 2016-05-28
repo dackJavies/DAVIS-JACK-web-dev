@@ -23,9 +23,11 @@
             findWebsitesByUser: findWebsitesByUser,
             findWebsiteByID: findWebsiteByID,
             updateWebsite: updateWebsite,
-            deleteWebsite: deleteWebsite
+            deleteWebsite: deleteWebsite,
+            getWebsites: getWebsites
             
         };
+        return api;
 
         /**
          * Add a new website to the list
@@ -75,7 +77,7 @@
 
             for (var i in websites) {
 
-                if (websites[i]._id === websiteId) {
+                if (websites[i]._id == websiteId) {
                     return websites[i];
                 }
 
@@ -131,6 +133,12 @@
                 websites.splice(delIndex, 1);
                 return true;
             }
+
+        }
+
+        function getWebsites() {
+
+            return websites;
 
         }
 
