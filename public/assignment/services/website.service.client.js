@@ -23,8 +23,7 @@
             findWebsitesByUser: findWebsitesByUser,
             findWebsiteByID: findWebsiteByID,
             updateWebsite: updateWebsite,
-            deleteWebsite: deleteWebsite,
-            getWebsites: getWebsites
+            deleteWebsite: deleteWebsite
             
         };
         return api;
@@ -133,12 +132,6 @@
                 websites.splice(delIndex, 1);
                 return true;
             }
-
-        }
-
-        function getWebsites() {
-
-            return websites;
 
         }
 

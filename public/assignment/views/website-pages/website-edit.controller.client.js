@@ -14,10 +14,7 @@
 
         function init() {
 
-            console.log(WebsiteService.getWebsites());
-            console.log(vm.webId);
             vm.website = WebsiteService.findWebsiteByID(vm.webId);
-            console.log(vm.website);
 
         }
 
