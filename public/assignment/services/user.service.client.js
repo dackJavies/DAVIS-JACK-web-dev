@@ -19,10 +19,7 @@
             findUserByID: findUserByID,
             updateUser: updateUser,
             deleteUser: deleteUser,
-            alreadyHas: alreadyHas,
-            getNumUsers: getNumUsers,
-            getUsers: getUsers
-
+            alreadyHas: alreadyHas
         };
         return api;
 
@@ -37,11 +34,10 @@
          * @param newlastName The new User's last name
          * @returns {*} The new user
          */
-        function createUser(newusername, newpassword, newfirstName, newlastName) {
-            var toAdd = {_id: users.length, username: newusername, password: newpassword,
-                        firstName: newfirstName, lastName: newlastName};
-            users.push(toAdd);
-            return toAdd;
+        function createUser(user) {
+            user._id = users.length;
+            users.push(user);
+            return user;
         }
 
         /**
@@ -77,7 +73,6 @@
 
                 if (users[i]._id == id) {
 
-                    console.log(users[i]);
                     return users[i];
 
                 }
@@ -155,23 +150,6 @@
             }
 
             return false;
-
-        }
-
-        /**
-         * Get the current number of users
-         *
-         * @returns {Number} The current number of users
-         */
-        function getNumUsers() {
-
-            return users.length;
-
-        }
-
-        function getUsers() {
-
-            return users;
 
         }
 

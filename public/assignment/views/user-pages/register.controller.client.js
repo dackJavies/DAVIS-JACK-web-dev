@@ -13,7 +13,8 @@
 
             if (!UserService.alreadyHas(uname) && pass == vpass) {
 
-                var user = UserService.createUser(uname, pass, fname, lname);
+                var user = {_id: 0, username: uname, password: pass, firstName: fname, lastName: lname};
+                UserService.createUser(user);
                 $location.url("/profile/" + user._id);
 
             } else {
