@@ -22,7 +22,9 @@
                 controllerAs: "model"
             })
             .when("/register", {
-                templateUrl: "views/user-pages/register.view.client.html"
+                templateUrl: "views/user-pages/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
             })
             .when("/profile/:id", {
                 templateUrl: "views/user-pages/profile.view.client.html",

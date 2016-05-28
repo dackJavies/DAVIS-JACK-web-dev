@@ -1,17 +1,42 @@
 
 <div class="container">
 
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <h2>Register</h2>
 
     <form>
 
-        <input type="text" placeholder="username" class="form-control">
-        <input type="password" placeholder="password" class="form-control">
-        <input type="password" placeholder="verify password" class="form-control">
+        <div class="form-group">
+            <label for="registerFirstName">First Name</label>
+            <input ng-model="regFirstName" type="text" placeholder="John" id="registerFirstName" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="registerLastName">Last Name</label>
+            <input ng-model="regLastName" type="text" placeholder="Doe" id="registerLastName" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="registerUsername">Username</label>
+            <input ng-model="regUsername" type="text" placeholder="username" id="registerUsername" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <input ng-model="regPassword" type="password" placeholder="password" id="registerPassword" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="registerPassConfirm">Verify Password</label>
+            <input ng-model="verifyPass" type="password" placeholder="password again" id="registerPassConfirm" class="form-control">
+        </div>
 
     </form>
 
-    <a href="#/profile" class="btn btn-primary btn-block" role="button">Register</a>
+    <a ng-click="model.register(regUsername, regPassword, verifyPass, regFirstName, regLastName)" class="btn btn-primary btn-block" role="button">Register</a>
     <a href="#/login" class="btn btn-danger btn-block" role="button">Cancel</a>
 
 </div>

@@ -15,12 +15,7 @@
 
         function init() {
 
-            for(var i in users) {
-                if (users[i]._id === id) {
-                    vm.user = angular.copy(users[i])    ;
-                    index = i;
-                }
-            }
+            vm.user = UserService.findUserByID(id);
 
         }
 

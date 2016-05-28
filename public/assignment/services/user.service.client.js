@@ -18,7 +18,9 @@
             findUserByCredentials: findUserByCredentials,
             findUserByID: findUserByID,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            alreadyHas: alreadyHas,
+            getNumUsers: getNumUsers
 
         };
         return api;
@@ -33,8 +35,8 @@
          * @param newfirstName The new User's first name
          * @param newlastName The new User's last name
          */
-        function createUser(newid, newusername, newpassword, newfirstName, newlastName) {
-            var toAdd = {_id: newid, username: newusername, password: newpassword,
+        function createUser(newusername, newpassword, newfirstName, newlastName) {
+            var toAdd = {_id: users.length, username: newusername, password: newpassword,
                         firstName: newfirstName, lastName: newlastName};
             users.push(toAdd);
         }
@@ -129,6 +131,37 @@
                 users.splice(delIndex, 1);
                 return true;
             }
+
+        }
+
+        /**
+         * Does the specified username exist?
+         *
+         * @param uname The tentative user's username attempt
+         * @returns {boolean} Whether it already exists
+         */
+        function alreadyHas(uname) {
+
+            for (var i in users) {
+
+                if (uname == users[i].username) {
+                    return true;
+                }
+
+            }
+
+            return false;
+
+        }
+
+        /**
+         * Get the current number of users
+         *
+         * @returns {Number} The current number of users
+         */
+        function getNumUsers() {
+
+            return users.length;
 
         }
 
