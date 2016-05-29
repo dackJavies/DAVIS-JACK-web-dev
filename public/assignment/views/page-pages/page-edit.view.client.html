@@ -5,13 +5,13 @@
     <div class="container-fluid">
 
         <!-- Back Button -->
-        <a href="page-list.view.client.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}/website/{{model.webId}}/page" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
 
         <!-- Brand -->
         <p class="navbar-brand">Edit Page</p>
 
         <!-- Confirm -->
-        <a href="page-list.view.client.html" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
+        <a ng-click="model.applyChanges()" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
 
     </div>
 
@@ -25,7 +25,7 @@
         <!-- Name Field -->
         <div class="form-group">
             <label for="editPageName">Name</label>
-            <input type="text" placeholder="Name" id="editPageName" class="form-control">
+            <input ng-model="model.page.name" type="text" placeholder="Name" id="editPageName" class="form-control">
         </div>
 
         <!-- Title Field -->
@@ -37,7 +37,7 @@
     </form>
 
     <!-- Delete -->
-    <a href="page-list.view.client.html" class="btn btn-danger btn-block">Delete</a>
+    <a ng-click="model.deletePage()" class="btn btn-danger btn-block">Delete</a>
 
 </div>
 
@@ -46,7 +46,7 @@
     <div class="container-fluid">
 
         <!-- Go back to profile page -->
-        <a href="../user-pages/profile.view.client.html" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
+        <a href="#/profile/{{model.userId}}" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
 
     </div>
 

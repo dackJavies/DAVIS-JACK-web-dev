@@ -14,7 +14,7 @@
         var api = {
 
             createPage: createPage,
-            findPageByWebsiteId: findPageByWebsiteId,
+            findPagesByWebsiteId: findPagesByWebsiteId,
             findPageById: findPageById,
             updatePage: updatePage,
             deletePage: deletePage
@@ -42,19 +42,21 @@
          * Find a page by the website ID
          *
          * @param websiteId The website ID to search for
-         * @returns {*} The correct page if found, or null if it was not found
+         * @returns {*} The correct pages if found, or an empty array if not
          */
-        function findPageByWebsiteId(websiteId) {
+        function findPagesByWebsiteId(websiteId) {
+
+            var result = [];
 
             for (var i in pages) {
 
                 if (pages[i].websiteId == websiteId) {
-                    return pages[i];
+                    result.push(pages[i]);
                 }
 
             }
 
-            return null;
+            return result;
 
         }
 
@@ -87,7 +89,7 @@
          */
         function updatePage(pageId, page) {
 
-            for (var i in users) {
+            for (var i in pages) {
 
                 if (pages[i]._id == pageId) {
                     pages[i] = page;
@@ -108,7 +110,7 @@
          */
         function deletePage(pageId) {
 
-            for (var i in users) {
+            for (var i in pages) {
 
                 if (pages[i]._id == pageId) {
                     pages.splice(i, 1);
