@@ -62,13 +62,19 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget", {
-                templateUrl: "views/widget-pages/widget-list.view.client.html"
+                templateUrl: "views/widget-pages/widget-list.view.client.html",
+                controller: "WidgetListController",
+                controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/new", {
-                templateUrl: "views/widget-pages/widget-choose.view.client.html"
+                templateUrl: "views/widget-pages/widget-choose.view.client.html",
+                controller: "WidgetChooseController",
+                controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
-                templateUrl: "views/widget-pages/widget-edit.view.client.html"
+                templateUrl: "views/widget-pages/widget-edit.view.client.html",
+                controller: "WidgetEditController",
+                controllerAs: "model"
             });
     }
 })();

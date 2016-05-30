@@ -5,13 +5,13 @@
     <div class="container-fluid">
 
         <!-- Back button -->
-        <a href="widget-list.view.client.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}/website/{{model.webId}}/page/{{model.pageId}}/widget" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
 
         <!-- Brand -->
         <p class="navbar-brand">Widget Edit</p>
 
         <!-- Confirm -->
-        <a href="widget-list.view.client.html" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
+        <a ng-click="model.updateWidget()" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
 
     </div>
 
@@ -31,13 +31,13 @@
         <!-- Text -->
         <div class="form-group">
             <label for="widgetHeaderText">Text</label>
-            <input type="text" placeholder="Text" id="widgetHeaderText" class="form-control">
+            <input ng-model="model.widget.text" type="text" placeholder="Text" id="widgetHeaderText" class="form-control">
         </div>
 
         <!-- Size -->
         <div class="form-group">
             <label for="widgetHeaderSize">Size</label>
-            <select class="form-control" id="widgetHeaderSize">
+            <select ng-model="model.widget.size" class="form-control" id="widgetHeaderSize">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -54,7 +54,7 @@
     </form>
 
     <!-- Delete Button -->
-    <a href="widget-list.view.client.html" class="btn btn-danger btn-block">Delete</a>
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
 
 </div>
 
@@ -64,7 +64,7 @@
     <div class="container-fluid">
 
         <!-- To Profile Page -->
-        <a href="../user-pages/profile.view.client.html" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
 
     </div>
 

@@ -5,13 +5,15 @@
     <div class="container-fluid">
 
         <!-- Back Button -->
-        <a href="../page-pages/page-list.view.client.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}/website/{{model.webId}}/page"
+           class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
 
         <!-- Brand -->
         <p class="navbar-brand">Widgets</p>
 
         <!-- Add a Widget -->
-        <a href="widget-choose.view.client.html" class="glyphicon glyphicon-plus pull-right btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}/website/{{model.webId}}/page/{{model.pageId}}/widget/new"
+           class="glyphicon glyphicon-plus pull-right btn navbar-btn"></a>
 
     </div>
 
@@ -20,80 +22,50 @@
 <!-- Body -->
 <div class="container underHeader overFooter">
 
-    <div>
-        <div class="jgd-widget">
+    <div ng-repeat="widget in model.widgets">
 
-            <a href="widget-heading.view.client.html" class="glyphicon glyphicon-cog"></a>
-            <span class="glyphicon glyphicon-align-justify"></span>
+        <div ng-switch="widget.widgetType">
 
-        </div>
+            <!-- Little white widget tool -->
+            <div class="jgd-widget">
 
-        <h1>MEME WEBSITE</h1>
+                <a href="#/user/{{model.userId}}/website/{{model.webId}}/page/{{model.pageId}}/widget/{{widget._id}}"
+                   class="glyphicon glyphicon-cog"></a>
+                <span class="glyphicon glyphicon-align-justify"></span>
 
-    </div>
+            </div>
 
-    <div>
+            <!-- Widget content -->
+            <div ng-switch-when="HEADER" ng-switch="widget.size">
 
-        <div class="jgd-widget">
+                <div ng-switch-when="1"><h1>{{widget.text}}</h1></div>
+                <div ng-switch-when="2"><h2>{{widget.text}}</h2></div>
+                <div ng-switch-when="3"><h3>{{widget.text}}</h3></div>
+                <div ng-switch-when="4"><h4>{{widget.text}}</h4></div>
+                <div ng-switch-when="5"><h5>{{widget.text}}</h5></div>
+                <div ng-switch-when="6"><h6>{{widget.text}}</h6></div>
 
-            <a href="widget-heading.view.client.html" class="glyphicon glyphicon-cog"></a>
-            <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
 
-        </div>
+            <div ng-switch-when="IMAGE">
 
-        <h3>Breaking News: Memeboi Mops a Market of Magpies</h3>
+                <img src="{{widget.url}}" width="{{widget.width}}">
 
-    </div>
+            </div>
 
-    <div>
+            <div ng-switch-when="YOUTUBE">
 
-        <div class="jgd-widget">
+                <iframe width="{{widget.width}}" ng-src="{{model.getSafeUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
 
-            <a href="widget-image.view.client.html" class="glyphicon glyphicon-cog"></a>
-            <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
 
-        </div>
+            <div ng-switch-when="HTML">
 
-        <img src="http://i.cdn.turner.com/adultswim/big/img/2014/08/22/tim-and-eric-awesome-show.jpg" width="100%">
+                <div ng-bind-html="model.getSafeHtml(widget)"></div>
 
-    </div>
-
-    <div>
-
-        <div class="jgd-widget">
-
-            <a href="#" class="glyphicon glyphicon-cog"></a>
-            <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
 
         </div>
-
-        <p>Hey you guys ever think about donuts? They're kinda odd when you really think about it. I mean, what's the use of the hole? I heard that they made lifesavers like that because that way if you swallow it whole you can still breathe and you won't suffocate. But it's not like anyone can swallow a whole donut. What's the point? I mean, I guess you can kinda just hold them like a CD or something. Sometimes I eat donuts. Please Clap.<br>--Jeb</p>
-
-    </div>
-
-    <div>
-
-        <div class="jgd-widget">
-
-            <a href="widget-youtube.view.client.html" class="glyphicon glyphicon-cog"></a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-
-        </div>
-
-        <iframe width="100%" src="https://www.youtube.com/embed/V-fRuoMIfpw" frameborder="0" allowfullscreen class="embed-responsive-item"></iframe>
-
-    </div>
-
-    <div>
-
-        <div class="jgd-widget">
-
-            <a href="#" class="glyphicon glyphicon-cog"></a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-
-        </div>
-
-        <p>We should build a wall between us and whoever makes mayonnaise and make them pay for it.</p>
 
     </div>
 
@@ -111,7 +83,7 @@
         <span class="glyphicon glyphicon-eye-open pull-left btn navbar-btn"></span>
 
         <!-- Go to Profile page -->
-        <a href="../user-pages/profile.view.client.html" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
 
     </div>
 

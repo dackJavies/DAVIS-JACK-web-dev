@@ -5,7 +5,8 @@
     <div class="container-fluid">
 
         <!-- Back Button -->
-        <a href="widget-list.view.client.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}/website/{{model.webId}}/page/{{model.pageId}}/widget"
+           class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
 
         <!-- Brand -->
         <p class="navbar-brand">Choose Widget</p>
@@ -19,18 +20,20 @@
 
     <ul class="list-group ulNoDot">
 
-        <li><a href="widget-heading.view.client.html">Header</a></li>    <br>
-        <li><a href="#">Label</a></li>                      <br>
-        <li><a href="#">HTML</a></li>                       <br>
-        <li><a href="#">Text Input</a></li>                 <br>
-        <li><a href="#">Link</a></li>                       <br>
-        <li><a href="#">Button</a></li>                     <br>
-        <li><a href="widget-image.view.client.html">Image</a></li>      <br>
-        <li><a href="widget-youtube.view.client.html">YouTube</a></li>  <br>
-        <li><a href="#">Data Table</a></li>                 <br>
-        <li><a href="#">Repeater</a></li>
+        <li class="list-group-item"><a ng-click="model.makeHeader()">Header</a></li>
+        <li class="list-group-item"><a href="#">Label</a></li>
+        <li class="list-group-item"><a href="#">HTML</a></li>
+        <li class="list-group-item"><a href="#">Text Input</a></li>
+        <li class="list-group-item"><a href="#">Link</a></li>
+        <li class="list-group-item"><a href="#">Button</a></li>
+        <li class="list-group-item"><a ng-click="model.makeImage()">Image</a></li>
+        <li class="list-group-item"><a ng-click="model.makeYoutube()">YouTube</a></li>
+        <li class="list-group-item"><a href="#">Data Table</a></li>
+        <li class="list-group-item"><a href="#">Repeater</a></li>
 
     </ul>
+
+
 
 </div>
 
@@ -40,7 +43,7 @@
     <div class="container-fluid">
 
         <!-- Go back to Profile -->
-        <a href="../user-pages/profile.view.client.html" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
 
     </div>
 
