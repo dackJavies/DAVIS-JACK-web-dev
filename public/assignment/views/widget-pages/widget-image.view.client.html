@@ -38,15 +38,15 @@
         <!-- URL -->
         <div class="form-group">
             <label for="widgetImageURL">URL</label>
-            <input type="url" placeholder="www.website.meme" id="widgetImageURL"
-                   class="form-control" value="https://pbs.twimg.com/media/CcaxqqzW8AE9m_q.jpg">
+            <input ng-model="model.widget.url" type="url" placeholder="www.website.meme" id="widgetImageURL"
+                   class="form-control">
         </div>
 
         <!-- Width -->
         <div class="form-group">
             <label for="widgetImageWidth">Width</label>
-            <input type="text" placeholder="Some Percent%" id="widgetImageWidth"
-                   class="form-control" value="100%">
+            <input ng-model="model.widget.width" type="text" placeholder="Some Percent%" id="widgetImageWidth"
+                   class="form-control">
         </div>
 
         <!-- Upload -->
@@ -58,10 +58,10 @@
     </form>
 
     <!-- Upload Button -->
-    <a href="widget-list.view.client.html" class="btn btn-primary btn-block">Upload</a>
+    <a ng-click="model.updateWidget()" class="btn btn-primary btn-block">Upload</a>
 
     <!-- Delete Button -->
-    <a href="widget-list.view.client.html" class="btn btn-danger btn-block">Delete</a>
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
 
 </div>
 
@@ -71,7 +71,7 @@
     <div class="container-fluid">
 
         <!-- To Profile -->
-        <a href="../user-pages/profile.view.client.html" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
+        <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
 
     </div>
 
