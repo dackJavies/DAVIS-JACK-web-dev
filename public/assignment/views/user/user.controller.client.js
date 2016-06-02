@@ -12,14 +12,18 @@
         vm.login = login;
 
         function login(username, password) {
-            var user = UserService.findUserByCredentials(username, password);
+            UserService
+                .findUserByCredentials(username, password)
+                .then(
+                    function(response) {
+                        var id = response.data._id;
+                        $location.url("/user/" + id);
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
-            if(user) {
-                var id = user._id;
-                $location.url("/user/" + id);
-            } else {
-                vm.error = "User not found";
-            }
         }
     }
 
@@ -35,7 +39,16 @@
 
         function init() {
 
-            vm.user = UserService.findUserByID(id);
+            UserService
+                .findUserByID(id)
+                .then(
+                    function(response) {
+                        vm.user = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 
@@ -46,13 +59,16 @@
          */
         function updateUser() {
 
-            var result = UserService.updateUser(vm.user._id, vm.user);
-
-            if (result === true) {
-                vm.success = "Updated sucessfully.";
-            } else {
-                vm.error = "Could not find that User.";
-            }
+            UserService
+                .updateUser(vm.user._id, vm.user)
+                .then(
+                    function(response) {
+                        vm.success = "Updated successfully.";
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 
@@ -66,15 +82,32 @@
 
         function register(uname, pass, vpass, fname, lname) {
 
-            if (!UserService.alreadyHas(uname) && pass == vpass) {
+            UserService
+                .alreadyHas(uname)
+                .then(
+                    function(response) {
+                        if (response.data == true && pass === vpass) {
 
-                var user = {_id: 0, username: uname, password: pass, firstName: fname, lastName: lname};
-                UserService.createUser(user);
-                $location.url("/profile/" + user._id);
+                            var user = {_id: "0", username: uname, password: pass, firstName: fname, lastName: lname};
 
-            } else {
-                vm.error = "Username is already taken, or passwords do not match. Try again."
-            }
+                            UserService
+                                .createUser(user)
+                                .then(
+                                    function(response) {
+                                        var url = "/user/" + response.data._id;
+                                        $location.url(url);
+                                    },
+                                    function(error) {
+                                        vm.error = error.data;
+                                    }
+                                );
+
+                        }
+                    },
+                    function (error) {
+
+                    }
+                );
 
         }
 

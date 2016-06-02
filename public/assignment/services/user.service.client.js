@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .factory("UserService", UserService);
 
-    function UserService() {
+    function UserService($http) {
 
         var users = [
             {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -19,7 +19,7 @@
             findUserByID: findUserByID,
             updateUser: updateUser,
             deleteUser: deleteUser,
-            alreadyHas: alreadyHas
+            findUserByUsername: findUserByUsername
         };
         return api;
 
@@ -35,9 +35,11 @@
          * @returns {*} The new user
          */
         function createUser(user) {
-            user._id = users.length;
-            users.push(user);
-            return user;
+
+            var url = "/api/user";
+            var user = user;
+            return $http.post(user, url);
+
         }
 
         /**
@@ -49,15 +51,8 @@
          */
         function findUserByCredentials(username, password) {
 
-            for(var i in users) {
-
-                if (users[i].username === username && users[i].password === password) {
-                    return users[i];
-                }
-
-            }
-
-            return null;
+            var url = "/api/user?username=" + username + "&password=" + password;
+            return $http.get(url);
 
         }
 
@@ -69,17 +64,8 @@
          */
         function findUserByID(id) {
 
-            for (var i in users) {
-
-                if (users[i]._id == id) {
-
-                    return users[i];
-
-                }
-
-            }
-
-            return null;
+            var url = "/api/user/" + id;
+            return $http.get(url);
 
         }
 
@@ -92,17 +78,8 @@
          */
         function updateUser(id, newUser) {
 
-            for(var i in users) {
-
-                if (users[i]._id === id) {
-                    users[i].firstName = newUser.firstName;
-                    users[i].lastName = newUser.lastName;
-                    return true;                                // Successfully updated
-                }
-
-            }
-
-            return false;                                       // Unable to find user
+            var url = "/api/user/" + id;
+            return $http.put(url, newUser);
 
         }
 
@@ -114,42 +91,21 @@
          */
         function deleteUser(id) {
 
-            var delIndex = -1;
-
-            for(var i in users) {
-
-                if (users[i]._id === id) {
-                    delIndex = i;
-                }
-
-            }
-
-            if (delIndex == -1) {
-                return false;
-            } else {
-                users.splice(delIndex, 1);
-                return true;
-            }
+            var url = "/api/user/" + id;
+            return $http.delete(url);
 
         }
 
         /**
-         * Does the specified username exist?
+         * Find a user by their username
          *
-         * @param uname The tentative user's username attempt
-         * @returns {boolean} Whether it already exists
+         * @param username The username of the desired user
+         * @returns {*} The user if found, or an empty object if not
          */
-        function alreadyHas(uname) {
+        function findUserByUsername(username) {
 
-            for (var i in users) {
-
-                if (uname == users[i].username) {
-                    return true;
-                }
-
-            }
-
-            return false;
+            var url = "/api/user?username=" + username;
+            return $http.get(url);
 
         }
 
