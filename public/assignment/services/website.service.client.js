@@ -12,7 +12,7 @@
         { _id: "789", name: "Chess",       developerId: "234" }
     ];
 
-    function WebsiteService() {
+    function WebsiteService($http) {
 
         var vm = this;
         
@@ -37,10 +37,9 @@
          */
         function createWebsite(userId, website) {
 
-            website._id = websites.length;
             website.developerId = userId;
-            websites.push(website);
-            return website;
+            var url = "/api/user/" + userId + "/website";
+            return $http.post(website, url);
 
         }
 
@@ -52,17 +51,8 @@
          */
         function findWebsitesByUser(userId) {
 
-            var result = [];
-
-            for(var i in websites) {
-
-                if (websites[i].developerId === userId) {
-                    result.push(websites[i]);
-                }
-
-            }
-
-            return result;
+            var url = "/api/user/" + userId + "/website";
+            return $http.get(url);
 
         }
 
@@ -74,15 +64,8 @@
          */
         function findWebsiteByID(websiteId) {
 
-            for (var i in websites) {
-
-                if (websites[i]._id == websiteId) {
-                    return websites[i];
-                }
-
-            }
-
-            return null;
+            var url = "/api/website/" + websiteId;
+            return $http.get(url);
 
         }
 
@@ -95,16 +78,8 @@
          */
         function updateWebsite(websiteId, website) {
 
-            for (var i in websites) {
-
-                if (websites[i]._id === websiteId) {
-                    websites[i] = website;
-                    return true;
-                }
-
-            }
-
-            return false;
+            var url = "/api/website/" + websiteId;
+            return $http.put(url, website);
 
         }
 
@@ -116,22 +91,8 @@
          */
         function deleteWebsite(websiteId) {
 
-            var delIndex = -1;
-
-            for(var i in websites) {
-
-                if (websites[i]._id === websiteId) {
-                    delIndex = i;
-                }
-
-            }
-
-            if (delIndex == -1) {
-                return false;
-            } else {
-                websites.splice(delIndex, 1);
-                return true;
-            }
+            var url = "/api/website/" + websiteId;
+            return $http.delete(url);
 
         }
 

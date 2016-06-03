@@ -14,31 +14,81 @@ module.exports = function(app) {
 
     function createPage(req, res) {
 
+        var page = req.body;
 
+        page._id = pages.length;
+        pages.push(page);
+        res.send(200);
 
     }
 
     function findAllPagesForWebsite(req, res) {
 
+        var result = [];
+        var websiteId = req.params.websiteId;
 
+        for (var i in pages) {
+
+            if (pages[i].websiteId == websiteId) {
+                result.push(pages[i]);
+            }
+
+        }
+
+        res.send(result);
 
     }
 
     function findPageById(req, res) {
 
+        var pageId = req.params.pageId;
 
+        for (var i in pages) {
+
+            if (pages[i]._id == pageId) {
+                res.send(pages[i]);
+                return;
+            }
+
+        }
+
+        res.send({});
 
     }
 
     function updatePage(req, res) {
 
+        var pageId = req.params.pageId;
+        var page = req.body;
 
+        for (var i in pages) {
+
+            if (pages[i]._id == pageId) {
+                pages[i] = page;
+                return;
+            }
+
+        }
+
+        res.send(400);
 
     }
 
     function deletePage(req, res) {
 
+        var pageId = req.params.pageId;
 
+        for (var i in pages) {
+
+            if (pages[i]._id == pageId) {
+                pages.splice(i, 1);
+                res.send(200);
+                return;
+            }
+
+        }
+
+        res.send(400);
         
     }
 

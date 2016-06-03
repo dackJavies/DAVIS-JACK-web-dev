@@ -22,7 +22,16 @@
             vm.userId = $routeParams["uid"];
             vm.webId = $routeParams["wid"];
             vm.pageId = $routeParams["pid"];
-            vm.page = PageService.findPageById(vm.pageId);
+            PageService
+                .findPageById(vm.pageId)
+                .then(
+                    function(response) {
+                        vm.page = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 
@@ -30,17 +39,31 @@
 
         function applyChanges() {
 
-            PageService.updatePage(vm.pageId, vm.page);
-
-            $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page");
+            PageService
+                .updatePage(vm.pageId, vm.page)
+                .then(
+                    function(response) {
+                        $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 
         function deletePage() {
 
-            PageService.deletePage(vm.pageId);
-
-            $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page");
+            PageService
+                .deletePage(vm.pageId)
+                .then(
+                    function(response) {
+                        $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 
@@ -60,7 +83,16 @@
 
         function init() {
 
-            vm.pages = PageService.findPagesByWebsiteId(wid);
+            PageService
+                .findPagesByWebsiteId(wid)
+                .then(
+                    function(response) {
+                        vm.pages = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
             vm.userId = uid;
             vm.webId = wid;
 
@@ -98,9 +130,16 @@
 
             var toAdd = {_id: 0, name: newName, websiteId: vm.webId};
 
-            PageService.createPage(vm.webId, toAdd);
-
-            $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page");
+            PageService
+                .createPage(vm.webId, toAdd)
+                .then(
+                    function(response) {
+                        $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 

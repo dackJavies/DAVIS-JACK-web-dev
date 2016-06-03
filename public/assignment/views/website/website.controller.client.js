@@ -17,7 +17,16 @@
 
         function init() {
 
-            vm.website = WebsiteService.findWebsiteByID(vm.webId);
+            WebsiteService
+                .findWebsiteByID(vm.webId)
+                .then(
+                    function(response) {
+                        vm.website = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 
@@ -27,19 +36,31 @@
 
             var result = WebsiteService.updateWebsite(vm.website._id, vm.website);
 
-            if (result == true) {
-                vm.success = "Update successful.";
-            } else {
-                vm.error = "Could not update the page.";
-            }
+            WebsiteService
+                .updateWebsite(vm.website._id, vm.website)
+                .then(
+                    function(response) {
+                        vm.success = "Update successful";
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 
         function deleteWebsite() {
 
-            WebsiteService.deleteWebsite(vm.webId);
-
-            $location.url("/user/" + vm.userId + "/website");
+            WebsiteService
+                .deleteWebsite(vm.webId)
+                .then(
+                    function(response) {
+                        $location.url("/user/" + vm.userId + "/website");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 
@@ -55,7 +76,16 @@
 
         function init() {
 
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .then(
+                    function(response) {
+                        vm.websites = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 
@@ -75,8 +105,17 @@
         function addWebsite(newName) {
 
             var toAdd = {_id: 0, name: newName, developerId: vm.userId};
-            WebsiteService.createWebsite(vm.userId, toAdd);
-            $location.url("/user/" + vm.userId + "/website");
+
+            WebsiteService
+                .createWebsite(vm.userId, toAdd)
+                .then(
+                    function(response) {
+                        $location.url("/user/" + vm.userId + "/website");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
 
         }
 

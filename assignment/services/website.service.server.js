@@ -16,32 +16,80 @@ module.exports = function(app) {
     app.delete("/api/website/:websiteId", deleteWebsite);
 
     function createWebsite(req, res) {
+        
+        var website = req.body;
 
-
+        website._id = websites.length;
+        websites.push(website);
+        return website;
 
     }
 
     function findAllWebsitesForUser(req, res) {
 
+        var userId = req.params.userId;
 
+        var result = [];
+
+        for(var i in websites) {
+
+            if (websites[i].developerId === userId) {
+                result.push(websites[i]);
+            }
+
+        }
+
+        res.send(result);
 
     }
 
     function findWebsiteById(req, res) {
 
+        var websiteId = req.params.websiteId;
 
+        for (var i in websites) {
+
+            if (websites[i]._id == websiteId) {
+                res.send(websites[i]);
+                return;
+            }
+
+        }
+
+        res.send({});
 
     }
 
     function updateWebsite(req, res) {
 
+        var websiteId = req.params.websiteId;
+        var website = req.body;
 
+        for (var i in websites) {
+
+            if (websites[i]._id === websiteId) {
+                websites[i] = website;
+                res.send(200);
+            }
+
+        }
+
+        res.send(400);
 
     }
 
     function deleteWebsite(req, res) {
 
+        for(var i in websites) {
 
+            if (websites[i]._id === websiteId) {
+                websites.splice(i, 1);
+                res.send(200);
+            }
+
+        }
+
+        res.send(400);
 
     }
 

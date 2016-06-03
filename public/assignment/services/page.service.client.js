@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .factory("PageService", PageService);
 
-    function PageService() {
+    function PageService($http) {
 
         var pages = [
             { _id: "321", name: "Post 1", websiteId: "456" },
@@ -32,9 +32,9 @@
          */
         function createPage(websiteId, page) {
 
-            page._id = pages.length;
             page.websiteId = websiteId;
-            pages.push(page);
+            var url = "/api/website/:websiteId/page";
+            return $http.post(page, url);
 
         }
 
@@ -46,17 +46,8 @@
          */
         function findPagesByWebsiteId(websiteId) {
 
-            var result = [];
-
-            for (var i in pages) {
-
-                if (pages[i].websiteId == websiteId) {
-                    result.push(pages[i]);
-                }
-
-            }
-
-            return result;
+            var url = "/api/website/" + websiteId+ "/page";
+            return $http.get(url);
 
         }
 
@@ -68,15 +59,8 @@
          */
         function findPageById(pageId) {
 
-            for (var i in pages) {
-
-                if (pages[i]._id == pageId) {
-                    return pages[i];
-                }
-
-            }
-
-            return null;
+            var url = "/api/page/" + pageId;
+            return $http.get(url);
 
         }
 
@@ -89,16 +73,8 @@
          */
         function updatePage(pageId, page) {
 
-            for (var i in pages) {
-
-                if (pages[i]._id == pageId) {
-                    pages[i] = page;
-                    return true;
-                }
-
-            }
-
-            return false;
+            var url = "/api/page/" + pageId;
+            return $http.put(url, page);
 
         }
 
@@ -110,16 +86,8 @@
          */
         function deletePage(pageId) {
 
-            for (var i in pages) {
-
-                if (pages[i]._id == pageId) {
-                    pages.splice(i, 1);
-                    return true;
-                }
-
-            }
-
-            return false;
+            var url = "/api/page/" + pageId;
+            return $http.delete(url);
 
         }
 

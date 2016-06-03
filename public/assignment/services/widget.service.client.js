@@ -39,9 +39,8 @@
         function createWidget(pageId, widget) {
 
             widget.pageId = pageId;
-            widget._id = widgets.length;
-            widgets.push(widget);
-            return widget;
+            var url = "/api/page/" + pageId + "/widget";
+            return $http.post(widget, url);
 
         }
 
@@ -53,17 +52,8 @@
          */
         function findWidgetsByPageId(pageId) {
 
-            var result = [];
-
-            for (var i in widgets) {
-
-                if (widgets[i].pageId == pageId) {
-                    result.push(widgets[i]);
-                }
-
-            }
-
-            return result;
+            var url = "/api/page/" + pageId + "/widget";
+            return $http.get(url);
 
         }
 
@@ -75,15 +65,8 @@
          */
         function findWidgetById(widgetId) {
 
-            for (var i in widgets) {
-
-                if (widgets[i]._id == widgetId) {
-                    return widgets[i];
-                }
-
-            }
-
-            return false;
+            var url = "/api/widget/" + widgetId;
+            return $http.get(url);
 
         }
 
@@ -96,16 +79,8 @@
          */
         function updateWidget(widgetId, widget) {
 
-            for (var i in widgets) {
-
-                if (widgets[i]._id == widgetId) {
-                    widgets[i] = widget;
-                    return true;
-                }
-
-            }
-
-            return false;
+            var url = "/api/widget/" + widgetId;
+            return $http.put(widget, url);
 
         }
 
@@ -117,16 +92,18 @@
          */
         function deleteWidget(widgetId) {
 
+            var url = "/api/widget/" + widgetId;
+
             for (var i in widgets) {
 
                 if (widgets[i]._id == widgetId) {
                     widgets.splice(i, 1);
-                    return true;
+                    res.send(200);
                 }
 
             }
 
-            return false;
+            res.send(400);
 
         }
 

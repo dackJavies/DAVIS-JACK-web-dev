@@ -82,32 +82,23 @@
 
         function register(uname, pass, vpass, fname, lname) {
 
-            UserService
-                .alreadyHas(uname)
-                .then(
-                    function(response) {
-                        if (response.data == true && pass === vpass) {
 
-                            var user = {_id: "0", username: uname, password: pass, firstName: fname, lastName: lname};
+            var user = {_id: "0", username: uname, password: pass, firstName: fname, lastName: lname};
 
-                            UserService
-                                .createUser(user)
-                                .then(
-                                    function(response) {
-                                        var url = "/user/" + response.data._id;
-                                        $location.url(url);
-                                    },
-                                    function(error) {
-                                        vm.error = error.data;
-                                    }
-                                );
+            if (pass === vpass) {
 
+                UserService
+                    .createUser(user)
+                    .then(
+                        function (response) {
+                            var url = "/user/" + response.data._id;
+                            $location.url(url);
+                        },
+                        function (error) {
+                            vm.error = error.data;
                         }
-                    },
-                    function (error) {
-
-                    }
-                );
+                    );
+            }
 
         }
 
