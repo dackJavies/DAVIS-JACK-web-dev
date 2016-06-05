@@ -196,7 +196,7 @@
 
     }
 
-    function FlickrImageSearchController($routeParams, FlickrService, WidgetService) {
+    function FlickrImageSearchController($routeParams, FlickrService, WidgetService, $location) {
 
         var vm = this;
 
@@ -248,6 +248,9 @@
                         vm.error = error.data;
                     }
                 );
+
+            $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page/" + vm.pageId + "/widget/" + vm.widgetId);
+
         }
 
     }
