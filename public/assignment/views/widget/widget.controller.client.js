@@ -3,7 +3,8 @@
         .module("WebAppMaker")
         .controller("WidgetListController", WidgetListController)
         .controller("NewWidgetController", NewWidgetController)
-        .controller("EditWidgetController", EditWidgetController);
+        .controller("EditWidgetController", EditWidgetController)
+        .controller("FlickrImageSearchController", FlickrImageSearchController);
 
     function NewWidgetController($routeParams, WidgetService, $location) {
 
@@ -192,6 +193,25 @@
 
         }
 
+
+    }
+
+    function FlickrImageSearchController($routeParams) {
+
+        var vm = this;
+
+        vm.userId = vm.webId = vm.pageId = vm.widgetId = null;
+
+        function init() {
+
+            vm.userId = $routeParams["uid"];
+            vm.webId = $routeParams["wid"];
+            vm.pageId = $routeParams["pid"];
+            vm.widgetId = $routeParams["wgid"];
+
+        }
+
+        init();
 
     }
     
