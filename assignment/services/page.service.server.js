@@ -16,9 +16,11 @@ module.exports = function(app) {
 
         var page = req.body;
 
+        console.log(page);
+
         page._id = pages.length;
         pages.push(page);
-        res.send(200);
+        res.sendStatus(200);
 
     }
 
@@ -70,7 +72,7 @@ module.exports = function(app) {
 
         }
 
-        res.send(400);
+        res.sendStatus(400);
 
     }
 
@@ -82,13 +84,13 @@ module.exports = function(app) {
 
             if (pages[i]._id == pageId) {
                 pages.splice(i, 1);
-                res.send(200);
+                res.sendStatus(200);
                 return;
             }
 
         }
 
-        res.send(400);
+        res.sendStatus(400);
         
     }
 

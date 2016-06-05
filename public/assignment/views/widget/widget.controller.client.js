@@ -64,8 +64,6 @@
          */
         function navigate(widget) {
 
-            var real = WidgetService.createWidget(vm.pageId, widget);
-
             WidgetService
                 .createWidget(vm.pageId, widget)
                 .then(
@@ -148,6 +146,8 @@
     }
 
     function WidgetListController($sce, $routeParams, WidgetService) {
+
+        $("#widgetRepeater").sortable({axis:"y"});
 
         var vm = this;
 

@@ -69,12 +69,12 @@ module.exports = function(app) {
 
             if (websites[i]._id === websiteId) {
                 websites[i] = website;
-                res.send(200);
+                res.sendStatus(200);
             }
 
         }
 
-        res.send(400);
+        res.sendStatus(400);
 
     }
 
@@ -84,12 +84,12 @@ module.exports = function(app) {
 
             if (websites[i]._id === websiteId) {
                 websites.splice(i, 1);
-                res.send(200);
+                res.sendStatus(200);
             }
 
         }
 
-        res.send(400);
+        res.sendStatus(400);
 
     }
 

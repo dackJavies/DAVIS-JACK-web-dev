@@ -19,7 +19,7 @@
 </nav>
 
 <!-- Body -->
-<div class="container">
+<div class="container underHeader">
 
     <form>
 
@@ -49,16 +49,22 @@
                    class="form-control">
         </div>
 
-        <!-- Upload -->
-        <div class="form-group">
-            <label for="widgetImageUpload">Upload</label>
-            <input type="file" id="widgetImageUpload" class="form-control">
-        </div>
+        <!--&lt;!&ndash; Upload &ndash;&gt;-->
+        <!--<div class="form-group">-->
+            <!--<label for="widgetImageUpload">Upload</label>-->
+            <!--<input type="file" id="widgetImageUpload" class="form-control">-->
+        <!--</div>-->
 
     </form>
 
-    <!-- Upload Button -->
-    <a ng-click="model.updateWidget()" class="btn btn-primary btn-block">Upload</a>
+    <h4>Or... Upload An Image!</h4>
+
+    <form action="/api/upload"  method="post" enctype="multipart/form-data">
+        <input  name="myFile"   type="file" class="form-control"/>
+        <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+        <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+        <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
+    </form>
 
     <!-- Delete Button -->
     <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">Delete</a>

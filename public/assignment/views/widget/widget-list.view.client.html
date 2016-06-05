@@ -20,7 +20,7 @@
 </nav>
 
 <!-- Body -->
-<div class="container underHeader overFooter">
+<div class="container underHeader overFooter" id="widgetRepeater">
 
     <div ng-repeat="widget in model.widgets">
 
@@ -45,7 +45,7 @@
                 <div ng-switch-when="5"><h5>{{widget.text}}</h5></div>
                 <div ng-switch-when="6"><h6>{{widget.text}}</h6></div>
 
-            </div>
+            </div>  
 
             <div ng-switch-when="IMAGE">
 
