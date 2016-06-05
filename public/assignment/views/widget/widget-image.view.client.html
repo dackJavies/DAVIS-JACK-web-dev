@@ -60,9 +60,12 @@
     <h4>Or... Upload An Image!</h4>
 
     <form action="/api/upload"  method="post" enctype="multipart/form-data">
-        <input  name="myFile"   type="file" class="form-control"/>
+        <input  name="myFile"   type="file" class="form-control" />
         <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
         <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+        <input  name="pageId" value="{{model.pageId}}"   style="display: none"/>
+        <input  name="userId" value="{{model.userId}}"   style="display: none"/>
+        <input  name="webId" value="{{model.webId}}"   style="display: none"/>
         <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
     </form>
 

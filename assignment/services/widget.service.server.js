@@ -26,7 +26,7 @@ module.exports = function(app) {
 
         var widget = req.body;
 
-        widget._id = widgets.length;
+        widget._id = widgets.length + "";
         widgets.push(widget);
         res.send(widget);
 
@@ -77,6 +77,7 @@ module.exports = function(app) {
             if (widgets[i]._id == widgetId) {
                 widgets[i] = widget;
                 res.sendStatus(200);
+                return;
             }
 
         }
@@ -88,6 +89,9 @@ module.exports = function(app) {
     function uploadImage(req, res) {
 
         var widgetId      = req.body.widgetId;
+        var userId        = req.body.userId;
+        var pageId        = req.body.pageId;
+        var webId         = req.body.webId;
         var width         = req.body.width;
         var myFile        = req.file;
 
@@ -99,12 +103,12 @@ module.exports = function(app) {
         var mimetype      = myFile.mimetype;
 
         for(var i in widgets) {
-            if(widgets[i]._id === widgetId) {
+            if(widgets[i]._id == widgetId) {
                 widgets[i].url = "/uploads/"+filename;
             }
         }
 
-        res.redirect("/assignment/#/user/:uid/website/:wid/page/:pid/widget/345");
+        res.redirect("/assignment/#/user/" + userId + "/website/" + webId + "/page/" + pageId + "/widget/");
     }
 
     function deleteWidget(req, res) {
