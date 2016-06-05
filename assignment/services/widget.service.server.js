@@ -72,6 +72,8 @@ module.exports = function(app) {
         var widgetId = req.params.widgetId;
         var widget = req.body;
 
+        console.log(widgetId == widget._id);
+
         for (var i in widgets) {
 
             if (widgets[i]._id == widgetId) {
