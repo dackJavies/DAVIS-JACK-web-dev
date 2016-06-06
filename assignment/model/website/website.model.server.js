@@ -15,7 +15,7 @@ module.exports = function() {
     /**
      * Creates a new website instance for user whose _id is userId
      *
-     * @param userId The id of the website to be created
+     * @param userId The id of the user this website belongs to
      * @param website The website to be created
      */
     function createWebsiteForUser(userId, website) {
