@@ -77,8 +77,7 @@ module.exports = function() {
                 lastName: user.lastName,
                 email: user.email,
                 phone: user.phone,
-                websites: user.websites,
-                dateCreated: user.dateCreated
+                websites: user.websites
             }
         );
 

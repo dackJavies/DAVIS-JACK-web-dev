@@ -24,7 +24,8 @@ module.exports = function() {
      */
     function createWebsiteForUser(userId, website) {
 
-
+        website._user = userId;
+        return Website.create(website);
 
     }
 
@@ -35,7 +36,7 @@ module.exports = function() {
      */
     function findAllWebsitesForUser(userId) {
 
-
+        return Website.find({_user: userId});
 
     }
 
@@ -46,7 +47,7 @@ module.exports = function() {
      */
     function findWebsiteById(websiteId) {
 
-
+        return Website.findById(websiteId);
 
     }
 
@@ -58,7 +59,15 @@ module.exports = function() {
      */
     function updateWebsite(websiteId, website) {
 
-
+        return Website.update(
+            {_id: websiteId},
+            {
+                _user: website._user,
+                name: website.name,
+                description: website.description,
+                pages: website.pages
+            }
+        )
 
     }
 
@@ -69,7 +78,7 @@ module.exports = function() {
      */
     function deleteWebsite(websiteId) {
 
-
+        return Website.remove({_id: websiteId});
 
     }
     

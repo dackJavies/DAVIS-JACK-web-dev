@@ -7,7 +7,7 @@ module.exports = function() {
         _user: User,
         name: String,
         description: String,
-        pages: [Page],
+        pages: [{type: mongoose.Schema.Types.ObjectId, ref: "Page"}],
         dateCreated: Date
 
     }, {collection: "website"});
