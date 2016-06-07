@@ -2,6 +2,8 @@ module.exports = function() {
 
     var mongoose = require("mongoose");
     var WebsiteSchema = require("./website.schema.server.js");
+    var UserSchema = require("./../user/user.schema.server.js");
+    var User = mongoose.model("User", UserSchema);
     var Website = mongoose.model("Website", WebsiteSchema);
     
     var api = {
@@ -24,7 +26,7 @@ module.exports = function() {
      */
     function createWebsiteForUser(userId, website) {
 
-        website._user = userId;
+        website._user = User.findById(userId);
         return Website.create(website);
 
     }

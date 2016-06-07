@@ -2,6 +2,8 @@ module.exports = function() {
 
     var mongoose = require("mongoose");
     var PageSchema = require("./page.schema.server.js");
+    var WebsiteSchema = require("./../website/website.schema.server.js");
+    var Website = mongoose.model("Website", WebsiteSchema);
     var Page = mongoose.model("Page", PageSchema);
 
     var api = {
@@ -24,7 +26,7 @@ module.exports = function() {
      */
     function createPage(websiteId, page) {
 
-        page._website = websiteId;
+        page._website = Website.findById(websiteId);
         return Page.create(page);
 
     }

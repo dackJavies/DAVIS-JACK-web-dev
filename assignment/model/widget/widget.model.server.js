@@ -2,6 +2,8 @@ module.exports = function() {
 
     var mongoose = require("mongoose");
     var WidgetSchema = require("./widget.schema.server.js");
+    var PageSchema = require("./../page/page.schema.server.js");
+    var page = mongoose.model("Page", PageSchema);
     var Widget = mongoose.model("Widget", WidgetSchema);
 
     var api = {
@@ -25,7 +27,8 @@ module.exports = function() {
      */
     function createWidget(pageId, widget) {
 
-
+        widget._page = Page.findById(pageId);
+        return Widget.create(widget);
 
     }
 
@@ -36,7 +39,7 @@ module.exports = function() {
      */
     function findAllWidgetsForPage(pageId) {
 
-
+        return Widget.find({_id: pageId});
 
     }
 
@@ -47,7 +50,7 @@ module.exports = function() {
      */
     function findWidgetById(widgetId) {
 
-
+        return Widget.findById(widgetId);
 
     }
 
@@ -59,7 +62,25 @@ module.exports = function() {
      */
     function updateWidget(widgetId, widget) {
 
-
+        return Widget.update(
+            {_id: widgetId},
+            {
+                _page: widget._page,
+                type: widget.type,
+                name: widget.name,
+                text: widget.text,
+                placeholder: widget.placeholder,
+                description: widget.description,
+                url: widget.url,
+                width: widget.width,
+                height: widget.height,
+                rows: widget.rows,
+                class: widget.class,
+                icon: widget.icon,
+                deletable: widget.deletable,
+                formatted: widget.formatted
+            }
+        );
 
     }
 
@@ -70,7 +91,7 @@ module.exports = function() {
      */
     function deleteWidget(widgetId) {
 
-
+        return Widget.remove({_id: widgetId});
 
     }
 
@@ -83,7 +104,7 @@ module.exports = function() {
      */
     function reorderWidget(pageId, start, end) {
 
-
+        //TODO
 
     }
 
