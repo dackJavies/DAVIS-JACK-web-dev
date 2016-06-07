@@ -1,5 +1,9 @@
 module.exports = function() {
 
+    var mongoose = require("mongoose");
+    var UserSchema = require("./user.schema.server.js");
+    var User = mongoose.model("User", UserSchema);
+
     var api = {
 
         createUser: createUser,
@@ -20,7 +24,7 @@ module.exports = function() {
      */
     function createUser(user) {
 
-        
+        return User.create(user);
 
     }
 
@@ -31,7 +35,7 @@ module.exports = function() {
      */
     function findUserById(userId) {
 
-
+        return User.findById(userId);
 
     }
 
@@ -42,7 +46,7 @@ module.exports = function() {
      */
     function findUserByUsername(username) {
 
-
+        return User.findOne({username: username});
 
     }
 
@@ -54,7 +58,7 @@ module.exports = function() {
      */
     function findUserByCredentials(username, password) {
 
-
+        return User.findOne({username: username, password: password});
 
     }
 
@@ -66,7 +70,17 @@ module.exports = function() {
      */
     function updateUser(userId, user) {
 
-
+        return User.update(
+            {_id: userId},
+            {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                phone: user.phone,
+                websites: user.websites,
+                dateCreated: user.dateCreated
+            }
+        );
 
     }
 
@@ -77,7 +91,7 @@ module.exports = function() {
      */
     function deleteUser(userId) {
 
-
+        return User.remove({_id: userId});
 
     }
 
