@@ -24,7 +24,8 @@ module.exports = function() {
      */
     function createPage(websiteId, page) {
 
-
+        page._website = websiteId;
+        return Page.create(page);
 
     }
 
@@ -35,7 +36,7 @@ module.exports = function() {
      */
     function findAllPagesForWebsite(websiteId) {
 
-
+        return Page.find({_website: websiteId});
 
     }
 
@@ -46,7 +47,7 @@ module.exports = function() {
      */
     function findPageById(pageId) {
 
-
+        return Page.findById(pageId);
 
     }
 
@@ -58,7 +59,15 @@ module.exports = function() {
      */
     function updatePage(pageId, page) {
 
-
+        return Page.updatePage(
+            {_id: pageId},
+            {
+                _website: page._website,
+                name: page.name,
+                description: page.description,
+                widgets: page.widgets
+            }
+        );
 
     }
 
@@ -69,7 +78,7 @@ module.exports = function() {
      */
     function deletePage(pageId) {
 
-
+        return Page.remove({_id: pageId});
 
     }
 

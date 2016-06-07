@@ -4,7 +4,7 @@ module.exports = function() {
 
     var WebsiteSchema = mongoose.Schema({
 
-        _user: User,
+        _user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
         name: String,
         description: String,
         pages: [{type: mongoose.Schema.Types.ObjectId, ref: "Page"}],

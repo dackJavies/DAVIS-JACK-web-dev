@@ -4,10 +4,10 @@ module.exports = function() {
 
     var PageSchema = mongoose.Schema({
 
-        _website: Website,
+        _website: {type: mongoose.Schema.Types.ObjectId, ref: "Website"},
         name: String,
         description: String,
-        widgets: [Widget],
+        widgets: [{type: mongoose.Schema.Types.ObjectId, ref: "Widget"}],
         dateCreated: Date
 
     }, {collection: "page"});
