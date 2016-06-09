@@ -1,7 +1,7 @@
 module.exports = function() {
 
     var mongoose = require("mongoose");
-    var UserSchema = require("./user.schema.server.js");
+    var UserSchema = require("./user.schema.server.js")();
     var User = mongoose.model("User", UserSchema);
 
     var api = {
@@ -12,6 +12,7 @@ module.exports = function() {
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
         deleteUser: deleteUser
+        // addOneWebsite: addOneWebsite
 
     };
 
@@ -82,6 +83,15 @@ module.exports = function() {
         );
 
     }
+
+    // function addOneWebsite(userId, websiteId) {
+    //
+    //     return User.update(
+    //         {_id: userId},
+    //         {$push: {"websites": websiteId.valueOf()}}
+    //     );
+    //
+    // }
 
     /**
      * Removes user instance whose _id is equal to parameter userId

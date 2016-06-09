@@ -83,7 +83,7 @@
         function register(uname, pass, vpass, fname, lname) {
 
 
-            var user = {_id: "0", username: uname, password: pass, firstName: fname, lastName: lname};
+            var user = {username: uname, password: pass, firstName: fname, lastName: lname};
 
             if (pass === vpass) {
 

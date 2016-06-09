@@ -5,7 +5,7 @@ module.exports = function() {
     var WidgetSchema = mongoose.Schema({
 
         _page: {type: mongoose.Schema.Types.ObjectId, ref: "Page"},
-        type: String, //enum???
+        type: {type: String, enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT']},
         name: String,
         text: String,
         placeholder: String,
@@ -13,7 +13,8 @@ module.exports = function() {
         url: String,
         width: Number,
         height: Number,
-        rows: size,
+        rows: Number,
+        size: Number,
         class: String,
         icon: String,
         deletable: Boolean,

@@ -7,7 +7,7 @@ module.exports = function() {
         _website: {type: mongoose.Schema.Types.ObjectId, ref: "Website"},
         name: String,
         description: String,
-        widgets: [{type: mongoose.Schema.Types.ObjectId, ref: "Widget"}],
+        // widgets: [{type: mongoose.Schema.Types.ObjectId, ref: "Widget"}],
         dateCreated: Date
 
     }, {collection: "page"});

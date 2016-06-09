@@ -5,18 +5,6 @@ module.exports = function(app, models) {
 
     var widgetModel = models.widgetModel;
 
-    // var widgets = [
-    //     { _id: "123", widgetType: "HEADER", pageId: "321", size: "2", text: "GIZMODO"},
-    //     { _id: "234", widgetType: "HEADER", pageId: "321", size: "4", text: "Lorem ipsum"},
-    //     { _id: "345", widgetType: "IMAGE", pageId: "321", width: "100%",
-    //         url: "http://lorempixel.com/400/200/"},
-    //     { _id: "456", widgetType: "HTML", pageId: "321", text: "<p>Lorem ipsum</p>"},
-    //     { _id: "567", widgetType: "HEADER", pageId: "321", size: "4", text: "Lorem ipsum"},
-    //     { _id: "678", widgetType: "YOUTUBE", pageId: "321", width: "100%",
-    //         url: "https://youtu.be/AM2Ivdi9c4E" },
-    //     { _id: "789", widgetType: "HTML", pageId: "321", text: "<p>Lorem ipsum</p>"}
-    // ];
-
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
     app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
@@ -39,10 +27,6 @@ module.exports = function(app, models) {
                 }
             );
 
-        // widget._id = widgets.length + "";
-        // widgets.push(widget);
-        // res.send(widget);
-
     }
 
     function findAllWidgetsForPage(req, res) {
@@ -59,18 +43,6 @@ module.exports = function(app, models) {
                     res.sendStatus(400);
                 }
             );
-
-        // var result = [];
-        //
-        // for (var i in widgets) {
-        //
-        //     if (widgets[i].pageId == pageId) {
-        //         result.push(widgets[i]);
-        //     }
-        //
-        // }
-        //
-        // res.send(result);
 
     }
 
@@ -89,17 +61,6 @@ module.exports = function(app, models) {
                 }
             );
 
-        // for (var i in widgets) {
-        //
-        //     if (widgets[i]._id == widgetId) {
-        //         res.send(widgets[i]);
-        //         return;
-        //     }
-        //
-        // }
-        //
-        // res.send({});
-
     }
 
     function updateWidget(req, res) {
@@ -117,18 +78,6 @@ module.exports = function(app, models) {
                     res.sendStatus(400);
                 }
             );
-
-        // for (var i in widgets) {
-        //
-        //     if (widgets[i]._id == widgetId) {
-        //         widgets[i] = widget;
-        //         res.sendStatus(200);
-        //         return;
-        //     }
-        //
-        // }
-        //
-        // res.sendStatus(400);
 
     }
 
@@ -171,17 +120,6 @@ module.exports = function(app, models) {
                     res.sendStatus(400);
                 }
             );
-
-        // for (var i in widgets) {
-        //
-        //     if (widgets[i]._id == widgetId) {
-        //         widgets.splice(i, 1);
-        //         res.sendStatus(200);
-        //     }
-        //
-        // }
-        //
-        // res.sendStatus(400);
 
     }
 

@@ -128,7 +128,7 @@
          */
         function addPage(newName) {
 
-            var toAdd = {_id: "0", name: newName + "", websiteId: vm.webId + ""};
+            var toAdd = {name: newName + "", websiteId: vm.webId + ""};
 
             PageService
                 .createPage(vm.webId, toAdd)

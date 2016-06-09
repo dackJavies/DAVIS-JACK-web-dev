@@ -30,7 +30,7 @@
 
             website.developerId = userId;
             var url = "/api/user/" + userId + "/website";
-            return $http.post(website, url);
+            return $http.post(url, website);
 
         }
 

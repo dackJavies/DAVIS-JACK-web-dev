@@ -104,7 +104,7 @@
 
         function addWebsite(newName) {
 
-            var toAdd = {_id: 0, name: newName, developerId: vm.userId};
+            var toAdd = {name: newName, developerId: vm.userId};
 
             WebsiteService
                 .createWebsite(vm.userId, toAdd)

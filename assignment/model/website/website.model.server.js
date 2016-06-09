@@ -1,9 +1,7 @@
-module.exports = function() {
+module.exports = function(User) {
 
     var mongoose = require("mongoose");
-    var WebsiteSchema = require("./website.schema.server.js");
-    var UserSchema = require("./../user/user.schema.server.js");
-    var User = mongoose.model("User", UserSchema);
+    var WebsiteSchema = require("./website.schema.server.js")();
     var Website = mongoose.model("Website", WebsiteSchema);
     
     var api = {
@@ -26,7 +24,25 @@ module.exports = function() {
      */
     function createWebsiteForUser(userId, website) {
 
-        website._user = User.findById(userId);
+        website._user = userId;
+        // Website.create(website)
+        //     .then(
+        //         function(wholeThing) {
+        //             var id = wholeThing._id;
+        //             User.addOneWebsite(userId, id.valueOf())
+        //                 .then(
+        //                     function(good) {
+        //                         return wholeThing;
+        //                     },
+        //                     function(bad) {
+        //                         return bad;
+        //                     }
+        //                 );
+        //         },
+        //         function(errorbad) {
+        //             return errorbad;
+        //         }
+        //     );
         return Website.create(website);
 
     }
