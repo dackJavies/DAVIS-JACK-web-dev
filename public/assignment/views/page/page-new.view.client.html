@@ -10,7 +10,7 @@
         <p class="navbar-brand">New Page</p>
 
         <!-- Confirm Button -->
-        <a ng-click="model.addPage(newPageName)" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
+        <a ng-click="model.addPage(newPageName, newPageDescription)" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
 
     </div>
 
@@ -26,8 +26,8 @@
         </div>
 
         <div class="form-group">
-            <label for="editPageTitle">Title</label>
-            <input type="text" placeholder="Title" id="editPageTitle" class="form-control">
+            <label for="editPageTitle">Description</label>
+            <input type="text" placeholder="Description" id="editPageTitle" class="form-control" ng-model="newPageDescription">
         </div>
 
     </form>

@@ -15,9 +15,10 @@ module.exports = function(app, models) {
     function createWidget(req, res) {
 
         var widget = req.body;
+        var pageId = req.params.pageId;
 
         widgetModel
-            .createWidget(widget)
+            .createWidget(pageId, widget)
             .then(
                 function(widget) {
                     res.json(widget);

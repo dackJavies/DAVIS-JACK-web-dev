@@ -24,7 +24,7 @@
 
     <div ng-repeat="widget in model.widgets">
 
-        <div ng-switch="widget.widgetType">
+        <div ng-switch="widget.type">
 
             <!-- Little white widget tool -->
             <div class="jgd-widget">
@@ -36,7 +36,7 @@
             </div>
 
             <!-- Widget content -->
-            <div ng-switch-when="HEADER" ng-switch="widget.size">
+            <div ng-switch-when="HEADING" ng-switch="widget.size">
 
                 <div ng-switch-when="1"><h1>{{widget.text}}</h1></div>
                 <div ng-switch-when="2"><h2>{{widget.text}}</h2></div>

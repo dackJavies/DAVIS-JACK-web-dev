@@ -32,7 +32,7 @@
          */
         function makeHeader() {
 
-            var toAdd = {widgetType: "HEADER", pageId: vm.pageId, size: 1, text: ""};
+            var toAdd = {_page: vm.pageId, type: "HEADING", size: 1, text: ""};
 
             navigate(toAdd);
 
@@ -43,7 +43,7 @@
          */
         function makeImage() {
 
-            var toAdd = {widgetType: "IMAGE", pageId: vm.pageId, width: "100%", url: ""};
+            var toAdd = {_page: vm.pageId, type: "IMAGE", width: "100%", url: ""};
 
             navigate(toAdd);
 
@@ -54,7 +54,7 @@
          */
         function makeYoutube() {
 
-            var toAdd = {widgetType: "YOUTUBE", pageId: vm.pageId, width: "100%", url: ""};
+            var toAdd = {_page: vm.pageId, type: "YOUTUBE", width: "100%", url: ""};
 
             navigate(toAdd);
 

@@ -13,7 +13,7 @@ module.exports = function(app, models) {
         var website = req.body;
 
         websiteModel
-            .createWebsiteForUser(website.developerId, website)
+            .createWebsiteForUser(website._user, website)
             .then(
                 function(website) {
                     res.json(website);
@@ -79,13 +79,13 @@ module.exports = function(app, models) {
 
     function deleteWebsite(req, res) {
 
-        var websiteId = req.body;
+        var websiteId = req.params.websiteId;
 
         websiteModel
             .deleteWebsite(websiteId)
             .then(
                 function(response) {
-                    res.send(response.data);
+                    res.send(response);
                 },
                 function(error) {
                     res.sendStatus(400);

@@ -1,4 +1,4 @@
-module.exports = function(User) {
+module.exports = function() {
 
     var mongoose = require("mongoose");
     var WebsiteSchema = require("./website.schema.server.js")();
@@ -24,7 +24,7 @@ module.exports = function(User) {
      */
     function createWebsiteForUser(userId, website) {
 
-        website._user = userId;
+        // website._user = userId;
         // Website.create(website)
         //     .then(
         //         function(wholeThing) {

@@ -11,7 +11,7 @@
         <p class="navbar-brand">New Website</p>
 
         <!-- Confirm -->
-        <a ng-click="model.addWebsite(newName)" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
+        <a ng-click="model.addWebsite(newName, newDescription)" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
 
     </div>
 
@@ -31,7 +31,8 @@
         <!-- Description -->
         <div class="form-group">
             <label for="newWebsiteDescription">Description</label>
-            <textarea placeholder="Description" id="newWebsiteDescription" class="form-control" rows="5"></textarea>
+            <textarea placeholder="Description" id="newWebsiteDescription" class="form-control" rows="5"
+                        ng-model="newDescription"></textarea>
         </div>
 
     </form>

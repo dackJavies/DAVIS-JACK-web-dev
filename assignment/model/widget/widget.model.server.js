@@ -25,7 +25,7 @@ module.exports = function() {
      */
     function createWidget(pageId, widget) {
 
-        widget._page = Page.findById(pageId);
+        widget._page = pageId;
         return Widget.create(widget);
 
     }
@@ -37,7 +37,7 @@ module.exports = function() {
      */
     function findAllWidgetsForPage(pageId) {
 
-        return Widget.find({_id: pageId});
+        return Widget.find({_page: pageId});
 
     }
 
@@ -60,25 +60,68 @@ module.exports = function() {
      */
     function updateWidget(widgetId, widget) {
 
-        return Widget.update(
-            {_id: widgetId},
-            {
-                _page: widget._page,
-                type: widget.type,
-                name: widget.name,
-                text: widget.text,
-                placeholder: widget.placeholder,
-                description: widget.description,
-                url: widget.url,
-                width: widget.width,
-                height: widget.height,
-                rows: widget.rows,
-                class: widget.class,
-                icon: widget.icon,
-                deletable: widget.deletable,
-                formatted: widget.formatted
-            }
-        );
+        switch(widget.type) {
+
+            case 'HEADING':
+                return Widget.update(
+                    {_id: widgetId},
+                    {
+                        _page: widget._page,
+                        type: widget.type,
+                        name: widget.name,
+                        text: widget.text,
+                        size: widget.size,
+                        placeholder: widget.placeholder,
+                        class: widget.class,
+                        icon: widget.icon,
+                        deletable: widget.deletable,
+                        formatted: widget.formatted
+                    }
+                );
+
+            case 'IMAGE':
+                return Widget.update(
+                    {_id: widgetId},
+                    {
+                        _page: widget._page,
+                        type: widget.type,
+                        name: widget.name,
+                        text: widget.text,
+                        placeholder: widget.placeholder,
+                        description: widget.description,
+                        url: widget.url,
+                        width: widget.width,
+                        height: widget.height,
+                        rows: widget.rows,
+                        class: widget.class,
+                        icon: widget.icon,
+                        deletable: widget.deletable,
+                        formatted: widget.formatted
+                    }
+                );
+
+            case 'YOUTUBE':
+                return Widget.update(
+                    {_id: widgetId},
+                    {
+                        _page: widget._page,
+                        type: widget.type,
+                        name: widget.name,
+                        text: widget.text,
+                        placeholder: widget.placeholder,
+                        description: widget.description,
+                        url: widget.url,
+                        width: widget.width,
+                        height: widget.height,
+                        rows: widget.rows,
+                        class: widget.class,
+                        icon: widget.icon,
+                        deletable: widget.deletable,
+                        formatted: widget.formatted
+                    }
+                );
+
+        }
 
     }
 

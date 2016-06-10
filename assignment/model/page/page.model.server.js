@@ -24,7 +24,7 @@ module.exports = function() {
      */
     function createPage(websiteId, page) {
 
-        page._website = Website.findById(websiteId);
+        page._website = websiteId;
         return Page.create(page);
 
     }

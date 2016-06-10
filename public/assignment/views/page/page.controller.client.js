@@ -124,11 +124,12 @@
         /**
          * Add the new page to the list
          *
-         * @param newName The name of the new website
+         * @param newName The name of the new page
+         * @param newPageDescription The description of the new page
          */
-        function addPage(newName) {
+        function addPage(newName, newPageDescription) {
 
-            var toAdd = {name: newName + "", websiteId: vm.webId + ""};
+            var toAdd = { _website: vm.webId + "", name: newName + "", description: newPageDescription + ""};
 
             PageService
                 .createPage(vm.webId, toAdd)

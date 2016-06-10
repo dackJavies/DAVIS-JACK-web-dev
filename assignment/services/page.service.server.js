@@ -11,9 +11,10 @@ module.exports = function(app, models) {
     function createPage(req, res) {
 
         var page = req.body;
+        var websiteId = req.params.websiteId;
 
         pageModel
-            .createPage(page)
+            .createPage(websiteId, page)
             .then(
                 function(page) {
                     res.json(page);
