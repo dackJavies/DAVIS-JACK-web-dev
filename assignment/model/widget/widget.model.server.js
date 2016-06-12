@@ -180,6 +180,56 @@ module.exports = function() {
             }
         );
 
+        // I CAN'T GET THIS TO WORK PROPERLY
+
+        // var i;
+        //
+        // if (start < end) {
+        //     for (i = start; i <= end; i++) {
+        //         return reorderHelper(i, start, end, pageId).then(
+        //             function(succ) {
+        //             }
+        //         );
+        //     }
+        // } else if (end < start) {
+        //     for (i = end; i <= start; i++) {
+        //         return reorderHelper(i, start, end, pageId).then(
+        //             function(succ) {
+        //             }
+        //         );
+        //     }
+        // }
+
+    }
+
+    function reorderHelper(index, start, end, pageId) {
+
+        if (start < end) {
+
+            if (index == start) {
+
+                return Widget.update({_page: pageId, order: start}, {order: end});
+
+            } else if (index > start && index <= end) {
+
+                return Widget.update({_page: pageId, order: index}, {order: index-1});
+
+            }
+
+        } else if (end < start) {
+
+            if (index == end) {
+
+                return Widget.update({_page: pageId, order: end}, {order: start});
+
+            } else if (index > end && index <= start) {
+
+                return Widget.update({_page: pageId, order:index}, {order:index+1});
+
+            }
+
+        }
+
     }
 
 };
