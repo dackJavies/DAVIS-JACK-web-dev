@@ -8,22 +8,32 @@
 
     <form>
 
-        <div class="form-group">
-            <label for="widgetYouTubeName">Name</label>
-            <input ng-model="model.widget.name" type="text" placeholder="Name" id="widgetYouTubeName" class="form-control">
+        <!-- Name -->
+        <div class="form-group" ng-show="!model.nameErr">
+            <label for="widgetYouTubeName1">Name</label>
+            <input ng-model="model.widget.name" type="text" placeholder="Name" id="widgetYouTubeName1" class="form-control">
+        </div>
+        <div class="form-group has-error" ng-show="model.nameErr">
+            <label for="widgetYouTubeName2">Name</label>
+            <input ng-model="model.widget.name" type="text" placeholder="Name" id="widgetYouTubeName2"
+                   class="form-control" aria-describedby="youtubeWidgetNameErr">
+            <span id="youtubeWidgetNameErr" class="help-block">{{model.nameErr}}</span>
         </div>
 
+        <!-- Text -->
         <div class="form-group">
             <label for="widgetYouTubeText">Text</label>
             <input ng-model="model.widget.text" type="text" placeholder="Text" id="widgetYouTubeText" class="form-control">
         </div>
 
+        <!-- URL -->
         <div class="form-group">
             <label for="widgetYouTubeURL">URL</label>
             <input ng-model="model.widget.url" type="url" placeholder="url.web.site.com.gov" id="widgetYouTubeURL"
                    class="form-control">
         </div>
 
+        <!-- Width -->
         <div class="form-group">
             <label for="widgetYouTubeWidth">Width</label>
             <input ng-model="model.widget.width" type="text" placeholder="Width" id="widgetYouTubeWidth"

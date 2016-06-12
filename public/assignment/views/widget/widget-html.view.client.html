@@ -3,9 +3,15 @@
 <div class="container underHeader">
 
     <form>
-        <div class="form-group">
-            <label for="widgetHTMLName">Name</label>
-            <input ng-model="model.widget.name" type="text" placeholder="Name" id="widgetHTMLName" class="form-control">
+        <div class="form-group"  ng-show="!model.nameErr">
+            <label for="widgetHTMLName1">Name</label>
+            <input ng-model="model.widget.name" type="text" placeholder="Name" id="widgetHTMLName1" class="form-control">
+        </div>
+        <div class="form-group has-error" ng-show="model.nameErr">
+            <label for="widgetHTMLName2">Name</label>
+            <input ng-model="model.widget.name" type="text" placeholder="Name" id="widgetHTMLName2"
+                   class="form-control" aria-describedby="htmlWidgetNameErr">
+            <span id="htmlWidgetNameErr" class="help-block">{{model.nameErr}}</span>
         </div>
     </form>
 

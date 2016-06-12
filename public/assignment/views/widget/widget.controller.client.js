@@ -135,6 +135,10 @@
         function updateWidget() {
 
             if (vm.widget.name && !(vm.widget.name === "")) {
+
+                vm.error = null;
+                vm.nameErr = null;
+
                 WidgetService
                     .updateWidget(vm.widgetId, vm.widget)
                     .then(
@@ -146,7 +150,8 @@
                         }
                     );
             } else {
-                vm.error = "Name required.";
+                vm.error = "Could not update widget.";
+                vm.nameErr = "Name required.";
             }
 
         }
