@@ -66,8 +66,6 @@ module.exports = function() {
                 return Widget.update(
                     {_id: widgetId},
                     {
-                        _page: widget._page,
-                        type: widget.type,
                         name: widget.name,
                         text: widget.text,
                         size: widget.size,
@@ -83,16 +81,12 @@ module.exports = function() {
                 return Widget.update(
                     {_id: widgetId},
                     {
-                        _page: widget._page,
-                        type: widget.type,
                         name: widget.name,
                         text: widget.text,
                         placeholder: widget.placeholder,
                         description: widget.description,
                         url: widget.url,
                         width: widget.width,
-                        height: widget.height,
-                        rows: widget.rows,
                         class: widget.class,
                         icon: widget.icon,
                         deletable: widget.deletable,
@@ -104,15 +98,37 @@ module.exports = function() {
                 return Widget.update(
                     {_id: widgetId},
                     {
-                        _page: widget._page,
-                        type: widget.type,
+                        name: widget.name,
+                        text: widget.text,
+                        url: widget.url,
+                        width: widget.width,
+                        class: widget.class,
+                        icon: widget.icon,
+                        deletable: widget.deletable,
+                        formatted: widget.formatted
+                    }
+                );
+
+            case 'HTML':
+                return Widget.update(
+                    {_id: widgetId},
+                    {
                         name: widget.name,
                         text: widget.text,
                         placeholder: widget.placeholder,
-                        description: widget.description,
-                        url: widget.url,
-                        width: widget.width,
-                        height: widget.height,
+                        class: widget.class,
+                        icon: widget.icon,
+                        deletable: widget.deletable
+                    }
+                );
+
+            case 'INPUT':
+                return Widget.update(
+                    {_id: widgetId},
+                    {
+                        name: widget.name,
+                        text: widget.text,
+                        placeholder: widget.placeholder,
                         rows: widget.rows,
                         class: widget.class,
                         icon: widget.icon,

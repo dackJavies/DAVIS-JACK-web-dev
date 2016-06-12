@@ -15,6 +15,8 @@
         vm.makeHeader = makeHeader;
         vm.makeImage = makeImage;
         vm.makeYoutube = makeYoutube;
+        vm.makeHTML = makeHTML;
+        vm.makeTextInput = makeTextInput;
         vm.navigate = navigate;
 
         function init() {
@@ -55,6 +57,22 @@
         function makeYoutube() {
 
             var toAdd = {_page: vm.pageId, type: "YOUTUBE", width: "100%", url: ""};
+
+            navigate(toAdd);
+
+        }
+
+        function makeHTML() {
+
+            var toAdd = {_page: vm.pageId, type: "HTML"};
+
+            navigate(toAdd);
+
+        }
+
+        function makeTextInput() {
+
+            var toAdd = {_page: vm.pageId, type: "INPUT"};
 
             navigate(toAdd);
 
@@ -116,16 +134,20 @@
 
         function updateWidget() {
 
-            WidgetService
-                .updateWidget(vm.widgetId, vm.widget)
-                .then(
-                    function(response) {
-                        $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page/" + vm.pageId + "/widget");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                );
+            if (vm.widget.name && !(vm.widget.name === "")) {
+                WidgetService
+                    .updateWidget(vm.widgetId, vm.widget)
+                    .then(
+                        function (response) {
+                            $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page/" + vm.pageId + "/widget");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    );
+            } else {
+                vm.error = "Name required.";
+            }
 
         }
 

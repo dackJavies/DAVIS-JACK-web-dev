@@ -39,16 +39,20 @@
 
         function applyChanges() {
 
-            PageService
-                .updatePage(vm.pageId, vm.page)
-                .then(
-                    function(response) {
-                        $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                );
+            if (vm.page.name && vm.page.name != "") {
+                PageService
+                    .updatePage(vm.pageId, vm.page)
+                    .then(
+                        function (response) {
+                            $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    );
+            } else {
+                vm.error = "Name required";
+            }
 
         }
 
@@ -129,18 +133,22 @@
          */
         function addPage(newName, newPageDescription) {
 
-            var toAdd = { _website: vm.webId + "", name: newName + "", description: newPageDescription + ""};
+            if (newName && newName != "") {
+                var toAdd = {_website: vm.webId + "", name: newName + "", description: newPageDescription + ""};
 
-            PageService
-                .createPage(vm.webId, toAdd)
-                .then(
-                    function(response) {
-                        $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                );
+                PageService
+                    .createPage(vm.webId, toAdd)
+                    .then(
+                        function (response) {
+                            $location.url("/user/" + vm.userId + "/website/" + vm.webId + "/page");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    );
+            } else {
+                vm.error = "Name required.";
+            }
 
         }
 

@@ -12,17 +12,22 @@
         vm.login = login;
 
         function login(username, password) {
-            UserService
-                .findUserByCredentials(username, password)
-                .then(
-                    function(response) {
-                        var id = response.data._id;
-                        $location.url("/user/" + id);
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                );
+
+            if (username && password) {
+                UserService
+                    .findUserByCredentials(username, password)
+                    .then(
+                        function (response) {
+                            var id = response.data._id;
+                            $location.url("/user/" + id);
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    );
+            } else {
+                vm.error = "Must have username and password";
+            }
 
         }
     }
@@ -85,7 +90,7 @@
 
             var user = {username: uname, password: pass, firstName: fname, lastName: lname};
 
-            if (pass === vpass) {
+            if ((uname && pass && vpass) && pass === vpass) {
 
                 UserService
                     .createUser(user)
@@ -98,6 +103,8 @@
                             vm.error = error.data;
                         }
                     );
+            } else {
+                vm.error = "Passwords did not match, or you are missing information";
             }
 
         }

@@ -20,6 +20,10 @@
 <!-- Form -->
 <div class="container underHeader overFooter">
 
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <form>
 
         <!-- Name -->

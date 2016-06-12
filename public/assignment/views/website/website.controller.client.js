@@ -34,18 +34,23 @@
 
         function updateWebsite() {
 
-            var result = WebsiteService.updateWebsite(vm.website._id, vm.website);
+            if (!(vm.website.name === "")) {
 
-            WebsiteService
-                .updateWebsite(vm.website._id, vm.website)
-                .then(
-                    function(response) {
-                        vm.success = "Update successful";
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                );
+                var result = WebsiteService.updateWebsite(vm.website._id, vm.website);
+
+                WebsiteService
+                    .updateWebsite(vm.website._id, vm.website)
+                    .then(
+                        function (response) {
+                            vm.success = "Update successful";
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    );
+            } else {
+                vm.error = "Name required.";
+            }
 
         }
 
@@ -104,18 +109,23 @@
 
         function addWebsite(newName, newDescription) {
 
-            var toAdd = {_user: vm.userId, name: newName, description: newDescription};
+            if (newName) {
 
-            WebsiteService
-                .createWebsite(vm.userId, toAdd)
-                .then(
-                    function(response) {
-                        $location.url("/user/" + vm.userId + "/website");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                );
+                var toAdd = {_user: vm.userId, name: newName, description: newDescription};
+
+                WebsiteService
+                    .createWebsite(vm.userId, toAdd)
+                    .then(
+                        function (response) {
+                            $location.url("/user/" + vm.userId + "/website");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    );
+            } else {
+                vm.error = "Name required."
+            }
 
         }
 

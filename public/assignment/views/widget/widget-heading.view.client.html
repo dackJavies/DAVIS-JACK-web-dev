@@ -1,24 +1,10 @@
 
-<!-- Fixed Header -->
-<nav class="navbar navbar-default navbar-fixed-top">
-
-    <div class="container-fluid">
-
-        <!-- Back button -->
-        <a href="#/user/{{model.userId}}/website/{{model.webId}}/page/{{model.pageId}}/widget" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn"></a>
-
-        <!-- Brand -->
-        <p class="navbar-brand">Widget Edit</p>
-
-        <!-- Confirm -->
-        <a ng-click="model.updateWidget()" class="glyphicon glyphicon-ok pull-right btn navbar-btn"></a>
-
-    </div>
-
-</nav>
-
 <!-- Body -->
 <div class="container underHeader overFooter">
+
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
 
     <form>
 
@@ -59,15 +45,3 @@
     <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">Delete</a>
 
 </div>
-
-<!-- Fixed Footer -->
-<nav class="navbar navbar-default navbar-fixed-bottom">
-
-    <div class="container-fluid">
-
-        <!-- To Profile Page -->
-        <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user pull-right btn navbar-btn"></a>
-
-    </div>
-
-</nav>
