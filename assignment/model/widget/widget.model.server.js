@@ -26,7 +26,7 @@ module.exports = function() {
     function createWidget(pageId, widget) {
 
         widget._page = pageId;
-        return Widget.count().then(
+        return Widget.count({_page: pageId}).then(
             function(count) {
                 widget.order = count;
                 return Widget.create(widget);
@@ -168,13 +168,13 @@ module.exports = function() {
      * @param start The current location of the widget
      * @param end The desired location of the widget
      */
-    function reorderWidget(start, end) {
+    function reorderWidget(pageId, start, end) {
 
-        return Widget.update({order : start}, {order : -1}).then(
+        return Widget.update({order : start, _page: pageId}, {order : -1}).then(
             function(success) {
-                return Widget.update({order : end}, {order: start}).then(
+                return Widget.update({order : end, _page: pageId}, {order: start}).then(
                     function(success) {
-                        return Widget.update({order : -1}, {order : end});
+                        return Widget.update({order : -1, _page: pageId}, {order : end});
                     }
                 );
             }

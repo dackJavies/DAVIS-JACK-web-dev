@@ -86,9 +86,9 @@
 
         }
 
-        function sorted(startIndex, endIndex) {
+        function sorted(startIndex, endIndex, pageId) {
 
-            var url = "/api/widget?start=" + startIndex + "&end=" + endIndex;
+            var url = "/api/widget?start=" + startIndex + "&end=" + endIndex + "&pid=" + pageId;
             return $http.put(url);
 
         }

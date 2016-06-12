@@ -227,7 +227,7 @@
             console.log("end: " + endIndex);
 
             WidgetService
-                .sorted(startIndex, endIndex)
+                .sorted(startIndex, endIndex, vm.pageId)
                 .then(
                     function(response) {
 

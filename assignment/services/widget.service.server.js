@@ -129,9 +129,10 @@ module.exports = function(app, models) {
 
         var startIndex = req.query["start"];
         var endIndex = req.query["end"];
+        var pageId = req.query["pid"];
 
         widgetModel
-            .reorderWidget(startIndex, endIndex)
+            .reorderWidget(pageId, startIndex, endIndex)
             .then(
                 function(response) {
                     res.sendStatus(200);
