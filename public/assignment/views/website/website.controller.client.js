@@ -34,7 +34,10 @@
 
         function updateWebsite() {
 
-            if (!(vm.website.name === "")) {
+            if (vm.website.name) {
+
+                vm.error = null;
+                vm.nameErr = null;
 
                 var result = WebsiteService.updateWebsite(vm.website._id, vm.website);
 
@@ -49,7 +52,9 @@
                         }
                     );
             } else {
-                vm.error = "Name required.";
+                vm.error = "Could not edit.";
+
+                vm.nameErr = "Must have a name.";
             }
 
         }
@@ -111,6 +116,9 @@
 
             if (newName) {
 
+                vm.error = null;
+                vm.nameErr = null;
+
                 var toAdd = {_user: vm.userId, name: newName, description: newDescription};
 
                 WebsiteService
@@ -124,7 +132,8 @@
                         }
                     );
             } else {
-                vm.error = "Name required."
+                vm.error = "Could not create website."
+                vm.nameErr = "Name required.";
             }
 
         }

@@ -27,9 +27,15 @@
     <form>
 
         <!-- Name -->
-        <div class="form-group">
-            <label for="newWebsiteName">Name</label>
-            <input ng-model="newName" type="text" placeholder="Name" id="newWebsiteName" class="form-control">
+        <div class="form-group" ng-show="!model.nameErr">
+            <label for="newWebsiteName1">Name</label>
+            <input ng-model="newName" type="text" placeholder="Name" id="newWebsiteName1" class="form-control">
+        </div>
+        <div class="form-group has-error" ng-show="model.nameErr">
+            <label for="newWebsiteName2">Website Name</label>
+            <input ng-model="newName" type="text" placeholder="Name" id="newWebsiteName2"
+                   class="form-control" aria-describedby="newWebsiteNameErr">
+            <span id="newWebsiteNameErr" class="help-block">{{model.nameErr}}</span>
         </div>
 
         <!-- Description -->

@@ -74,6 +74,12 @@
                    class="form-control" aria-describedby="registerVPasswordErrs">
             <span id="registerVPasswordErrs" class="help-block">{{model.vpasswordErr}} {{model.matchErr}}</span>
         </div>
+        <div class="form-group has-error" ng-show="!model.vpasswordErr && model.matchErr">
+            <label for="registerPassConfirm4">Verify Password</label>
+            <input ng-model="verifyPass" type="password" placeholder="password again" id="registerPassConfirm4"
+                   class="form-control" aria-describedby="registerVPasswordErrs">
+            <span id="registerVPasswordErr2" class="help-block">{{model.matchErr}}</span>
+        </div>
 
     </form>
 
