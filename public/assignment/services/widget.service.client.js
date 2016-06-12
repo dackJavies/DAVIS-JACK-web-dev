@@ -11,7 +11,8 @@
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
-            deleteWidget: deleteWidget
+            deleteWidget: deleteWidget,
+            sorted: sorted
 
         };
 
@@ -82,6 +83,13 @@
 
             var url = "/api/widget/" + widgetId;
             return $http.delete(url);
+
+        }
+
+        function sorted(startIndex, endIndex) {
+
+            var url = "/api/widget?start=" + startIndex + "&end=" + endIndex;
+            return $http.put(url);
 
         }
 

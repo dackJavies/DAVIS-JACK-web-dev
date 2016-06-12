@@ -20,65 +20,69 @@
 </nav>
 
 <!-- Body -->
-<div class="container underHeader overFooter" id="widgetRepeater">
+<div class="container underHeader overFooter">
 
-    <div ng-repeat="widget in model.widgets">
+    <wam-sortable data="model.widgets" sorted="model.sorted(start, end)">
 
-        <div ng-switch="widget.type">
+        <div ng-repeat="widget in model.widgets">
 
-            <!-- Little white widget tool -->
-            <div class="jgd-widget">
+            <div ng-switch="widget.type">
 
-                <a href="#/user/{{model.userId}}/website/{{model.webId}}/page/{{model.pageId}}/widget/{{widget._id}}"
-                   class="glyphicon glyphicon-cog"></a>
-                <span class="glyphicon glyphicon-align-justify"></span>
+                <!-- Little white widget tool -->
+                <div class="jgd-widget">
 
-            </div>
+                    <a href="#/user/{{model.userId}}/website/{{model.webId}}/page/{{model.pageId}}/widget/{{widget._id}}"
+                       class="glyphicon glyphicon-cog"></a>
+                    <span class="glyphicon glyphicon-align-justify"></span>
 
-            <!-- Widget content -->
-            <div ng-switch-when="HEADING" ng-switch="widget.size">
+                </div>
 
-                <div ng-switch-when="1"><h1>{{widget.text}}</h1></div>
-                <div ng-switch-when="2"><h2>{{widget.text}}</h2></div>
-                <div ng-switch-when="3"><h3>{{widget.text}}</h3></div>
-                <div ng-switch-when="4"><h4>{{widget.text}}</h4></div>
-                <div ng-switch-when="5"><h5>{{widget.text}}</h5></div>
-                <div ng-switch-when="6"><h6>{{widget.text}}</h6></div>
+                <!-- Widget content -->
+                <div ng-switch-when="HEADING" ng-switch="widget.size">
 
-            </div>
+                    <div ng-switch-when="1"><h1>{{widget.text}}</h1></div>
+                    <div ng-switch-when="2"><h2>{{widget.text}}</h2></div>
+                    <div ng-switch-when="3"><h3>{{widget.text}}</h3></div>
+                    <div ng-switch-when="4"><h4>{{widget.text}}</h4></div>
+                    <div ng-switch-when="5"><h5>{{widget.text}}</h5></div>
+                    <div ng-switch-when="6"><h6>{{widget.text}}</h6></div>
 
-            <div ng-switch-when="IMAGE">
+                </div>
 
-                <img src="{{widget.url}}" width="{{widget.width}}">
+                <div ng-switch-when="IMAGE">
 
-            </div>
+                    <img src="{{widget.url}}" width="{{widget.width}}">
 
-            <div ng-switch-when="YOUTUBE" class="jgd-youtube-widget">
+                </div>
 
-                <iframe width="{{widget.width}}" ng-src="{{model.getSafeUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
+                <div ng-switch-when="YOUTUBE" class="jgd-youtube-widget">
 
-            </div>
+                    <iframe width="{{widget.width}}" ng-src="{{model.getSafeUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
 
-            <div ng-switch-when="HTML">
+                </div>
 
-                <div ng-bind-html="model.getSafeHtml(widget)"></div>
+                <div ng-switch-when="HTML">
 
-            </div>
+                    <div ng-bind-html="model.getSafeHtml(widget)"></div>
 
-            <div ng-switch-when="INPUT">
+                </div>
 
-                <div ng-if="widget.formatted" text-angular ta-toolbar="..."></div>
-                    <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
-                       placeholder="{{widget.textInput.placeholder}}" class="form-control"/>
-                <textarea ng-if="!widget.formatted && (widget.rows > 1)"
-                    rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
-                    class="form-control">{{widget.text}}</textarea>
+                <div ng-switch-when="INPUT">
+
+                    <div ng-if="widget.formatted" text-angular ta-toolbar="..."></div>
+                        <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
+                           placeholder="{{widget.textInput.placeholder}}" class="form-control"/>
+                    <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                        rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                        class="form-control">{{widget.text}}</textarea>
+
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+    </wam-sortable>
 
 </div>
 

@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("wamDirectives")
+        .module("wamDirectives", [])
         .directive("wamSortable", wamSortable);
 
     function wamSortable() {
@@ -12,7 +12,6 @@
             startIndex = endIndex = -1;
 
             $(element)
-                .find("div")
                 .sortable({
                     start: function(event, ui) {
                         startIndex = ui.item.index();
@@ -34,10 +33,7 @@
 
         return {
 
-            templateUrl: "../views/widget/reorder.view.client.html",
             scope: {
-                title: "=",
-                border: "=",
                 data: "=",
                 reorder: "&sorted"
             },

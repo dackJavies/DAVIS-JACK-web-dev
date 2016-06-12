@@ -34,7 +34,7 @@
          */
         function makeHeader() {
 
-            var toAdd = {_page: vm.pageId, type: "HEADING", size: 1, text: ""};
+            var toAdd = {_page: vm.pageId, type: "HEADING", size: 1, text: "", order: 0};
 
             navigate(toAdd);
 
@@ -45,7 +45,7 @@
          */
         function makeImage() {
 
-            var toAdd = {_page: vm.pageId, type: "IMAGE", width: "100%", url: ""};
+            var toAdd = {_page: vm.pageId, type: "IMAGE", width: "100%", url: "", order: 0};
 
             navigate(toAdd);
 
@@ -56,7 +56,7 @@
          */
         function makeYoutube() {
 
-            var toAdd = {_page: vm.pageId, type: "YOUTUBE", width: "100%", url: ""};
+            var toAdd = {_page: vm.pageId, type: "YOUTUBE", width: "100%", url: "", order: 0};
 
             navigate(toAdd);
 
@@ -64,7 +64,7 @@
 
         function makeHTML() {
 
-            var toAdd = {_page: vm.pageId, type: "HTML"};
+            var toAdd = {_page: vm.pageId, type: "HTML", order: 0};
 
             navigate(toAdd);
 
@@ -72,7 +72,7 @@
 
         function makeTextInput() {
 
-            var toAdd = {_page: vm.pageId, type: "INPUT"};
+            var toAdd = {_page: vm.pageId, type: "INPUT", order: 0};
 
             navigate(toAdd);
 
@@ -170,14 +170,13 @@
 
     function WidgetListController($sce, $routeParams, WidgetService) {
 
-        $("#widgetRepeater").sortable({axis:"y"});
-
         var vm = this;
 
         vm.userId = vm.webId = vm.pageId = vm.widgets = null;
 
         vm.getSafeHtml = getSafeHtml;
         vm.getSafeUrl = getSafeUrl;
+        vm.sorted = sorted;
 
         function init() {
 
@@ -212,6 +211,26 @@
             var id = urlParts[urlParts.length - 1];
             var url = "https://www.youtube.com/embed/" + id;
             return $sce.trustAsResourceUrl(url);
+
+        }
+
+        function sorted(startIndex, endIndex) {
+
+            console.log("made it to sorted! c:");
+
+            console.log("start: " + startIndex);
+            console.log("end: " + endIndex);
+
+            WidgetService
+                .sorted(startIndex, endIndex)
+                .then(
+                    function(response) {
+
+                    },
+                    function(error) {
+
+                    }
+                );
 
         }
 

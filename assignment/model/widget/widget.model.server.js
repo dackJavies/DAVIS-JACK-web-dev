@@ -26,7 +26,12 @@ module.exports = function() {
     function createWidget(pageId, widget) {
 
         widget._page = pageId;
-        return Widget.create(widget);
+        return Widget.count().then(
+            function(count) {
+                widget.order = count;
+                return Widget.create(widget);
+            }
+        );
 
     }
 
@@ -37,7 +42,7 @@ module.exports = function() {
      */
     function findAllWidgetsForPage(pageId) {
 
-        return Widget.find({_page: pageId});
+        return Widget.find({_page: pageId}).sort({order: 1});
 
     }
 
@@ -73,7 +78,8 @@ module.exports = function() {
                         class: widget.class,
                         icon: widget.icon,
                         deletable: widget.deletable,
-                        formatted: widget.formatted
+                        formatted: widget.formatted,
+                        order: widget.order
                     }
                 );
 
@@ -90,7 +96,8 @@ module.exports = function() {
                         class: widget.class,
                         icon: widget.icon,
                         deletable: widget.deletable,
-                        formatted: widget.formatted
+                        formatted: widget.formatted,
+                        order: widget.order
                     }
                 );
 
@@ -105,7 +112,8 @@ module.exports = function() {
                         class: widget.class,
                         icon: widget.icon,
                         deletable: widget.deletable,
-                        formatted: widget.formatted
+                        formatted: widget.formatted,
+                        order: widget.order
                     }
                 );
 
@@ -118,7 +126,8 @@ module.exports = function() {
                         placeholder: widget.placeholder,
                         class: widget.class,
                         icon: widget.icon,
-                        deletable: widget.deletable
+                        deletable: widget.deletable,
+                        order: widget.order
                     }
                 );
 
@@ -133,7 +142,8 @@ module.exports = function() {
                         class: widget.class,
                         icon: widget.icon,
                         deletable: widget.deletable,
-                        formatted: widget.formatted
+                        formatted: widget.formatted,
+                        order: widget.order
                     }
                 );
 
@@ -155,13 +165,20 @@ module.exports = function() {
     /**
      * Modifies the order of widget at position start into final position end in page whose _id is pageId
      *
-     * @param pageId The id of the page to be reordered
      * @param start The current location of the widget
      * @param end The desired location of the widget
      */
-    function reorderWidget(pageId, start, end) {
+    function reorderWidget(start, end) {
 
-        //TODO
+        return Widget.update({order : start}, {order : -1}).then(
+            function(success) {
+                return Widget.update({order : end}, {order: start}).then(
+                    function(success) {
+                        return Widget.update({order : -1}, {order : end});
+                    }
+                );
+            }
+        );
 
     }
 

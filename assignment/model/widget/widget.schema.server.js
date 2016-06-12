@@ -19,7 +19,8 @@ module.exports = function() {
         icon: String,
         deletable: Boolean,
         formatted: Boolean,
-        dateCreated: Date
+        dateCreated: Date,
+        order: Number
 
     }, {collection: "widget"});
 

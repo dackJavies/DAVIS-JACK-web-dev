@@ -11,6 +11,7 @@ module.exports = function(app, models) {
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
+    app.put("/api/widget", sorted);
 
     function createWidget(req, res) {
 
@@ -116,6 +117,24 @@ module.exports = function(app, models) {
             .then(
                 function(response) {
                     res.send(response);
+                },
+                function(error) {
+                    res.sendStatus(400);
+                }
+            );
+
+    }
+
+    function sorted(req, res) {
+
+        var startIndex = req.query["start"];
+        var endIndex = req.query["end"];
+
+        widgetModel
+            .reorderWidget(startIndex, endIndex)
+            .then(
+                function(response) {
+                    res.sendStatus(200);
                 },
                 function(error) {
                     res.sendStatus(400);
