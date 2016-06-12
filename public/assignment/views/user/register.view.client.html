@@ -9,29 +9,70 @@
 
     <form>
 
-        <div class="form-group">
-            <label for="registerFirstName">First Name</label>
-            <input ng-model="regFirstName" type="text" placeholder="John" id="registerFirstName" class="form-control">
+        <!-- First Name -->
+        <div class="form-group" ng-show="!model.firstNameErr">
+            <label for="registerFirstName1">First Name</label>
+            <input ng-model="regFirstName" type="text" placeholder="John" id="registerFirstName1" class="form-control">
+        </div>
+        <div class="form-group has-error" ng-show="model.firstNameErr">
+            <label for="registerFirstName2">First Name</label>
+            <input ng-model="regFirstName" type="text" placeholder="John" id="registerFirstName2"
+                   class="form-control" aria-describedby="registerFirstNameErr">
+            <span id="registerFirstNameErr" class="help-block">{{model.firstNameErr}}</span>
         </div>
 
-        <div class="form-group">
-            <label for="registerLastName">Last Name</label>
-            <input ng-model="regLastName" type="text" placeholder="Doe" id="registerLastName" class="form-control">
+        <!-- Last Name -->
+        <div class="form-group" ng-show="!model.lastNameErr">
+            <label for="registerLastName1">Last Name</label>
+            <input ng-model="regLastName" type="text" placeholder="Doe" id="registerLastName1" class="form-control">
+        </div>
+        <div class="form-group has-error" ng-show="model.lastNameErr">
+            <label for="registerLastName2">Last Name</label>
+            <input ng-model="regLastName" type="text" placeholder="Doe" id="registerLastName2"
+                   class="form-control" aria-describedby="registerLastNameErr">
+            <span id="registerLastNameErr" class="help-block">{{model.lastNameErr}}</span>
         </div>
 
-        <div class="form-group">
-            <label for="registerUsername">Username</label>
-            <input ng-model="regUsername" type="text" placeholder="username" id="registerUsername" class="form-control">
+        <!-- Username -->
+        <div class="form-group" ng-show="!model.usernameErr">
+            <label for="registerUsername1">Username</label>
+            <input ng-model="regUsername" type="text" placeholder="username" id="registerUsername1" class="form-control">
+        </div>
+        <div class="form-group has-error" ng-show="model.usernameErr">
+            <label for="registerUsername2">Username</label>
+            <input ng-model="regUsername" type="text" placeholder="username" id="registerUsername2"
+                   class="form-control" aria-describedby="registerUsernameErr">
+            <span id="registerUsernameErr" class="help-block">{{model.usernameErr}}</span>
         </div>
 
-        <div class="form-group">
-            <label for="registerPassword">Password</label>
-            <input ng-model="regPassword" type="password" placeholder="password" id="registerPassword" class="form-control">
+        <!-- Password -->
+        <div class="form-group" ng-show="!model.passwordErr">
+            <label for="registerPassword1">Password</label>
+            <input ng-model="regPassword" type="password" placeholder="password" id="registerPassword1" class="form-control">
+        </div>
+        <div class="form-group has-error" ng-show="model.passwordErr">
+            <label for="registerPassword2">Password</label>
+            <input ng-model="regPassword" type="password" placeholder="password" id="registerPassword2"
+                   class="form-control" aria-describedby="registerPasswordErr">
+            <span id="registerPasswordErr" class="help-block">{{model.passwordErr}}</span>
         </div>
 
-        <div class="form-group">
-            <label for="registerPassConfirm">Verify Password</label>
-            <input ng-model="verifyPass" type="password" placeholder="password again" id="registerPassConfirm" class="form-control">
+        <!-- Verify Password -->
+        <div class="form-group" ng-show="!model.vpasswordErr">
+            <label for="registerPassConfirm1">Verify Password</label>
+            <input ng-model="verifyPass" type="password" placeholder="password again" id="registerPassConfirm1" class="form-control">
+        </div>
+        <div class="form-group has-error" ng-show="model.vpasswordErr && !model.matchErr">
+            <label for="registerPassConfirm2">Verify Password</label>
+            <input ng-model="verifyPass" type="password" placeholder="password again" id="registerPassConfirm2"
+                   class="form-control" aria-describedby="registerVPasswordErr">
+            <span id="registerVPasswordErr" class="help-block">{{model.vpasswordErr}}</span>
+        </div>
+        <div class="form-group has-error" ng-show="model.vpasswordErr && model.matchErr">
+            <label for="registerPassConfirm3">Verify Password</label>
+            <input ng-model="verifyPass" type="password" placeholder="password again" id="registerPassConfirm3"
+                   class="form-control" aria-describedby="registerVPasswordErrs">
+            <span id="registerVPasswordErrs" class="help-block">{{model.vpasswordErr}} {{model.matchErr}}</span>
         </div>
 
     </form>

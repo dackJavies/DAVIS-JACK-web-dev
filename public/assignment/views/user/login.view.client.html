@@ -17,7 +17,7 @@
         <div class="form-group has-error" ng-show="model.usernameErr">
             <label for="loginUsername2">Username</label>
             <input ng-model="username" type="text" placeholder="username" id="loginUsername2"
-                   class="form-control" aria-described-by="loginUsernameErr">
+                   class="form-control" aria-describedby="loginUsernameErr">
             <span id="loginUsernameErr" class="help-block">{{model.usernameErr}}</span>
         </div>
 
@@ -29,7 +29,7 @@
         <div class="form-group has-error" ng-show="model.passwordErr">
             <label for="loginPassword2">Password</label>
             <input ng-model="password" type="password" placeholder="password" id="loginPassword2"
-                   class="form-control" aria-described-by="loginPasswordErr">
+                   class="form-control" aria-describedby="loginPasswordErr">
             <span id="loginPasswordErr" class="help-block">{{model.passwordErr}}</span>
         </div>
 

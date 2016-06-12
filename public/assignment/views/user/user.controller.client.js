@@ -112,26 +112,46 @@
                             $location.url(url);
                         },
                         function (error) {
-                            vm.error = error.data;
+                            vm.error = "Username already taken.";
                         }
                     );
             } else {
-                vm.error = "Passwords did not match, or you are missing information";
+                vm.error = "Could not register.";
 
                 if (!uname) {
                     vm.usernameErr = "Must have a username.";
+                } else {
+                    vm.usernameErr = null;
                 }
 
                 if (!pass) {
                     vm.passwordErr = "Must have a password.";
+                } else {
+                    vm.passwordErr = null;
                 }
 
                 if (!vpass) {
                     vm.vpasswordErr = "Must verify password.";
+                } else {
+                    vm.vpasswordErr = null;
                 }
 
-                if (pass !== vpass) {
+                if (!fname) {
+                    vm.firstNameErr = "Must have a first name.";
+                } else {
+                    vm.firstNameErr = null;
+                }
+
+                if (!lname) {
+                    vm.lastNameErr = "Must have a last name.";
+                } else {
+                    vm.lastNameErr = null;
+                }
+
+                if (!(pass == vpass)) {
                     vm.matchErr = "Passwords do not match.";
+                } else {
+                    vm.matchErr = null;
                 }
             }
 
