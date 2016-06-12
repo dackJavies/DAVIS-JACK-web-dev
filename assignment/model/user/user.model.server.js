@@ -25,7 +25,13 @@ module.exports = function() {
      */
     function createUser(user) {
 
-        return User.create(user);
+        return User.find({username: user.username}).then(
+            function(user) {
+                if (user == null) {
+                    return User.create(user);
+                }
+            }
+        );
 
     }
 

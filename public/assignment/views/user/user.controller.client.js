@@ -22,11 +22,23 @@
                             $location.url("/user/" + id);
                         },
                         function (error) {
-                            vm.error = error.data;
+                            vm.error = "Could not login.";
                         }
                     );
             } else {
                 vm.error = "Must have username and password";
+
+                if (!username) {
+                    vm.usernameErr = "Must have a username.";
+                } else {
+                    vm.usernameErr = null;
+                }
+
+                if (!password) {
+                    vm.passwordErr = "Must have a password.";
+                } else {
+                    vm.passwordErr = null;
+                }
             }
 
         }
@@ -105,6 +117,22 @@
                     );
             } else {
                 vm.error = "Passwords did not match, or you are missing information";
+
+                if (!uname) {
+                    vm.usernameErr = "Must have a username.";
+                }
+
+                if (!pass) {
+                    vm.passwordErr = "Must have a password.";
+                }
+
+                if (!vpass) {
+                    vm.vpasswordErr = "Must verify password.";
+                }
+
+                if (pass !== vpass) {
+                    vm.matchErr = "Passwords do not match.";
+                }
             }
 
         }
