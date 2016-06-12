@@ -39,7 +39,11 @@
 
         function applyChanges() {
 
-            if (vm.page.name && vm.page.name != "") {
+            if (vm.page.name && !(vm.page.name == "")) {
+
+                vm.error = null;
+                vm.nameErr = null;
+
                 PageService
                     .updatePage(vm.pageId, vm.page)
                     .then(
@@ -51,7 +55,8 @@
                         }
                     );
             } else {
-                vm.error = "Name required";
+                vm.error = "Could not update page.";
+                vm.nameErr = "Name required.";
             }
 
         }
@@ -133,7 +138,11 @@
          */
         function addPage(newName, newPageDescription) {
 
-            if (newName && newName != "") {
+            if (newName && !(newName == "")) {
+
+                vm.error = null;
+                vm.nameErr = null;
+
                 var toAdd = {_website: vm.webId + "", name: newName + "", description: newPageDescription + ""};
 
                 PageService
@@ -147,7 +156,8 @@
                         }
                     );
             } else {
-                vm.error = "Name required.";
+                vm.error = "Could not create page.";
+                vm.nameErr = "Name required.";
             }
 
         }
