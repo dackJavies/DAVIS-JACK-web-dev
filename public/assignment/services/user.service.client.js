@@ -9,12 +9,31 @@
 
             createUser: createUser,
             findUserByCredentials: findUserByCredentials,
+            login: login,
+            logout: logout,
             findUserByID: findUserByID,
             updateUser: updateUser,
             deleteUser: deleteUser,
             findUserByUsername: findUserByUsername
         };
         return api;
+        
+        function login(username, password) {
+            
+            var url = "/api/login";
+            var user = {
+                username : username,
+                password : password
+            };
+            return $http.post(url, user);
+
+        }
+
+        function logout() {
+
+            return $http.post("/api/logout");
+
+        }
 
 
         /**

@@ -5,43 +5,40 @@
         .controller("RegisterController", RegisterController)
         .controller("ProfileController", ProfileController);
 
-    function LoginController($location, UserService) {
+    function LoginController($location, $rootScope, UserService) {
 
         var vm = this;
 
         vm.login = login;
+        vm.logout = logout;
 
         function login(username, password) {
 
-            if (username && password) {
-                UserService
-                    .findUserByCredentials(username, password)
-                    .then(
-                        function (response) {
-                            var id = response.data._id;
-                            $location.url("/user/" + id);
-                        },
-                        function (error) {
-                            vm.error = "Could not login.";
-                        }
-                    );
-            } else {
-                vm.error = "Must have username and password";
-
-                if (!username) {
-                    vm.usernameErr = "Must have a username.";
-                } else {
-                    vm.usernameErr = null;
-                }
-
-                if (!password) {
-                    vm.passwordErr = "Must have a password.";
-                } else {
-                    vm.passwordErr = null;
-                }
-            }
+            UserService
+                .login(username, password)
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        $rootScope.currentUser = user;
+                        $location.url("/user/" + user._id);
+                    }
+                );
 
         }
+
+        function logout() {
+
+            UserService
+                .logout()
+                .then(
+                    function(response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/");
+                    }
+                )
+
+        }
+
     }
 
     function ProfileController($routeParams, UserService) {
