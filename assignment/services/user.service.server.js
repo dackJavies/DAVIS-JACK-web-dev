@@ -3,6 +3,7 @@ module.exports = function(app, models) {
     var userModel = models.userModel;
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
 
     var auth = authorized;
     passport.use(new LocalStrategy(localStrategy));
@@ -18,6 +19,12 @@ module.exports = function(app, models) {
     app.get("/api/user/:userId", auth, findUserById);
     app.put("/api/user/:userId", auth, updateUser);
     app.delete("/api/user/:userId", auth, deleteUser);
+    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/#/user',
+            failureRedirect: '/#/login'
+        }));
 
     function serializeUser(user, done) {
         done(null, user);
