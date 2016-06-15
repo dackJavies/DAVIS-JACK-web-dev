@@ -69,6 +69,25 @@ module.exports = function(app, models) {
         res.send(200);
     }
 
+    function register(req, res) {
+        var user = req.body;
+        userModel
+            .createUser(user)
+            .then(
+                function(user) {
+                    if(user) {
+                        req.login(user, function(err) {
+                            if (err) {
+                                res.sendStatus(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+                        })
+                    }
+                }
+            )
+    }
+
     function createUser(req, res) {
 
         var newUser = req.body;

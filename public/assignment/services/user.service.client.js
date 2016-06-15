@@ -11,6 +11,7 @@
             findUserByCredentials: findUserByCredentials,
             login: login,
             logout: logout,
+            register: register,
             findUserByID: findUserByID,
             updateUser: updateUser,
             deleteUser: deleteUser,
@@ -35,6 +36,11 @@
 
         }
 
+        function register(user) {
+
+            return $http.post("/api/register", user);
+
+        }
 
         /**
          * Add a new User to the users array

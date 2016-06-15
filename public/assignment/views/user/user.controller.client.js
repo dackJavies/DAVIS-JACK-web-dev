@@ -88,7 +88,7 @@
 
     }
 
-    function RegisterController($location, UserService) {
+    function RegisterController($location, $rootScope, UserService) {
 
         var vm = this;
 
@@ -102,11 +102,12 @@
             if ((uname && pass && vpass) && pass === vpass) {
 
                 UserService
-                    .createUser(user)
+                    .register(user)
                     .then(
                         function (response) {
-                            var url = "/user/" + response.data._id;
-                            $location.url(url);
+                            var myUser = response.data;
+                            $rootScope.currentUser = myUser;
+                            $location.url("/user/" + myUser._id);
                         },
                         function (error) {
                             vm.error = "Username already taken.";
