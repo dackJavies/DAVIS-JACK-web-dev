@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="SearchScape">
 <head>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
     <link href="css/style.css" rel="stylesheet"/>
 
     <!-- Google Fonts -->
@@ -14,39 +16,16 @@
     <script src="app.js"></script>
     <script src="config.js"></script>
 
+    <script src="views/user/user.controller.client.js"></script>
+    <script src="views/puzzle/puzzle.controller.client.js"></script>
+    <script src="views/friend/friend.controller.client.js"></script>
+
+    <script src="services/user.service.client.js"></script>
+    <script src="services/puzzle.service.client.js"></script>
+    <script src="services/friend.service.client.js"></script>
+
 </head>
 <body>
-
     <div ng-view></div>
-
-    <!--&lt;!&ndash; Banner/Navbar &ndash;&gt;-->
-    <!--<nav class="navbar navbar-fixed-top">-->
-        <!--<div class="container-fluid">-->
-
-            <!--<p class="jgd-banner col-xs-12">SearchScape</p>-->
-
-        <!--</div>-->
-    <!--</nav>-->
-
-    <!--<div class="jgd-underHeader">-->
-
-        <!--&lt;!&ndash; Site Description &ndash;&gt;-->
-        <!--<div class="container-fluid jgd-text jgd-bot-space">-->
-
-            <!--<p>Make word searches and share them with your friends for free! Register now to play.</p>-->
-
-        <!--</div>-->
-
-        <!--&lt;!&ndash; Buttons &ndash;&gt;-->
-        <!--<div class="container-fluid">-->
-
-            <!--<a href="views/user/login.view.client.html" class="btn btn-block jgd-button jgd-bot-space">Login</a>-->
-
-            <!--<a href="views/user/register.view.client.html" class="btn btn-block jgd-button">Register</a>-->
-
-        <!--</div>-->
-
-    <!--</div>-->
-
 </body>
 </html>
