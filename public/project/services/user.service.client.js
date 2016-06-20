@@ -7,6 +7,8 @@
 
         var api = {
 
+            login: login,
+            logout: logout,
             createUser: createUser,
             findUserByCredentials: findUserByCredentials,
             findUserByUsername: findUserByUsername,
@@ -17,6 +19,14 @@
         };
 
         return api;
+
+        function login(user) {
+            return $http.post("/api/login", user);
+        }
+
+        function logout(user) {
+            return $http.post("/api/logout");
+        }
 
         function createUser(user) {
 

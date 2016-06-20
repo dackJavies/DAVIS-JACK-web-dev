@@ -1,7 +1,7 @@
 <!-- Banner/Navbar -->
 <nav class="navbar navbar-fixed-top">
     <div class="container-fluid">
-        <a href="../index.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
+        <div class="col-xs-2"></div>
         <p class="jgd-banner pull-center col-xs-8">Login</p>
         <div class="col-xs-2"></div>
     </div>
@@ -11,20 +11,36 @@
 
     <form>
 
-        <div class="form-group">
-            <label for="loginUsername">Username</label>
-            <input type="text" placeholder="bigboi3129" id="loginUsername" class="form-control jgd-input">
+        <!-- Username -->
+        <div class="form-group" ng-show="!model.usernameErr">
+            <label for="loginUsername1">Username</label>
+            <input ng-model="loginUsername" type="text" placeholder="bigboi3129" id="loginUsername1"
+                   class="form-control jgd-input">
+        </div>
+        <div class="form-group has-error" ng-show="model.usernameErr">
+            <label for="loginUsername2">Username</label>
+            <input ng-model="loginUsername" type="text" placeholder="bigboi3129" id="loginUsername2"
+                   class="form-control jgd-input" aria-describedby="loginUsernameErr">
+            <span id="loginUsernameErr" class="help-block">{{model.usernameErr}}</span>
         </div>
 
-        <div class="form-group">
-            <label for="loginPassword">Password</label>
-            <input type="password" placeholder="guest" id="loginPassword" class="form-control jgd-input">
+        <!-- Password -->
+        <div class="form-group" ng-show="!model.passwordErr">
+            <label for="loginPassword1">Password</label>
+            <input ng-model="loginPassword" type="password" placeholder="guest" id="loginPassword1"
+                   class="form-control jgd-input">
+        </div>
+        <div class="form-group has-error" ng-show="model.passwordErr">
+            <label for="loginPassword2">Password</label>
+            <input ng-model="loginPassword" type="password" placeholder="guest" id="loginPassword2"
+                   class="form-control jgd-input" aria-describedby="loginPasswordErr">
+            <span id="loginPasswordErr" class="help-block">{{model.passwordErr}}</span>
         </div>
 
     </form>
 
-    <a href="profile.view.client.html" class="btn btn-block jgd-button jgd-bot-space">Login</a>
+    <a ng-click="model.login(loginUsername, loginPassword)" class="btn btn-block jgd-button jgd-bot-space">Login</a>
 
-    <a href="../index.html" class="btn btn-block jgd-button">Cancel</a>
+    <a href="#/register" class="btn btn-block jgd-button">Register</a>
 
 </div>
