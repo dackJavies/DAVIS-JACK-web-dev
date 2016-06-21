@@ -9,6 +9,10 @@
 
 <div class="container-fluid jgd-underHeader">
 
+    <div class="alert alert-danger" ng-if="model.error">
+        {{model.error}}
+    </div>
+
     <form>
 
         <!-- Username -->

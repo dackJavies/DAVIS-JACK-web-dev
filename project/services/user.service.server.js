@@ -19,6 +19,7 @@ module.exports = function(app) {
     app.post  ('/api/login',            passport.authenticate('searchScape'), login);
     app.post  ('/api/logout',           logout);
     app.post  ('/api/register',         register);
+    app.get ('/api/loggedin',           loggedin);
 
     app.post("/api/user",               createUser);
     app.get("/api/user",                getUsers);
@@ -75,6 +76,25 @@ module.exports = function(app) {
     function logout(req, res) {
         req.logOut();
         res.send(200);
+    }
+
+    function register (req, res) {
+        var user = req.body;
+        userModel
+            .createUser(user)
+            .then(
+                function(user){
+                    if(user){
+                        req.login(user, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                }
+            );
     }
 
     function loggedin(req, res) {

@@ -9,6 +9,7 @@
 
             login: login,
             logout: logout,
+            register: register,
             createUser: createUser,
             findUserByCredentials: findUserByCredentials,
             findUserByUsername: findUserByUsername,
@@ -26,6 +27,10 @@
 
         function logout(user) {
             return $http.post("/api/logout");
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
         }
 
         function createUser(user) {

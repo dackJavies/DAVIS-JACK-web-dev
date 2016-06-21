@@ -1,7 +1,7 @@
 <!-- Banner/Navbar -->
 <nav class="navbar navbar-fixed-top">
     <div class="container-fluid">
-        <a href="../index.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
+        <a href="#/login" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
         <p class="jgd-banner pull-center col-xs-8">Register</p>
         <div class="col-xs-2"></div>
     </div>
@@ -10,37 +10,70 @@
 <!-- Body -->
 <div class="container-fluid jgd-underHeader">
 
+    <div class="alert alert-danger" ng-if="model.error">
+        {{model.error}}
+    </div>
+
     <form>
 
+        <!-- First Name -->
         <div class="form-group">
             <label for="registerFirst">First Name</label>
-            <input type="text" placeholder="Mario" id="registerFirst" class="form-control jgd-input">
+            <input ng-model="fname" type="text" placeholder="Mario" id="registerFirst" class="form-control jgd-input">
         </div>
 
+        <!-- Last Name -->
         <div class="form-group">
             <label for="registerLast">Last Name</label>
-            <input type="text" placeholder="Mario" id="registerLast" class="form-control jgd-input">
+            <input ng-model="lname" type="text" placeholder="Mario" id="registerLast" class="form-control jgd-input">
         </div>
 
-        <div class="form-group">
-            <label for="registerEmail">Email</label>
-            <input type="text" placeholder="pc@load.letter" id="registerEmail" class="form-control jgd-input">
+        <!-- Username -->
+        <div class="form-group" ng-show="!model.usernameErr">
+            <label for="registerUsername1">Username</label>
+            <input ng-model="uname" type="text" placeholder="bigboi3129" id="registerUsername1" class="form-control jgd-input">
+        </div>
+        <div class="form-group has-error" ng-show="model.usernameErr">
+            <label for="registerUsername2">Username</label>
+            <input ng-model="uname" type="text" placeholder="bigboi3129" id="registerUsername2"
+                   class="form-control jgd-input" aria-describedby="registerUsernameErr">
+            <span id="registerUsernameErr" class="help-block">{{model.usernameErr}}</span>
         </div>
 
-        <div class="form-group">
-            <label for="registerUsername">Username</label>
-            <input type="text" placeholder="bigboi3129" id="registerUsername" class="form-control jgd-input">
+        <!-- Password -->
+        <div class="form-group" ng-show="!model.passwordErr">
+            <label for="registerPassword1">Password</label>
+            <input ng-model="pass" type="password" placeholder="guest" id="registerPassword1" class="form-control jgd-input">
+        </div>
+        <div class="form-group has-error" ng-show="model.passwordErr">
+            <label for="registerPassword2">Password</label>
+            <input ng-model="pass" type="password" placeholder="guest" id="registerPassword2"
+                   class="form-control jgd-input" aria-describedby="registerPasswordErr">
+            <span id="registerPasswordErr" class="help-block">{{model.passwordErr}}</span>
         </div>
 
-        <div class="form-group">
-            <label for="registerFirst">Password</label>
-            <input type="password" placeholder="guest" id="registerPassword" class="form-control jgd-input">
+        <!-- Verify Password -->
+        <div class="form-group" ng-show="!model.vpasswordErr">
+            <label for="registerVPassword1">Verify Password</label>
+            <input ng-model="vpass" type="password" placeholder="guest" id="registerVPassword1" class="form-control jgd-input">
+        </div>
+        <div class="form-group has-error" ng-show="model.vpasswordErr">
+            <label for="registerVPassword2">Verify Password</label>
+            <input ng-model="vpass" type="password" placeholder="guest" id="registerVPassword2"
+                   class="form-control jgd-input" aria-describedby="registerVPasswordErr">
+            <span id="registerVPasswordErr" class="help-block">{{model.vpasswordErr}}</span>
+        </div>
+        <div class="form-group has-error" ng-show="model.matchErr">
+            <label for="registerVPassword3">Verify Password</label>
+            <input ng-model="vpass" type="password" placeholder="guest" id="registerVPassword3"
+                   class="form-control jgd-input" aria-describedby="registerVPasswordErr2">
+            <span id="registerVPasswordErr2" class="help-block">{{model.matchErr}}</span>
         </div>
 
     </form>
 
-    <a href="profile.view.client.html" class="btn btn-block jgd-button jgd-bot-space">Register</a>
-    <a href="../index.html" class="btn btn-block jgd-button">Cancel</a>
+    <a ng-click="model.register(fname, lname, uname, pass, vpass)" class="btn btn-block jgd-button jgd-bot-space">Register</a>
+    <a href="#/login" class="btn btn-block jgd-button">Cancel</a>
 
 </div>
 >

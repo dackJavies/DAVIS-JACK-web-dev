@@ -72,3 +72,7 @@ label {
     background-color : #ff4d4d;
     color : black;
 }
+
+.alert-danger {
+    background-color : #ffe6cc;
+}
