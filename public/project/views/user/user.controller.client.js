@@ -10,7 +10,6 @@
         var vm = this;
 
         vm.login = login;
-        vm.logout = logout;
 
         function login(username, password) {
 
@@ -55,6 +54,53 @@
 
         }
 
+    }
+
+    function ProfileController(UserService, $routeParams, $rootScope) {
+
+        var vm = this;
+
+        vm.update = update;
+        vm.logout = logout;
+
+        function init() {
+
+            vm.userId = $routeParams["uid"];
+
+            if (!vm.userId) {
+                vm.userId = $rootScope.currentUser._id;
+            }
+
+            UserService
+                .findUserById(vm.userId)
+                .then(
+                    function(succ) {
+                        vm.user = succ;
+                    },
+                    function(err) {
+                        vm.error = "Could not load profile into.";
+                    }
+                );
+
+        }
+
+        init();
+
+        function update() {
+
+            UserService
+                .updateUser(vm.userId, vm.user)
+                .then(
+                    function(succ) {
+                        vm.success = "Successfully update profile.";
+                    },
+                    function(err) {
+                        vm.error = "Could not update profile.";
+                    }
+                );
+
+        }
+
         function logout() {
             UserService
                 .logout()
@@ -71,13 +117,7 @@
 
     }
 
-    function ProfileController(UserService) {
-
-
-
-    }
-
-    function RegisterController(UserService) {
+    function RegisterController(UserService, $rootScope, $location) {
 
         var vm = this;
 
@@ -100,9 +140,9 @@
                     .register(user)
                     .then(
                         function(response) {
-                            var user = response.data;
-                            $rootScope.currentUser = user;
-                            $location.url("/user/"+user._id);
+                            var newUser = response.data;
+                            $rootScope.currentUser = newUser;
+                            $location.url("/user/"+newUser._id);
                         },
                         function(err) {
                             vm.error = "Could not register. Username may be taken.";

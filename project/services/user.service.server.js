@@ -7,7 +7,7 @@ module.exports = function(app) {
 
 
     // Need user model for passport
-    var userModel = require("../../models/user/user.model.server.js")();
+    var userModel = require("../model/user/user.model.server.js")();
     passport.use('searchScape', new LocalStrategy(localStrategy));
 
 

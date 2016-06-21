@@ -2,7 +2,7 @@ module.exports = function() {
 
     var mongoose = require("mongoose");
     var UserSchema = require("./user.schema.server.js")();
-    var User = mongoose.model("User", UserSchema);
+    // var ProjectUser = mongoose.model("ProjectUser", UserSchema);
 
     var api = {
 
@@ -19,10 +19,10 @@ module.exports = function() {
 
     function createUser(user) {
 
-        return User.findOne({username: user.username}).then(
+        return ProjectUser.findOne({username: user.username}).then(
             function(succ) {
                 if (!succ) {
-                    return User.create(user);
+                    return ProjectUser.create(user);
                 }
             }
         );
@@ -31,25 +31,25 @@ module.exports = function() {
 
     function findUserById(userId) {
 
-        return User.findById(userId);
+        return ProjectUser.findById(userId);
 
     }
 
     function findUserByUsername(username) {
 
-        return User.findOne({username: username});
+        return ProjectUser.findOne({username: username});
 
     }
 
     function findUserByCredentials(username, password) {
 
-        return User.findOne({username: username, password: password});
+        return ProjectUser.findOne({username: username, password: password});
 
     }
 
     function updateUser(userId, user) {
 
-        return User.update({_id: userId}, {
+        return ProjectUser.update({_id: userId}, {
 
             username: user.username,
             firstName: user.firstName,
@@ -61,7 +61,7 @@ module.exports = function() {
 
     function deleteUser(userId) {
 
-        return User.remove({_id: userId});
+        return ProjectUser.remove({_id: userId});
 
     }
 
