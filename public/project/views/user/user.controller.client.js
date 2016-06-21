@@ -5,7 +5,7 @@
         .controller("ProfileController", ProfileController)
         .controller("RegisterController", RegisterController);
 
-    function LoginController(UserService, $rootScope) {
+    function LoginController(UserService, $rootScope, $location) {
 
         var vm = this;
 
@@ -17,8 +17,13 @@
 
                 vm.error = vm.usernameErr = vm.passwordErr = null;
 
+                var toLogin = {
+                    username: username,
+                    password: password
+                };
+
                 UserService
-                    .login(username, password)
+                    .login(toLogin)
                     .then(
                         function (response) {
                             var user = response.data;
@@ -56,7 +61,7 @@
 
     }
 
-    function ProfileController(UserService, $routeParams, $rootScope) {
+    function ProfileController(UserService, $routeParams, $rootScope, $location) {
 
         var vm = this;
 
@@ -75,10 +80,10 @@
                 .findUserById(vm.userId)
                 .then(
                     function(succ) {
-                        vm.user = succ;
+                        vm.user = succ.data;
                     },
                     function(err) {
-                        vm.error = "Could not load profile into.";
+                        vm.error = "Could not load profile info.";
                     }
                 );
 

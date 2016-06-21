@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function(app, models) {
 
     // Passport
     var passport = require("passport");
@@ -7,7 +7,7 @@ module.exports = function(app) {
 
 
     // Need user model for passport
-    var userModel = require("../model/user/user.model.server.js")();
+    var userModel = models.userModel;
     passport.use('searchScape', new LocalStrategy(localStrategy));
 
 
@@ -16,16 +16,16 @@ module.exports = function(app) {
     passport.deserializeUser(deserializeUser);
 
     // API
-    app.post  ('/api/login',            passport.authenticate('searchScape'), login);
-    app.post  ('/api/logout',           logout);
-    app.post  ('/api/register',         register);
-    app.get ('/api/loggedin',           loggedin);
+    app.post  ('/projectapi/login',            passport.authenticate('searchScape'), login);
+    app.post  ('/projectapi/logout',           logout);
+    app.post  ('/projectapi/register',         register);
+    app.get ('/projectapi/loggedin',           loggedin);
 
-    app.post("/api/user",               createUser);
-    app.get("/api/user",                getUsers);
-    app.get("/api/user/:uid",           findUserById);
-    app.put("/api/user/:uid",           updateUser);
-    app.delete("/api/user/:uid",        deleteUser);
+    app.post("/projectapi/user",               createUser);
+    app.get("/projectapi/user",                getUsers);
+    app.get("/projectapi/user/:uid",           findUserById);
+    app.put("/projectapi/user/:uid",           updateUser);
+    app.delete("/projectapi/user/:uid",        deleteUser);
 
 
     // ----- PASSPORT FUNCTIONS ------
@@ -39,7 +39,7 @@ module.exports = function(app) {
 
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials({username: username, password: password})
+            .findUserByCredentials(username, password)
             .then(
                 function(user) {
                     if (!user) { return done(null, false); }
@@ -122,37 +122,98 @@ module.exports = function(app) {
 
     function getUsers(req, res) {
 
+        var username = req.query["username"];
+        var password = req.query["password"];
 
+        if(username && password) {
+            findUserByCredentials(username, password, res);
+        } else if(username) {
+            findUserByUsername(username, res);
+        } else {
+            res.send(users);
+        }
 
     }
 
     function findUserByCredentials(username, password, res) {
 
-
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(succ) {
+                    res.json(succ);
+                },
+                function(err) {
+                    res.sendStatus(404);
+                }
+            );
 
     }
 
     function findUserByUsername(username, res) {
 
-
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function(succ) {
+                    res.json(succ);
+                },
+                function(err) {
+                    res.sendStatus(404);
+                }
+            );
 
     }
 
     function findUserById(req, res) {
 
+        var userId = req.params["uid"];
 
+        userModel
+            .findUserById(userId)
+            .then(
+                function(succ) {
+                    res.json(succ);
+                },
+                function(err) {
+                    res.sendStatus(404);
+                }
+            );
 
     }
 
     function updateUser(req, res) {
 
+        var user = req.body;
+        var userId = req.params["uid"];
 
+        userModel
+            .updateUser(userId, user)
+            .then(
+                function(succ) {
+                    res.sendStatus(200);
+                },
+                function(err) {
+                    res.sendStatus(400);
+                }
+            );
 
     }
 
     function deleteUser(req, res) {
 
+        var userId = req.params["uid"];
 
+        userModel
+            .deleteUser(userId)
+            .then(
+                function(succ) {
+                    res.sendStatus(200);
+                },
+                function(err) {
+                    res.sendStatus(400);
+                }
+            );
         
     }
 

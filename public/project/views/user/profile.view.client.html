@@ -3,11 +3,19 @@
     <div class="container-fluid">
         <div class="container-fluid col-xs-2"></div>
         <p class="jgd-banner pull-center col-xs-8">Profile</p>
-        <a href="profile.view.client.html" class="glyphicon glyphicon-ok pull-right btn navbar-btn jgd-button col-xs-2"></a>
+        <a ng-click="model.update()" class="glyphicon glyphicon-ok pull-right btn navbar-btn jgd-button col-xs-2"></a>
     </div>
 </nav>
 
 <div class="container-fluid jgd-underHeader">
+
+    <div class="alert alert-success" ng-if="model.success">
+        {{model.success}}
+    </div>
+
+    <div class="alert alert-danger" ng-if="model.error">
+        {{model.error}}
+    </div>
 
     <form>
 

@@ -17,7 +17,7 @@ module.exports = function() {
     }
 
     mongoose.connect(connectionString);
-
+    
     var models = {
 
         userModel: userModel,
