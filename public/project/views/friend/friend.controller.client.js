@@ -104,6 +104,13 @@
                 .then(
                     function(succ) {
                         vm.friend = succ.data;
+                        UserService
+                            .findUserById(vm.userId)
+                            .then(
+                                function(succ) {
+                                    vm.user = succ.data;
+                                }
+                            );
                     },
                     function(err) {
                         vm.error = "Could not load profile data.";
@@ -116,16 +123,21 @@
 
         function addFriend() {
 
-            UserService
-                .addFriend(vm.userId, vm.friendId)
-                .then(
-                    function(succ) {
-                        vm.success = "Added " + vm.friend.username + " as a friend.";
-                    },
-                    function(err) {
-                        vm.error = "Could not add friend.";
-                    }
-                );
+            if (vm.user.friends.indexOf(vm.friendId) === -1) {
+
+                UserService
+                    .addFriend(vm.userId, vm.friendId)
+                    .then(
+                        function (succ) {
+                            vm.success = "Added " + vm.friend.username + " as a friend.";
+                        },
+                        function (err) {
+                            vm.error = "Could not add friend.";
+                        }
+                    );
+            } else {
+                vm.error = vm.friend.username + " is already a friend.";
+            }
 
         }
 
