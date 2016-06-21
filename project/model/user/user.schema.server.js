@@ -7,7 +7,8 @@ module.exports = function() {
         username: String,
         password: String,
         firstName: String,
-        lastName: String
+        lastName: String,
+        friends: [{type: mongoose.Schema.Types.ObjectId, ref: "projectUser"}]
 
     }, {collection: "projectUser"});
 

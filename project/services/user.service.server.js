@@ -106,6 +106,7 @@ module.exports = function(app, models) {
     function createUser(req, res) {
 
         var toAdd = req.body;
+        toAdd.friends = [];
 
         userModel
             .createUser(toAdd)

@@ -67,6 +67,7 @@
 
         vm.update = update;
         vm.logout = logout;
+        vm.unregister = unregister;
 
         function init() {
 
@@ -118,6 +119,21 @@
                         vm.error = "Could not log out.";
                     }
                 );
+        }
+
+        function unregister() {
+
+            UserService
+                .deleteUser(vm.userId)
+                .then(
+                    function(succ) {
+                        $location.url("/login");
+                    },
+                    function(err) {
+                        vm.error = "Could not unregister.";
+                    }
+                )
+
         }
 
     }
