@@ -76,3 +76,13 @@ label {
 .alert-danger {
     background-color : #ffe6cc;
 }
+
+h2 {
+    color : #cc6600;
+    text-align : center;
+}
+
+h3 {
+    color : #cc6600;
+    text-align : center;
+}

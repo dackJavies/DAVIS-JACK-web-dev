@@ -10,6 +10,9 @@ module.exports = function() {
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
+        findAllFriendsForUser: findAllFriendsForUser,
+        addFriend: addFriend,
+        removeFriend: removeFriend,
         updateUser: updateUser,
         deleteUser: deleteUser
 
@@ -44,6 +47,34 @@ module.exports = function() {
     function findUserByCredentials(username, password) {
 
         return ProjectUser.findOne({username: username, password: password});
+
+    }
+
+    function findAllFriendsForUser(userId) {
+
+        return ProjectUser.findById(userId).then(
+            function(succ) {
+                return succ.friends;
+            }
+        );
+
+    }
+
+    function addFriend(userId, friendId) {
+
+        return ProjectUser.update(
+            {_id: userId},
+            {$push: {friends: friendId}}
+        );
+
+    }
+
+    function removeFriend(userId, friendId) {
+
+        return ProjectUser.update(
+            {_id: userId},
+            {$pull: {friends: friendId}}
+        );
 
     }
 

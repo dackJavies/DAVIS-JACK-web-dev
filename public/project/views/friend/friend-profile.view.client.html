@@ -1,8 +1,8 @@
 <!-- Banner/Navbar -->
 <nav class="navbar navbar-fixed-top">
     <div class="container-fluid">
-        <a href="friend-list.view.client.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
-        <p class="jgd-banner pull-center col-xs-8">Name</p>
+        <a href="#/user/{{model.userId}}/friend/new" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
+        <p class="jgd-banner pull-center col-xs-8">Profile</p>
         <div class="col-xs-2"></div>
     </div>
 </nav>
@@ -10,12 +10,34 @@
 <!-- Friend Info -->
 <div class="container-fluid jgd-underHeader">
 
-    <p>Dan Goober</p>
+    <div class="alert alert-success" ng-if="model.success">
+        {{model.success}}
+    </div>
+
+    <div class="alert alert-danger" ng-if="model.error">
+        {{model.error}}
+    </div>
+
+    <h2 ng-if="model.friend.firstName && model.friend.lastName">{{model.friend.firstName}} {{model.friend.lastName}}</h2>
+
+    <h3>{{model.friend.username}}</h3>
+
+    <br><br>
+
+    <h2>Puzzles</h2>
 
     <ul class="list-group">
 
+        <li ng-if="!model.friend.puzzles" class="list-group-item">No Puzzles</li>
 
+        <li ng-repeat="puzzle in model.friend.puzzles">
+            <a href="#/user/{{model.userId}}/puzzle/{{puzzle._id}}">{{puzzle.name}}</a>
+        </li>
 
     </ul>
+
+    <a ng-click="model.addFriend()" class="btn btn-block jgd-button">Add Friend</a>
+
+    <a ng-click="model.removeFriend()" class="btn btn-block jgd-button">Remove Friend</a>
 
 </div>

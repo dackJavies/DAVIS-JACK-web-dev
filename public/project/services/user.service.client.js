@@ -14,6 +14,9 @@
             findUserByCredentials: findUserByCredentials,
             findUserByUsername: findUserByUsername,
             findUserById: findUserById,
+            findAllFriendsForUser: findAllFriendsForUser,
+            addFriend: addFriend,
+            removeFriend: removeFriend,
             updateUser: updateUser,
             deleteUser: deleteUser
 
@@ -58,6 +61,27 @@
 
             var url = "/projectapi/user/" + userId;
             return $http.get(url);
+
+        }
+
+        function findAllFriendsForUser(userId) {
+
+            var url = "/projectapi/user/" + userId + "/friends";
+            return $http.get(url);
+
+        }
+
+        function addFriend(userId, friendId) {
+
+            var url = "/projectapi/user/" + userId + "/friend/" + friendId + "/add";
+            return $http.put(url);
+
+        }
+
+        function removeFriend(userId, friendId) {
+
+            var url = "/projectapi/user/" + userId + "/friend/" + friendId + "/remove";
+            return $http.put(url);
 
         }
 

@@ -2,7 +2,7 @@
 
     <div class="container-fluid">
 
-        <a href="friend-list.view.client.html" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
+        <a href="#/user/{{model.userId}}/friend" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
 
         <p class="jgd-banner pull-center col-xs-8">Add Friend</p>
 
@@ -14,29 +14,23 @@
 
 <div class="container-fluid jgd-underHeader">
 
-    <form>
+    <div class="alert alert-danger" ng-if="model.error">
+        {{model.error}}
+    </div>
 
-        <div class="form-group">
-            <input type="search" placeholder="search" id="addFriendSearch" class="form-control">
+    <div class="input-group">
+        <input ng-model="addFriendSearch" type="text" placeholder="search" id="addFriendSearch"
+               class="form-control">
+        <div class="input-group-btn">
+            <a ng-click="model.search(addFriendSearch)"
+               class="glyphicon glyphicon-search pull-right btn jgd-button"></a>
         </div>
-
-    </form>
+    </div>
 
     <ul class="list-group">
 
-        <li class="list-group-item">
-            Dale
-            <span class="btn jgd-remove-friend pull-right glyphicon glyphicon-remove"></span>
-        </li>
-
-        <li class="list-group-item">
-            Dail
-            <span class="btn jgd-remove-friend pull-right glyphicon glyphicon-remove"></span>
-        </li>
-
-        <li class="list-group-item">
-            Dayle
-            <span class="btn jgd-remove-friend pull-right glyphicon glyphicon-remove"></span>
+        <li ng-show="model.results" class="list-group-item">
+            <a href="#/user/{{model.userId}}/friend/{{model.results._id}}">{{model.results.username}}</a>
         </li>
 
     </ul>

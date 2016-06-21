@@ -24,6 +24,9 @@ module.exports = function(app, models) {
     app.post("/projectapi/user",               createUser);
     app.get("/projectapi/user",                getUsers);
     app.get("/projectapi/user/:uid",           findUserById);
+    app.get("/projectapi/user/:uid/friends",   findAllFriendsForUser);
+    app.put("/projectapi/user/:uid/friend/:fid/add", addFriend);
+    app.put("/projectapi/user/:uid/friend/:fid/remove", removeFriend);
     app.put("/projectapi/user/:uid",           updateUser);
     app.delete("/projectapi/user/:uid",        deleteUser);
 
@@ -87,7 +90,7 @@ module.exports = function(app, models) {
                     if(user){
                         req.login(user, function(err) {
                             if(err) {
-                                res.status(400).send(err);
+                                res.sendStatus(400).send(err);
                             } else {
                                 res.json(user);
                             }
@@ -178,6 +181,59 @@ module.exports = function(app, models) {
                 },
                 function(err) {
                     res.sendStatus(404);
+                }
+            );
+
+    }
+
+    function findAllFriendsForUser(req, res) {
+
+        var userId = req.params["uid"];
+
+        userModel
+            .findAllFriendsForUser(userId)
+            .then(
+                function(succ) {
+                    res.json(succ);
+                },
+                function(err) {
+                    res.sendStatus(404);
+                }
+            );
+
+    }
+
+    function addFriend(req, res) {
+
+        var userId = req.params["uid"];
+        var friendId = req.params["fid"];
+
+        userModel
+            .addFriend(userId, friendId)
+            .then(
+                function(succ) {
+                    res.sendStatus(200);
+                },
+                function(err) {
+                    res.sendStatus(400);
+                }
+            );
+
+    }
+
+    function removeFriend(req, res) {
+
+        var userId = req.params["uid"];
+        var friendId = req.params["fid"];
+
+        userModel
+            .removeFriend(userId, friendId)
+            .then(
+                function(succ) {
+                    res.sendStatus(200);
+                },
+                function(err) {
+                    res.sendStatus(400);
                 }
             );
 
