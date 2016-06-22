@@ -1,0 +1,26 @@
+<nav class="navbar navbar-fixed-top">
+
+    <div class="container-fluid">
+
+        <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
+
+        <p class="jgd-banner pull-center col-xs-8">Puzzles</p>
+
+        <a href="#/user/{{model.userId}}/puzzle/new" class="glyphicon glyphicon-plus pull-right btn navbar-btn jgd-button col-xs-2"></a>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid">
+
+    <ul class="list-group">
+
+        <li ng-repeat="puzzle in model.puzzles" class="list-group-item">
+            <a href="#/user/{{model.userId}}/puzzle/{{puzzle._id}}">{{puzzle.name}}</a>
+            <span ng-click="model.deletePuzzle(puzzle._id)" class="glyphicon glyphicon-remove btn jgd-remove-friend"></span>
+        </li>
+
+    </ul>
+
+</div>
