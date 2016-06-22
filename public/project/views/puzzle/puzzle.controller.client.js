@@ -28,8 +28,13 @@
 
             vm.grid = [];
             for (var i = 0; i < 6; i++) {
-                vm.grid.push(["", "", "", "", ""]);
+                vm.grid.push([]);
+                for(var j = 0; j < 5; j++) {
+                    vm.grid[i].push("");
+                }
             }
+
+            console.log(vm.grid);
         }
 
         init();
@@ -256,7 +261,7 @@
                     if (word.charAt(c) === vm.grid[myRow][myCol]) {
                         var nextCoords = nextInDir(dir, myRow, myCol);
 
-                        if (0 <= nextCoords[0] < 6 && 0 <= nextCoords[1] < 5) {
+                        if (0 < nextCoords[0] && nextCoords[0] < 5 && 0 <= nextCoords[1] && nextCoords[1] < 4) {
                             myRow = nextCoords[0];
                             myCol = nextCoords[1];
                         } else {

@@ -19,77 +19,83 @@
         {{model.error}}
     </div>
 
-    <div class="row-centered">
-        <a ng-click="model.log(0, 0)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[0][0]}}</a>
-        <a ng-click="model.log(0, 1)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[0][2]}}</a>
-        <a ng-click="model.log(0, 2)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[0][4]}}</a>
-        <a ng-click="model.log(0, 3)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[0][6]}}</a>
-        <a ng-click="model.log(0, 4)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[0][8]}}</a>
-    </div>
-    <div class="row-centered">
-        <a ng-click="model.log(1, 0)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[1][0]}}</a>
-        <a ng-click="model.log(1, 1)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[1][2]}}</a>
-        <a ng-click="model.log(1, 2)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[1][4]}}</a>
-        <a ng-click="model.log(1, 3)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[1][6]}}</a>
-        <a ng-click="model.log(1, 4)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[1][8]}}</a>
-    </div>
-    <div class="row-centered">
-        <a ng-click="model.log(2, 0)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[2][0]}}</a>
-        <a ng-click="model.log(2, 1)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[2][2]}}</a>
-        <a ng-click="model.log(2, 2)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[2][4]}}</a>
-        <a ng-click="model.log(2, 3)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[2][6]}}</a>
-        <a ng-click="model.log(2, 4)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[2][8]}}</a>
-    </div>
-    <div class="row-centered">
-        <a ng-click="model.log(3, 0)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[3][0]}}</a>
-        <a ng-click="model.log(3, 1)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[3][2]}}</a>
-        <a ng-click="model.log(3, 2)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[3][4]}}</a>
-        <a ng-click="model.log(3, 3)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[3][6]}}</a>
-        <a ng-click="model.log(3, 4)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[3][8]}}</a>
-    </div>
-    <div class="row-centered">
-        <a ng-click="model.log(4, 0)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[4][0]}}</a>
-        <a ng-click="model.log(4, 1)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[4][2]}}</a>
-        <a ng-click="model.log(4, 2)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[4][4]}}</a>
-        <a ng-click="model.log(4, 3)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[4][6]}}</a>
-        <a ng-click="model.log(4, 4)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[4][8]}}</a>
-    </div>
-    <div class="row-centered">
-        <a ng-click="model.log(5, 0)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[5][0]}}</a>
-        <a ng-click="model.log(5, 1)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[5][2]}}</a>
-        <a ng-click="model.log(5, 2)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[5][4]}}</a>
-        <a ng-click="model.log(5, 3)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[5][6]}}</a>
-        <a ng-click="model.log(5, 4)"
-           class="btn jgd-button jgd-square jgd-square-btn col-centered">{{model.puzzle.grid[5][8]}}</a>
+    <!--<div class="row-centered">-->
+        <!--<a ng-click="model.log(0, 0)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[0][0]}}</a>-->
+        <!--<a ng-click="model.log(0, 1)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[0][2]}}</a>-->
+        <!--<a ng-click="model.log(0, 2)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[0][4]}}</a>-->
+        <!--<a ng-click="model.log(0, 3)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[0][6]}}</a>-->
+        <!--<a ng-click="model.log(0, 4)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[0][8]}}</a>-->
+    <!--</div>-->
+    <!--<div class="row-centered">-->
+        <!--<a ng-click="model.log(1, 0)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[1][0]}}</a>-->
+        <!--<a ng-click="model.log(1, 1)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[1][2]}}</a>-->
+        <!--<a ng-click="model.log(1, 2)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[1][4]}}</a>-->
+        <!--<a ng-click="model.log(1, 3)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[1][6]}}</a>-->
+        <!--<a ng-click="model.log(1, 4)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[1][8]}}</a>-->
+    <!--</div>-->
+    <!--<div class="row-centered">-->
+        <!--<a ng-click="model.log(2, 0)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[2][0]}}</a>-->
+        <!--<a ng-click="model.log(2, 1)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[2][2]}}</a>-->
+        <!--<a ng-click="model.log(2, 2)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[2][4]}}</a>-->
+        <!--<a ng-click="model.log(2, 3)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[2][6]}}</a>-->
+        <!--<a ng-click="model.log(2, 4)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[2][8]}}</a>-->
+    <!--</div>-->
+    <!--<div class="row-centered">-->
+        <!--<a ng-click="model.log(3, 0)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[3][0]}}</a>-->
+        <!--<a ng-click="model.log(3, 1)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[3][2]}}</a>-->
+        <!--<a ng-click="model.log(3, 2)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[3][4]}}</a>-->
+        <!--<a ng-click="model.log(3, 3)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[3][6]}}</a>-->
+        <!--<a ng-click="model.log(3, 4)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[3][8]}}</a>-->
+    <!--</div>-->
+    <!--<div class="row-centered">-->
+        <!--<a ng-click="model.log(4, 0)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[4][0]}}</a>-->
+        <!--<a ng-click="model.log(4, 1)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[4][2]}}</a>-->
+        <!--<a ng-click="model.log(4, 2)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[4][4]}}</a>-->
+        <!--<a ng-click="model.log(4, 3)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[4][6]}}</a>-->
+        <!--<a ng-click="model.log(4, 4)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[4][8]}}</a>-->
+    <!--</div>-->
+    <!--<div class="row-centered">-->
+        <!--<a ng-click="model.log(5, 0)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[5][0]}}</a>-->
+        <!--<a ng-click="model.log(5, 1)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[5][2]}}</a>-->
+        <!--<a ng-click="model.log(5, 2)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[5][4]}}</a>-->
+        <!--<a ng-click="model.log(5, 3)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[5][6]}}</a>-->
+        <!--<a ng-click="model.log(5, 4)"-->
+           <!--class="btn jgd-button jgd-square-btn col-centered">{{model.puzzle.grid[5][8]}}</a>-->
+    <!--</div>-->
+
+    <div class="row-centered" ng-repeat="row in model.puzzle.grid track by $index">
+        <a ng-repeat="col in model.puzzle.grid[$index] track by $index" ng-click="model.log($parent.$index, $index)" class="col-centered jgd-button jgd-square-btn">
+            {{model.puzzle.grid[$parent.$index][$index]}}
+        </>
     </div>
 
     <br><br>
