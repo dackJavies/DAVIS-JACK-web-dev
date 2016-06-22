@@ -48,7 +48,7 @@ module.exports = function() {
 
     function deletePuzzle(puzzleId) {
 
-        return Puzzle.delete({_id: puzzleId});
+        return Puzzle.remove({_id: puzzleId});
 
     }
 

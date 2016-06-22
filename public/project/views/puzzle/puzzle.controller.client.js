@@ -30,9 +30,6 @@
             for (var i = 0; i < 6; i++) {
                 vm.grid.push(["", "", "", "", ""]);
             }
-
-            console.log(vm.grid);
-
         }
 
         init();
@@ -76,9 +73,7 @@
         function build() {
 
             vm.error = null;
-
-            console.log(vm.grid);
-
+            
             for(var i = 0; i < vm.grid.length; i++) {
 
                 for(var j = 0; j < vm.grid[i].length; j++) {
@@ -185,8 +180,6 @@
 
         function searchInLine(word, dir, row, col) {
 
-            console.log("word: " + word);
-
             var myRow = row;
             var myCol = col;
 
@@ -198,11 +191,8 @@
 
                 } else {
 
-                    console.log("Comparing " + word.charAt(c) + " and " + vm.grid[myRow][myCol]);
                     if (word.charAt(c) === vm.grid[myRow][myCol]) {
                         var nextCoords = nextInDir(dir, myRow, myCol);
-
-                        console.log("Moving from " + myRow + ", " + myCol + " to " + nextCoords[0] + ", " + nextCoords[1] + "\n\n");
 
                         if (nextCoords[0] < 6 && nextCoords[1] < 5) {
                             myRow = nextCoords[0];
@@ -267,11 +257,13 @@
 
     }
 
-    function PuzzleListController(PuzzleService, $location, $routeParams) {
+    function PuzzleListController(PuzzleService, $routeParams) {
 
         var vm = this;
 
         vm.deletePuzzle = deletePuzzle;
+
+        // vm.puzzles = [];
 
         function init() {
 
@@ -282,6 +274,7 @@
                 .then(
                     function(succ) {
                         vm.puzzles = succ.data;
+                        // initHelper(0);
                     },
                     function(err) {
                         vm.error = "Could not retrieve puzzles.";
@@ -292,13 +285,30 @@
 
         init();
 
+        function initHelper(index) {
+
+            if (index < vm.puzzleIds.length) {
+
+                PuzzleService
+                    .findPuzzleById(vm.puzzleIds[index])
+                    .then(
+                        function(succ) {
+                            vm.puzzles.push(succ.data);
+                            initHelper(index+1);
+                        }
+                    );
+
+            }
+
+        }
+
         function deletePuzzle(puzzleId) {
 
             PuzzleService
                 .deletePuzzle(puzzleId)
                 .then(
                     function(succ) {
-                        $location.url("/user/" + vm.userId + "/puzzle");
+                        init();
                     },
                     function(err) {
                         vm.error = "Could not delete puzzle.";

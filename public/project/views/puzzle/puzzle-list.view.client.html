@@ -12,13 +12,17 @@
 
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid jgd-underHeader">
+
+    <div class="alert alert-danger" ng-if="model.error">
+        {{model.error}}
+    </div>
 
     <ul class="list-group">
 
         <li ng-repeat="puzzle in model.puzzles" class="list-group-item">
             <a href="#/user/{{model.userId}}/puzzle/{{puzzle._id}}">{{puzzle.name}}</a>
-            <span ng-click="model.deletePuzzle(puzzle._id)" class="glyphicon glyphicon-remove btn jgd-remove-friend"></span>
+            <span ng-click="model.deletePuzzle(puzzle._id)" class="glyphicon glyphicon-remove pull-right btn jgd-remove-friend"></span>
         </li>
 
     </ul>
