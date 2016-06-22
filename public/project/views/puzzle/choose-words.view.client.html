@@ -57,17 +57,29 @@
         </div>
 
         <!-- Word 4 -->
-        <div class="form-group">
+        <div class="form-group" ng-show="!model.wordFourErr">
             <label for="chooseWord4">Word 4</label>
             <input ng-model="model.word4" type="text" maxlength="5" id="chooseWord4"
                    class="form-control" placeholder="four">
         </div>
+        <div class="form-group has-error" ng-show="model.wordFourErr">
+            <label for="chooseWordErr4">Word 4</label>
+            <input ng-model="model.word4" type="text" maxlength="5" id="chooseWordErr4"
+                   class="form-control" placeholder="four" aria-describedby="chooseWordErrBlock4">
+            <span id="chooseWordErrBlock4" class="help-block">{{model.wordFourErr}}</span>
+        </div>
 
         <!-- Word 5 -->
-        <div class="form-group">
+        <div class="form-group" ng-show="!model.wordFiveErr">
             <label for="chooseWord5">Word 5</label>
             <input ng-model="model.word5" type="text" maxlength="5" id="chooseWord5"
                    class="form-control" placeholder="five">
+        </div>
+        <div class="form-group has-error" ng-show="model.wordFiveErr">
+            <label for="chooseWordErr5">Word 5</label>
+            <input ng-model="model.word5" type="text" maxlength="5" id="chooseWordErr5"
+                   class="form-control" placeholder="five" aria-describedby="chooseWordErrBlock5">
+            <span id="chooseWordErrBlock5" class="help-block">{{model.wordFiveErr}}</span>
         </div>
 
     </form>

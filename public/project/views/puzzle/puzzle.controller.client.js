@@ -34,13 +34,75 @@
 
         init();
 
+        function checkDiff() {
+
+            vm.wordOneErr = vm.wordTwoErr = vm.wordThreeErr = vm.wordFourErr = vm.wordFiveErr = null;
+
+            if (vm.words.length != 5) {
+                return false;
+            }
+
+            for(var wordIndex in vm.words) {
+                if (!vm.words[wordIndex]) {
+                    return false;
+                }
+            }
+
+            for(var i in vm.words) {
+                for(var j = i+1; j < vm.words.length; j++) {
+                    if (vm.words[i] === vm.words[j]) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+
+        }
+
         function assignWords() {
 
             vm.words = [vm.word1, vm.word2, vm.word3, vm.word4, vm.word5];
 
-            vm.choosing = false;
-            vm.building = true;
-            vm.naming = false;
+            if (checkDiff()) {
+
+                vm.choosing = false;
+                vm.building = true;
+                vm.naming = false;
+
+            } else {
+
+                if (!vm.word1) {
+                    vm.wordOneErr = "You need a word there, buddyboy.";
+                } else {
+                    vm.wordOneErr = null;
+                }
+
+                if (!vm.word2) {
+                    vm.wordTwoErr = "C'mon, just put a word there.";
+                } else {
+                    vm.wordTwoErr = null;
+                }
+
+                if (!vm.word3) {
+                    vm.wordThreeErr = "Need word.";
+                } else {
+                    vm.wordThreeErr = null;
+                }
+
+                if (!vm.word4) {
+                    vm.wordFourErr = "Need word.";
+                } else {
+                    vm.wordFourErr = null;
+                }
+
+                if (!vm.word5) {
+                    vm.wordFiveErr = "A word would really tie the room together.";
+                } else {
+                    vm.wordFiveErr = null;
+                }
+
+            }
 
         }
 
@@ -73,7 +135,7 @@
         function build() {
 
             vm.error = null;
-            
+
             for(var i = 0; i < vm.grid.length; i++) {
 
                 for(var j = 0; j < vm.grid[i].length; j++) {
@@ -116,7 +178,7 @@
 
         function scanForWords() {
 
-            // Set up array of bools to make sure
+            // Set up array of bools to make sure all words are accounted for
             var verify = [];
             for(var i in vm.words) {
                 verify.push(false);
@@ -194,7 +256,7 @@
                     if (word.charAt(c) === vm.grid[myRow][myCol]) {
                         var nextCoords = nextInDir(dir, myRow, myCol);
 
-                        if (nextCoords[0] < 6 && nextCoords[1] < 5) {
+                        if (0 <= nextCoords[0] < 6 && 0 <= nextCoords[1] < 5) {
                             myRow = nextCoords[0];
                             myCol = nextCoords[1];
                         } else {
@@ -319,9 +381,29 @@
 
     }
 
-    function SolvePuzzleController(PuzzleService) {
+    function SolvePuzzleController(PuzzleService, $routeParams) {
 
+        var vm = this;
 
+        function init() {
+
+            vm.userId = $routeParams["uid"];
+            vm.puzzleId = $routeParams["pid"];
+
+            PuzzleService
+                .findPuzzleById(vm.puzzleId)
+                .then(
+                    function(succ) {
+                        vm.puzzle = succ.data;
+                    },
+                    function(err) {
+                        vm.error = "Could not load puzzle.";
+                    }
+                );
+
+        }
+
+        init();
 
     }
 
