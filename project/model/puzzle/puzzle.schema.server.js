@@ -6,7 +6,8 @@ module.exports = function() {
 
         name: String,
         _user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
-        contents: [String]
+        grid: [[String]],
+        words: [String]
 
     });
 

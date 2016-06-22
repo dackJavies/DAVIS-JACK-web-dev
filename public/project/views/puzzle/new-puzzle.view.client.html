@@ -1,5 +1,15 @@
 <div class="container-fluid jgd-underHeader">
 
-    <ng-include src="'/project/views/puzzle/choose-words.view.client.html'"></ng-include>
+    <div ng-show="model.choosing && !model.building && !model.naming">
+        <ng-include src="'/project/views/puzzle/choose-words.view.client.html'"></ng-include>
+    </div>
+
+    <div ng-show="!model.choosing && model.building && !model.naming">
+        <ng-include src="'/project/views/puzzle/build-puzzle.view.client.html'"></ng-include>
+    </div>
+
+    <div ng-show="!model.choosing && !model.building && model.naming">
+        <ng-include src="'/project/views/puzzle/name-puzzle.view.client.html'"></ng-include>
+    </div>
 
 </div>

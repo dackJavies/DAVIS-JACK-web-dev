@@ -1,0 +1,34 @@
+<nav class="navbar navbar-fixed-top">
+
+    <div class="container-fluid">
+
+        <a ng-click="model.backToBuild()"
+           class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
+
+        <p class="jgd-banner col-xs-8">Name</p>
+
+        <a ng-click="model.finish()" class="glyphicon glyphicon-ok pull-right btn navbar-btn jgd-button col-xs-2"></a>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid">
+
+    <div class="alert alert-danger" ng-if="model.error">
+        {{model.error}}
+    </div>
+
+    <h3>Name Your Puzzle :-)</h3>
+
+    <form>
+
+        <div class="form-group">
+            <input ng-model="model.puzzle.name" type="text" id="namePuzzle" class="form-control" placeholder="name">
+        </div>
+
+    </form>
+
+    <a ng-click="model.finish()" class="btn btn-block jgd-button">Finish</a>
+
+</div>
