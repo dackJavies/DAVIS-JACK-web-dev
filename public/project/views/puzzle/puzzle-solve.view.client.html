@@ -15,6 +15,10 @@
 
 <div class="container-fluid jgd-underHeader">
 
+    <div class="alert alert-success" ng-if="model.success">
+        {{model.success}}
+    </div>
+
     <div class="alert alert-danger" ng-if="model.error">
         {{model.error}}
     </div>
@@ -28,8 +32,12 @@
 
     <br><br>
 
+    <div class="row-centered">
+        <p class="col-centered jgd-banner">{{model.cur}}</p>
+    </div>
+
     <ul class="row-centered">
-        <li ng-repeat="word in model.puzzle.words" class="col-centered col-xs-12 jgd-word-list">
+        <li ng-repeat="word in model.checkList" class="col-centered col-xs-12 jgd-word-list">
             {{word}}
         </li>
     </ul>

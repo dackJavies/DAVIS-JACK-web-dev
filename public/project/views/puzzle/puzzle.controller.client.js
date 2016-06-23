@@ -388,10 +388,15 @@
 
         var vm = this;
 
+        vm.log = log;
+
         function init() {
 
             vm.userId = $routeParams["uid"];
             vm.puzzleId = $routeParams["pid"];
+
+            vm.moveQueue = [];
+            vm.checkList = [];
 
             PuzzleService
                 .findPuzzleById(vm.puzzleId)
@@ -415,6 +420,83 @@
             for(var i in vm.puzzle.grid) {
                 vm.puzzle.grid[i] = vm.puzzle.grid[i].split(",");
             }
+
+        }
+
+        function log(row, col) {
+
+            if (authorizedMove(row, col)) {
+                vm.moveQueue.push({row: row, col: col});
+                checkWord();
+            } else {
+                clearQueue();
+            }
+
+            vm.cur = addUpWord();
+
+        }
+
+        function authorizedMove(row, col) {
+
+            if (vm.moveQueue.length == 0) {
+                return true;
+            } else {
+
+                return adjacent(vm.moveQueue[vm.moveQueue.length-1], {row: row, col: col});
+
+            }
+
+        }
+
+        function adjacent(moveOne, moveTwo) {
+
+            return Math.abs(moveOne.row-moveTwo.row) <= 1 && Math.abs(moveOne.col-moveTwo.col) <= 1;
+
+        }
+
+        function checkWord() {
+
+            for (var wordIndex in vm.puzzle.words) {
+
+                if (vm.puzzle.words[wordIndex] === addUpWord()) {
+                    vm.checkList.push(vm.puzzle.words[wordIndex]);
+                    clearQueue();
+                    if (checkWin()) {
+                        win();
+                    }
+                }
+
+            }
+
+        }
+
+        function addUpWord() {
+
+            var result = "";
+
+            for (var i in vm.moveQueue) {
+
+                result += vm.puzzle.grid[vm.moveQueue[i].row][vm.moveQueue[i].col];
+
+            }
+
+            return result;
+
+        }
+
+        function checkWin() {
+
+            return vm.checkList.length === vm.puzzle.words.length;
+
+        }
+
+        function clearQueue() {
+            vm.moveQueue = [];
+        }
+
+        function win() {
+
+            vm.success = "You won!";
 
         }
 
