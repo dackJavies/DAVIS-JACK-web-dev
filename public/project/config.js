@@ -28,14 +28,10 @@
                 controllerAs: "model"
             })
             .when("/", {
-                templateUrl: "views/user/login.view.client.html",
-                controller: "LoginController",
-                controllerAs: "model"
+                templateUrl: "views/user/home.view.client.html"
             })
             .when("default", {
-                templateUrl: "views/user/login.view.client.html",
-                controller: "LoginController",
-                controllerAs: "model"
+                templateUrl: "views/user/home.view.client.html"
             })
             .when("/user", {
                 templateUrl: "views/user/profile.view.client.html",
