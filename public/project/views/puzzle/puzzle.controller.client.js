@@ -390,6 +390,8 @@
         var vm = this;
 
         vm.log = log;
+        vm.clearQueue = clearQueue;
+
         vm.calculateLastPosition = calculateLastPosition;
 
         function init() {
@@ -474,12 +476,15 @@
 
             for (var wordIndex in vm.puzzle.words) {
 
-                if (vm.puzzle.words[wordIndex] === addUpWord()) {
+                if (vm.puzzle.words[wordIndex] === addUpWord()
+                    && vm.checkList.indexOf(vm.puzzle.words[wordIndex]) === -1) {
+
                     vm.checkList.push(vm.puzzle.words[wordIndex]);
                     clearQueue();
                     if (checkWin()) {
                         win();
                     }
+
                 }
 
             }
@@ -508,6 +513,7 @@
 
         function clearQueue() {
             vm.moveQueue = [];
+            vm.cur = "";
         }
 
         function win() {

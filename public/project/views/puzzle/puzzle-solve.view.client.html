@@ -33,11 +33,15 @@
 
     <br><br>
 
-    <div class="row-centered">
-        <p class="col-centered jgd-banner">{{model.cur}}</p>
+    <div class="col-xs-12 row">
+        <div class="row-centered col-xs-10">
+            <p class="col-centered jgd-banner">{{model.cur}}</p>
+        </div>
+        <a class="glyphicon glyphicon-remove btn jgd-remove-friend pull-right col-xs-2" ng-show="model.cur"
+              ng-click="model.clearQueue()"></a>
     </div>
 
-    <ul class="row-centered">
+    <ul class="row">
         <li ng-repeat="word in model.checkList" class="col-centered col-xs-12 jgd-word-list">
             {{word}}
         </li>
