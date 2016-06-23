@@ -87,7 +87,7 @@
 
     }
 
-    function FriendProfileController(UserService, $routeParams) {
+    function FriendProfileController(UserService, $routeParams, PuzzleService) {
 
         var vm = this;
 
@@ -99,21 +99,28 @@
             vm.userId = $routeParams["uid"];
             vm.friendId = $routeParams["fid"];
 
-            UserService
+            return UserService
                 .findUserById(vm.friendId)
                 .then(
                     function(succ) {
                         vm.friend = succ.data;
-                        UserService
-                            .findUserById(vm.userId)
-                            .then(
-                                function(succ) {
-                                    vm.user = succ.data;
-                                }
-                            );
+                        return UserService
+                            .findUserById(vm.userId);
+
                     },
                     function(err) {
                         vm.error = "Could not load profile data.";
+                    }
+                )
+                .then(
+                    function(succ) {
+                        vm.user = succ.data;
+                        return PuzzleService.findAllPuzzlesForUser(vm.friend._id)
+                    }
+                )
+                .then(
+                    function(succ) {
+                        vm.friendPuzzles = succ.data;
                     }
                 );
 

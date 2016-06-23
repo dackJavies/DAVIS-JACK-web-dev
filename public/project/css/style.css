@@ -36,11 +36,6 @@ a:hover {
     padding-top : 90px;
 }
 
-.jgd-input {
-    background-color : #ffe6cc;
-    border : none;
-}
-
 label {
     color : #cc6600;
 }
@@ -120,8 +115,4 @@ h3 {
 
 .jgd-word-list {
     font-size : 1.5em;
-}
-
-.jgd-center {
-    text-align : center;
 }

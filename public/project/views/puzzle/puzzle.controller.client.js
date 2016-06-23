@@ -384,11 +384,12 @@
 
     }
 
-    function SolvePuzzleController(PuzzleService, $routeParams) {
+    function SolvePuzzleController(PuzzleService, $routeParams, $rootScope, $location) {
 
         var vm = this;
 
         vm.log = log;
+        vm.calculateLastPosition = calculateLastPosition;
 
         function init() {
 
@@ -433,6 +434,20 @@
             }
 
             vm.cur = addUpWord();
+
+        }
+
+        function calculateLastPosition() {
+
+            if (vm.userId === vm.puzzle._user) {
+
+                $location.url("/user/" + vm.userId + "/puzzle");
+
+            } else {
+                
+                $location.url("/user/" + vm.userId + "/friend/" + vm.puzzle._user);
+                
+            }
 
         }
 

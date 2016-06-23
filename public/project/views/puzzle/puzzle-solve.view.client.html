@@ -2,7 +2,7 @@
 
     <div class="container-fluid">
 
-        <a href="#/user/{{model.userId}}/puzzle"
+        <a ng-click="model.calculateLastPosition()"
            class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
 
         <p class="jgd-banner col-xs-8">Solve</p>
@@ -37,7 +37,7 @@
     </div>
 
     <ul class="row-centered">
-        <li ng-repeat="word in model.checkList" class="col-centered col-xs-12 jgd-word-list">
+        <li ng-repeat="word in model.checkList" class="col-centered col-xs-12 jgd-banner">
             {{word}}
         </li>
     </ul>

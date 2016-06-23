@@ -28,9 +28,9 @@
 
     <ul class="list-group">
 
-        <li ng-if="!model.friend.puzzles" class="list-group-item">No Puzzles</li>
+        <li ng-if="!model.friendPuzzles" class="list-group-item">No Puzzles</li>
 
-        <li ng-repeat="puzzle in model.friend.puzzles">
+        <li ng-repeat="puzzle in model.friendPuzzles" class="list-group-item">
             <a href="#/user/{{model.userId}}/puzzle/{{puzzle._id}}">{{puzzle.name}}</a>
         </li>
 

@@ -19,12 +19,12 @@
         <div class="form-group" ng-show="!model.usernameErr">
             <label for="loginUsername1">Username</label>
             <input ng-model="loginUsername" type="text" placeholder="bigboi3129" id="loginUsername1"
-                   class="form-control jgd-input">
+                   class="form-control">
         </div>
         <div class="form-group has-error" ng-show="model.usernameErr">
             <label for="loginUsername2">Username</label>
             <input ng-model="loginUsername" type="text" placeholder="bigboi3129" id="loginUsername2"
-                   class="form-control jgd-input" aria-describedby="loginUsernameErr">
+                   class="form-control" aria-describedby="loginUsernameErr">
             <span id="loginUsernameErr" class="help-block">{{model.usernameErr}}</span>
         </div>
 
@@ -32,12 +32,12 @@
         <div class="form-group" ng-show="!model.passwordErr">
             <label for="loginPassword1">Password</label>
             <input ng-model="loginPassword" type="password" placeholder="guest" id="loginPassword1"
-                   class="form-control jgd-input">
+                   class="form-control">
         </div>
         <div class="form-group has-error" ng-show="model.passwordErr">
             <label for="loginPassword2">Password</label>
             <input ng-model="loginPassword" type="password" placeholder="guest" id="loginPassword2"
-                   class="form-control jgd-input" aria-describedby="loginPasswordErr">
+                   class="form-control" aria-describedby="loginPasswordErr">
             <span id="loginPasswordErr" class="help-block">{{model.passwordErr}}</span>
         </div>
 
