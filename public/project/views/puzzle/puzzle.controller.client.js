@@ -251,7 +251,7 @@
 
             for(var c = 0; c < word.length; c++) {
 
-                if (vm.grid[myRow][myCol] === word.charAt(word.length-1)) { // Base case
+                if (word.charAt(c) === vm.grid[myRow][myCol] && c === word.length-1) { // Base case
 
                     return true;
 
@@ -260,7 +260,7 @@
                     if (word.charAt(c) === vm.grid[myRow][myCol]) {
                         var nextCoords = nextInDir(dir, myRow, myCol);
 
-                        if (0 < nextCoords[0] && nextCoords[0] < 5 && 0 <= nextCoords[1] && nextCoords[1] < 4) {
+                        if (0 <= nextCoords[0] && nextCoords[0] < 5 && 0 <= nextCoords[1] && nextCoords[1] < 4) {
                             myRow = nextCoords[0];
                             myCol = nextCoords[1];
                         } else {
