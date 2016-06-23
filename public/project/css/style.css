@@ -123,7 +123,7 @@ h3 {
     display : inline;
 }
 
-#messageBar {
+.jgd-message-bar {
     position : fixed;
     bottom : 15px;
     width : 94%;

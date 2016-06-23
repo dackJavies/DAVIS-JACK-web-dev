@@ -5,6 +5,7 @@ module.exports = function() {
     var userModel = require("./user/user.model.server.js")();
     var puzzleModel = require("./puzzle/puzzle.model.server")();
     var messageModel = require("./message/message.model.server")();
+    var commentModel = require("./comment/comment.model.server")();
 
     var connectionString = 'mongodb://127.0.0.1:27017/projectJackDavis';
 
@@ -22,7 +23,8 @@ module.exports = function() {
 
         userModel: userModel,
         puzzleModel: puzzleModel,
-        messageModel: messageModel
+        messageModel: messageModel,
+        commentModel: commentModel
 
     };
 

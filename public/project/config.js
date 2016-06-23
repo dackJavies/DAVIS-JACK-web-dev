@@ -69,6 +69,11 @@
                 controller: "SolvePuzzleController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/puzzle/:pid/comment", {
+                templateUrl: "views/puzzle/puzzle-comments.view.client.html",
+                controller: "PuzzleCommentController",
+                controllerAs: "model"
+            })
             // Friend Pages
             .when("/user/:uid/friend/new", {
                 templateUrl: "views/friend/add-friend.view.client.html",

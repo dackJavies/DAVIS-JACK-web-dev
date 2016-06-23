@@ -1,0 +1,58 @@
+<nav class="navbar navbar-fixed-top">
+
+    <div class="container-fluid">
+
+        <a href="#/user/{{model.userId}}/puzzle/{{model.puzzleId}}"
+           class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
+
+        <p class="jgd-banner col-xs-8">Comment</p>
+
+        <div class="col-xs-2"></div>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid jgd-underHeader">
+
+    <div class="alert alert-danger" ng-if="model.error">
+        {{model.error}}
+    </div>
+
+    <ul class="list-group">
+
+        <li class="list-group-item" ng-repeat="comment in model.comments track by $index">
+
+            <a class="row" href="#/user/{{comment.author}}">{{model.authorNames[$index].author}}</a>
+
+            <div class="row">
+                <p class="jgd-review col-xs-10">{{comment.text}}</p>
+
+                <span ng-show="comment.author === model.userId"
+                      class="glyphicon glyphicon-remove pull-right btn jgd-remove-friend col-xs-2"
+                      ng-click="model.deleteComment(comment._id)"></span>
+            </div>
+
+        </li>
+
+    </ul>
+
+    <form>
+
+        <div class="form-group">
+
+            <div class="input-group jgd-message-bar">
+
+                <input ng-model="model.myComment" type="text" class="form-control" placeholder="write a review/comment...">
+
+                <div class="input-group-btn">
+                    <a ng-click="model.submitComment()" class="glyphicon glyphicon-ok btn jgd-button"></a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>

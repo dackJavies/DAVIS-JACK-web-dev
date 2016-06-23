@@ -166,7 +166,7 @@
 
     }
     
-    function MessageFriendController(UserService, MessageService, $routeParams) {
+    function MessageFriendController(MessageService, $routeParams) {
         
         var vm = this;
 

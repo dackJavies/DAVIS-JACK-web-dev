@@ -3,7 +3,8 @@
         .module("SearchScape")
         .controller("NewPuzzleController", NewPuzzleController)
         .controller("PuzzleListController", PuzzleListController)
-        .controller("SolvePuzzleController", SolvePuzzleController);
+        .controller("SolvePuzzleController", SolvePuzzleController)
+        .controller("PuzzleCommentController", PuzzleCommentController);
 
     function NewPuzzleController(PuzzleService, $routeParams, $location) {
 
@@ -515,6 +516,129 @@
 
         }
 
+    }
+    
+    function PuzzleCommentController(UserService, CommentService, $routeParams) {
+        
+        var vm = this;
+        
+        vm.submitComment = submitComment;
+        vm.deleteComment = deleteComment;
+
+        vm.authorNames = [];
+
+        function init() {
+            
+            vm.userId = $routeParams["uid"];
+            vm.puzzleId = $routeParams["pid"];
+
+            vm.myComment = "";
+            
+            CommentService
+                .findAllCommentsForPuzzle(vm.puzzleId)
+                .then(
+                    function(succ) {
+                        vm.comments = succ.data;
+                        grabAuthorUsernames(0);
+                    },
+                    function(err) {
+                        vm.error = "Could not load comments.";
+                    }
+                );
+
+        }
+
+        init();
+        
+        function submitComment() {
+
+            if (vm.myComment) {
+
+                var comment = {author: vm.userId, _puzzle: vm.puzzleId, text: vm.myComment, date: getTodayDate()};
+
+                CommentService
+                    .createComment(comment)
+                    .then(
+                        function(succ) {
+                            init();
+                        },
+                        function(err) {
+                            vm.error = "Could not submit comment.";
+                        }
+                    );
+
+            } else {
+                vm.error = "Need comment to submit.";
+            }
+            
+        }
+
+        function deleteComment(commentId) {
+
+            CommentService
+                .deleteComment(commentId)
+                .then(
+                    function(succ) {
+                        init();
+                    },
+                    function(err) {
+                        vm.error = "Could not delete comment.";
+                    }
+                );
+
+        }
+
+        function grabAuthorUsernames(index) {
+
+            if (index < vm.comments.length) {
+
+                UserService
+                    .findUserById(vm.comments[index].author)
+                    .then(
+                        function(succ) {
+                            vm.authorNames.push({id: vm.comments[index]._id, author: succ.data.username});
+                            grabAuthorUsernames(index+1);
+                        },
+                        function(err) {
+                            vm.error = "Could not load author usernames.";
+                        }
+                    );
+
+            }
+
+        }
+
+        function getAuthorUsername(commentId) {
+
+            for(var i in vm.authorNames) {
+
+                if (vm.authorNames[i].id === commentId) {
+                    return vm.authorNames[i].author;
+                }
+
+            }
+
+        }
+
+        // Ripped from: http://stackoverflow.com/questions/1531093/how-to-get-current-date-in-javascript
+        function getTodayDate() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            }
+
+            if(mm<10) {
+                mm='0'+mm
+            }
+
+            today = mm+'/'+dd+'/'+yyyy;
+            return today;
+        }
+        
     }
 
 })();

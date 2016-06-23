@@ -9,7 +9,7 @@ module.exports = function() {
         grid: [[String]],
         words: [String]
 
-    });
+    }, {collection: "puzzle"});
 
     return PuzzleSchema;
 
