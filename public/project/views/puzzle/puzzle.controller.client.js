@@ -33,8 +33,6 @@
                     vm.grid[i].push("");
                 }
             }
-
-            console.log(vm.grid);
         }
 
         init();
@@ -400,6 +398,7 @@
                 .then(
                     function(succ) {
                         vm.puzzle = succ.data;
+                        prepareGrid();
                     },
                     function(err) {
                         vm.error = "Could not load puzzle.";
@@ -409,6 +408,15 @@
         }
 
         init();
+
+        // SINCE MONGODB FEELS LIKE TURNING ARRAYS OF STRINGS INTO GIANT STRINGS, I HAVE TO FIX THAT >:(
+        function prepareGrid() {
+
+            for(var i in vm.puzzle.grid) {
+                vm.puzzle.grid[i] = vm.puzzle.grid[i].split(",");
+            }
+
+        }
 
     }
 
