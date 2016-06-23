@@ -19,12 +19,16 @@
 
         <li class="list-group-item" ng-repeat="message in model.messages">
             <div ng-show="message.author === model.userId" class="row">
-                <div class="col-xs-4"></div>
+                <span ng-click="model.deleteMessage(message._id)"
+                   class="glyphicon glyphicon-remove pull-left btn jgd-remove-friend col-xs-2"></span>
+                <div class="col-xs-2"></div>
                 <p class="pull-right jgd-my-message col-xs-8">{{message.text}}</p>
             </div>
             <div ng-show="message.author !== model.userId" class="row">
                 <p class="pull-left jgd-your-message col-xs-8">{{message.text}}</p>
-                <div class="col-xs-4"></div>
+                <div class="col-xs-2"></div>
+                <span ng-click="model.deleteMessage(message._id)"
+                   class="glyphicon glyphicon-remove pull-right btn jgd-remove-friend col-xs-2"></span>
             </div>
         </li>
 

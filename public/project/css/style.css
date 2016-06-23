@@ -68,6 +68,11 @@ label {
     color : black;
 }
 
+.jgd-remove-friend {
+    background-color : #ff4d4d;
+    color : white;
+}
+
 .alert-danger {
     background-color : #ffe6cc;
 }

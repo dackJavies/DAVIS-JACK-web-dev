@@ -171,6 +171,7 @@
         var vm = this;
 
         vm.sendMessage = sendMessage;
+        vm.deleteMessage = deleteMessage;
 
         function init() {
 
@@ -217,6 +218,21 @@
 
             }
 
+        }
+        
+        function deleteMessage(messageId) {
+            
+            MessageService
+                .deleteMessage(messageId)
+                .then(
+                    function(succ) {
+                        init();
+                    },
+                    function(err) {
+                        vm.error = "Could not delete message.";
+                    }
+                );
+            
         }
 
         // Ripped from: http://stackoverflow.com/questions/1531093/how-to-get-current-date-in-javascript
