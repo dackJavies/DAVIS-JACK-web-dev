@@ -84,6 +84,11 @@
                 templateUrl: "views/friend/friend-profile.view.client.html",
                 controller: "FriendProfileController",
                 controllerAs: "model"
+            })
+            .when("/user/:uid/friend/:fid/message", {
+                templateUrl: "views/friend/message-friend.view.client.html",
+                controller: "MessageFriendController",
+                controllerAs: "model"
             });
         
     }

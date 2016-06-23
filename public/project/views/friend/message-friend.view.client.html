@@ -1,0 +1,47 @@
+<nav class="navbar navbar-fixed-top">
+
+    <div class="container-fluid">
+
+        <a href="#/user/{{model.userId}}/friend/{{model.friendId}}"
+           class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
+
+        <p class="jgd-banner col-xs-8">Message</p>
+
+        <div class="col-xs-2"></div>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid jgd-underHeader">
+
+    <ul class="list-group">
+
+        <li class="list-group-item" ng-repeat="message in model.messages">
+            <div ng-show="message.author === model.userId" class="row">
+                <div class="col-xs-4"></div>
+                <p class="pull-right jgd-my-message col-xs-8">{{message.text}}</p>
+            </div>
+            <div ng-show="message.author !== model.userId" class="row">
+                <p class="pull-left jgd-your-message col-xs-8">{{message.text}}</p>
+                <div class="col-xs-4"></div>
+            </div>
+        </li>
+
+    </ul>
+
+    <form class="fixed-bottom">
+
+        <div class="form-group">
+            <div class="input-group" id="messageBar">
+                <input ng-model="model.messageText" type="text" class="form-control"
+                       placeholder="say something...">
+                <div class="input-group-btn">
+                    <a ng-click="model.sendMessage(messageText)" class="glyphicon glyphicon-ok btn jgd-button"></a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>

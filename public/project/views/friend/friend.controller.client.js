@@ -3,7 +3,8 @@
         .module("SearchScape")
         .controller("NewFriendController", NewFriendController)
         .controller("FriendListController", FriendListController)
-        .controller("FriendProfileController", FriendProfileController);
+        .controller("FriendProfileController", FriendProfileController)
+        .controller("MessageFriendController", MessageFriendController);
 
     function NewFriendController(UserService, $routeParams) {
 
@@ -163,6 +164,80 @@
 
         }
 
+    }
+    
+    function MessageFriendController(UserService, MessageService, $routeParams) {
+        
+        var vm = this;
+
+        vm.sendMessage = sendMessage;
+
+        function init() {
+
+            vm.userId = $routeParams["uid"];
+            vm.friendId = $routeParams["fid"];
+
+            vm.messageText = "";
+
+            MessageService
+                .findAllMessagesForUsers(vm.userId, vm.friendId)
+                .then(
+                    function(succ) {
+                        vm.messages = succ.data;
+                    },
+                    function(err) {
+                        vm.error = "Could not retrieve messages.";
+                    }
+                );
+
+        }
+
+        return init();
+
+        function sendMessage() {
+
+            if (vm.messageText) {
+
+                var message = {author: vm.userId, recipient: vm.friendId, text: vm.messageText, date: getTodayDate()};
+
+                MessageService
+                    .createMessage(message)
+                    .then(
+                        function(succ) {
+                            init();         // Refresh, show new messages.
+                        },
+                        function(err) {
+                            vm.error = "Could not send message.";
+                        }
+                    );
+
+            } else {
+
+                vm.error = "Need message body to send!";
+
+            }
+
+        }
+
+        // Ripped from: http://stackoverflow.com/questions/1531093/how-to-get-current-date-in-javascript
+        function getTodayDate() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            }
+
+            if(mm<10) {
+                mm='0'+mm
+            }
+
+            today = mm+'/'+dd+'/'+yyyy;
+            return today;
+        }
+        
     }
 
 })();
