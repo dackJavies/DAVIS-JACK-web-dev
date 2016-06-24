@@ -59,8 +59,6 @@ module.exports = function(app, models) {
             .findUserByUsername(username, password)
             .then(
                 function(user) {
-                    // if (!user) { return done(null, false); }
-                    // return done(null, user);
                     if(user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     } else {

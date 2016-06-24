@@ -30,7 +30,7 @@ module.exports = function() {
     
     function findAllCommentsForPuzzle(puzzleId) {
         
-        return Comment.find({_puzzle: puzzleId}).sort({date: -1});
+        return Comment.find({_puzzle: puzzleId});
         
     }
 

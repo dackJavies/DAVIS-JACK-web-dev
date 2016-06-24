@@ -133,3 +133,13 @@ h3 {
 .jgd-my-message {
     text-align : right;
 }
+
+.jgd-edit-puzzle {
+    color : white;
+    background-color : #3399ff;
+}
+
+.jgd-edit-puzzle:hover {
+    color : black;
+    background-color : #3399ff;
+}

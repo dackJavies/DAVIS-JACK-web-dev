@@ -14,7 +14,8 @@ module.exports = function() {
         addFriend: addFriend,
         removeFriend: removeFriend,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findUserByGoogleId: findUserByGoogleId
 
     };
 
@@ -93,6 +94,12 @@ module.exports = function() {
     function deleteUser(userId) {
 
         return ProjectUser.remove({_id: userId});
+
+    }
+
+    function findUserByGoogleId(profileId) {
+
+        return ProjectUser.findOne({'google.id': profileId});
 
     }
 

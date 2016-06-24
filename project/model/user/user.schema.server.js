@@ -8,7 +8,11 @@ module.exports = function() {
         password: String,
         firstName: String,
         lastName: String,
-        friends: [{type: mongoose.Schema.Types.ObjectId, ref: "projectUser"}]
+        friends: [{type: mongoose.Schema.Types.ObjectId, ref: "projectUser"}],
+        google: {
+            id: String,
+            token: String
+        }
 
     }, {collection: "projectUser"});
 

@@ -13,7 +13,6 @@ module.exports = function() {
         updateUser: updateUser,
         deleteUser: deleteUser,
         findUserByFacebookId: findUserByFacebookId
-        // addOneWebsite: addOneWebsite
 
     };
 
@@ -90,15 +89,6 @@ module.exports = function() {
         );
 
     }
-
-    // function addOneWebsite(userId, websiteId) {
-    //
-    //     return User.update(
-    //         {_id: userId},
-    //         {$push: {"websites": websiteId.valueOf()}}
-    //     );
-    //
-    // }
 
     /**
      * Removes user instance whose _id is equal to parameter userId

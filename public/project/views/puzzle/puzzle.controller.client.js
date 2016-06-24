@@ -4,7 +4,8 @@
         .controller("NewPuzzleController", NewPuzzleController)
         .controller("PuzzleListController", PuzzleListController)
         .controller("SolvePuzzleController", SolvePuzzleController)
-        .controller("PuzzleCommentController", PuzzleCommentController);
+        .controller("PuzzleCommentController", PuzzleCommentController)
+        .controller("EditPuzzleController", EditPuzzleController);
 
     function NewPuzzleController(PuzzleService, $routeParams, $location) {
 
@@ -645,6 +646,94 @@
             return today;
         }
         
+    }
+
+    function EditPuzzleController(PuzzleService, $routeParams, $location) {
+
+        var vm = this;
+
+        vm.updatePuzzle = updatePuzzle;
+
+        function init() {
+
+            vm.userId = $routeParams["uid"];
+            vm.puzzleId = $routeParams["pid"];
+            vm.copyGrid = new Array(6);
+
+            PuzzleService
+                .findPuzzleById(vm.puzzleId)
+                .then(
+                    function(succ) {
+                        vm.puzzle = succ.data;
+                        prepareGrid();
+                    },
+                    function(err) {
+                        vm.error = "Could not retrieve puzzle data.";
+                    }
+                );
+
+        }
+
+        init();
+
+        function updatePuzzle() {
+
+            if (checkValidity()) {
+
+                PuzzleService
+                    .updatePuzzle(vm.puzzleId, vm.puzzle)
+                    .then(
+                        function(succ) {
+                            $location.url("/user/" + vm.userId + "/puzzle");
+                        },
+                        function(err) {
+                            vm.error = "Could not update puzzle.";
+                        }
+                    );
+
+            } else {
+
+                vm.error = "Missing information.";
+
+            }
+
+        }
+
+        function checkValidity() {
+
+            for(var i in vm.puzzle.words) {
+
+                if (!vm.puzzle.words[i] || vm.puzzle.words[i] === "") {
+                    return false;
+                }
+
+            }
+
+            for(var j in vm.puzzle.grid) {
+                for(var k in vm.puzzle.grid[j]) {
+                    if (!vm.puzzle.grid[j][k] || vm.puzzle.grid[j][k] === "") {
+                        return false;
+                    }
+                }
+            }
+
+            if (!vm.puzzle.name || vm.puzzle.name === "") {
+                return false;
+            }
+
+            return true;
+
+        }
+
+        // SINCE MONGODB FEELS LIKE TURNING ARRAYS OF STRINGS INTO GIANT STRINGS, I HAVE TO FIX THAT >:(
+        function prepareGrid() {
+
+            for(var i in vm.puzzle.grid) {
+                vm.copyGrid[i] = vm.puzzle.grid[i].split(",");
+            }
+
+        }
+
     }
 
 })();

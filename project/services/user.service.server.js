@@ -4,16 +4,28 @@ module.exports = function(app, models) {
     var passport = require("passport");
     var auth = authorized;
     var LocalStrategy = require('passport-local').Strategy;
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+    var googleConfig = {
+        clientID     : process.env.GOOGLE_CLIENT_ID,
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL
+    };
 
 
     // Need user model for passport
     var userModel = models.userModel;
     passport.use('searchScape', new LocalStrategy(localStrategy));
+    passport.use('searchScapeGoogle', new GoogleStrategy(googleConfig, googleStrategy));
 
 
     //Serialization
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
+
+
+    // Load encryption library
+    var bcrypt = require('bcrypt-nodejs');
 
     // API
     app.post  ('/projectapi/login',            passport.authenticate('searchScape'), login);
@@ -30,6 +42,14 @@ module.exports = function(app, models) {
     app.put("/projectapi/user/:uid",           updateUser);
     app.delete("/projectapi/user/:uid",        deleteUser);
 
+    // Google
+    app.get('/auth/google', passport.authenticate('searchScapeGoogle', { scope : ['profile', 'email'] }));
+    app.get('/auth/google/callback',
+        passport.authenticate('searchScapeGoogle', {
+            successRedirect: '/project/index.html#/user',
+            failureRedirect: '/project/index.html#/login'
+        }));
+
 
     // ----- PASSPORT FUNCTIONS ------
     function authorized (req, res, next) {
@@ -42,11 +62,16 @@ module.exports = function(app, models) {
 
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
-                    if (!user) { return done(null, false); }
-                    return done(null, user);
+
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false);
+                    }
+
                 },
                 function(err) {
                     if (err) { return done(err); }
@@ -83,6 +108,7 @@ module.exports = function(app, models) {
 
     function register (req, res) {
         var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
         userModel
             .createUser(user)
             .then(
@@ -102,6 +128,44 @@ module.exports = function(app, models) {
 
     function loggedin(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+
+    // GOOGLE OAUTH
+    function googleStrategy(token, refreshToken, profile, done) {
+        userModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            google: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return userModel.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
     }
 
 

@@ -70,6 +70,11 @@
                 controller: "PuzzleCommentController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/puzzle/:pid/edit", {
+                templateUrl: "views/puzzle/edit-puzzle.view.client.html",
+                controller: "EditPuzzleController",
+                controllerAs: "model"
+            })
             // Friend Pages
             .when("/user/:uid/friend/new", {
                 templateUrl: "views/friend/add-friend.view.client.html",

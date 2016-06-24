@@ -1,0 +1,46 @@
+<nav class="navbar navbar-fixed-top">
+
+    <div class="container-fluid">
+
+        <a href="#/user/{{model.userId}}/puzzle/"
+           class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"></a>
+
+        <p class="jgd-banner col-xs-8">Edit</p>
+
+        <a ng-click="model.updatePuzzle()"
+           class="glyphicon glyphicon-ok pull-right btn navbar-btn jgd-button col-xs-2"></a>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid jgd-underHeader">
+
+    <p class="jgd-banner">Words</p>
+
+    <form>
+
+        <input ng-repeat="word in model.puzzle.words" type="text" maxlength="5" class="form-control" ng-model="word">
+
+    </form>
+
+    <p class="jgd-banner">Grid</p>
+
+    <form>
+
+        <div class="row-centered" ng-repeat="row in model.puzzle.grid track by $index">
+            <input ng-repeat="col in model.copyGrid[$index] track by $index" type="text" maxlength="1"
+                   class="jgd-square col-centered" ng-model="model.copyGrid[$parent.$index][$index]">
+        </div>
+
+    </form>
+
+    <p class="jgd-banner">Name</p>
+
+    <form>
+
+        <input ng-model="model.puzzle.name" type="text" class="form-control">
+
+    </form>
+
+</div>
