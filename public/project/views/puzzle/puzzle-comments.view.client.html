@@ -23,7 +23,7 @@
 
         <li class="list-group-item" ng-repeat="comment in model.comments track by $index">
 
-            <a class="row" href="#/user/{{comment.author}}">{{model.authorNames[$index].author}}</a>
+            <a class="row" href="#/user/{{model.userId}}/friend/{{comment.author}}">{{model.authorNames[$index].author}}</a>
 
             <div class="row">
                 <p class="jgd-review col-xs-10">{{comment.text}}</p>
