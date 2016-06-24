@@ -151,7 +151,16 @@ module.exports = function(app, models) {
                                 token: token
                             }
                         };
-                        return userModel.createUser(newGoogleUser);
+                        return userModel
+                            .createUser(newGoogleUser)
+                            .then(
+                                function(succ) {
+                                    return done(null, succ);
+                                },
+                                function(err) {
+                                    return done(err, null);
+                                }
+                            );
                     }
                 },
                 function(err) {

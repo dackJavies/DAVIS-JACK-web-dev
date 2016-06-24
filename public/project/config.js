@@ -7,7 +7,7 @@
 
         var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
             var deferred = $q.defer();
-            $http.get('/api/loggedin').success(function(user) {
+            $http.get('/projectapi/loggedin').success(function(user) {
                 $rootScope.errorMessage = null;
                 if (user !== '0') {
                     $rootScope.currentUser = user;
