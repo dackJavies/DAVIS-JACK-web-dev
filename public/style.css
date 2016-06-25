@@ -1,0 +1,33 @@
+body {
+    font-family: 'Slabo 27px', serif;
+    background-color : white;
+    color : black;
+    text-align : center;
+    font-size : 1.6em;
+}
+
+li {
+    display : inline;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+.inline-list-element {
+    padding-left : 20px;
+    padding-right : 20px;
+}
+
+#portrait {
+    margin-bottom : 50px;
+}
+
+#name {
+    font-size : 1.5em;
+    margin-top : 40px;
+}
+
+a:hover {
+    text-decoration : none;
+}
