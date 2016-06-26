@@ -262,7 +262,7 @@
                     if (word.charAt(c) === vm.grid[myRow][myCol]) {
                         var nextCoords = nextInDir(dir, myRow, myCol);
 
-                        if (0 <= nextCoords[0] && nextCoords[0] < 5 && 0 <= nextCoords[1] && nextCoords[1] < 4) {
+                        if (0 <= nextCoords[0] && nextCoords[0] <= 5 && 0 <= nextCoords[1] && nextCoords[1] <= 4) {
                             myRow = nextCoords[0];
                             myCol = nextCoords[1];
                         } else {
