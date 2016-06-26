@@ -33,7 +33,7 @@ module.exports = function(app, models) {
     app.post  ('/projectapi/register',         register);
     app.get ('/projectapi/loggedin',           loggedin);
 
-    app.post("/projectapi/user",               createUser);
+    app.post("/projectapi/user",               createUser)
     app.get("/projectapi/user",                getUsers);
     app.get("/projectapi/user/:uid",           findUserById);
     app.get("/projectapi/user/:uid/friends",   findAllFriendsForUser);

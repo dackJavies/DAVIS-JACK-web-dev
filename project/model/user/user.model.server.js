@@ -26,7 +26,6 @@ module.exports = function() {
         return ProjectUser.findOne({username: user.username}).then(
             function(succ) {
                 if (!succ) {
-                    user.isAdmin = false;
                     return ProjectUser.create(user);
                 }
             }

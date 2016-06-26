@@ -143,6 +143,7 @@
         var vm = this;
 
         vm.register = register;
+        vm.registerAsAdmin = registerAsAdmin;
 
         function register(fname, lname, uname, pass, vpass) {
 
@@ -154,7 +155,67 @@
                     username: uname,
                     password: pass,
                     firstName: fname,
-                    lastName: lname
+                    lastName: lname,
+                    isAdmin: false
+                };
+
+                UserService
+                    .register(user)
+                    .then(
+                        function(response) {
+                            var newUser = response.data;
+                            $rootScope.currentUser = newUser;
+                            $location.url("/user/"+newUser._id);
+                        },
+                        function(err) {
+                            vm.error = "Could not register. Username may be taken.";
+                        }
+                    );
+
+            } else {
+
+                vm.error = "Missing information.";
+
+                if (!uname) {
+                    vm.usernameErr = "Username required.";
+                } else {
+                    vm.usernameErr = null;
+                }
+
+                if (!pass) {
+                    vm.passwordErr = "Password required.";
+                } else {
+                    vm.passwordErr = null;
+                }
+
+                if (!vpass) {
+                    vm.vpasswordErr = "Must verify password.";
+                } else {
+                    vm.vpasswordErr = null;
+                }
+
+                if (pass && vpass && !(pass === vpass)) {
+                    vm.matchErr = "Passwords do not match.";
+                } else {
+                    vm.matchErr = null;
+                }
+
+            }
+
+        }
+
+        function registerAsAdmin(fname, lname, uname, pass, vpass) {
+
+            if (uname && pass && vpass && pass === vpass) {
+
+                vm.error = vm.usernameErr = vm.passwordErr = vm.vpasswordErr = vm.matchErr = null;
+
+                var user = {
+                    username: uname,
+                    password: pass,
+                    firstName: fname,
+                    lastName: lname,
+                    isAdmin: true
                 };
 
                 UserService
