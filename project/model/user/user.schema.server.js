@@ -12,7 +12,8 @@ module.exports = function() {
         google: {
             id: String,
             token: String
-        }
+        },
+        isAdmin: Boolean
 
     }, {collection: "projectUser"});
 

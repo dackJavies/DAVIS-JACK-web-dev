@@ -88,12 +88,14 @@
 
     }
 
-    function FriendProfileController(UserService, $routeParams, PuzzleService) {
+    function FriendProfileController(UserService, $routeParams, PuzzleService, $location) {
 
         var vm = this;
 
         vm.addFriend = addFriend;
         vm.removeFriend = removeFriend;
+        vm.deleteUser = deleteUser;
+        vm.removePuzzle = removePuzzle;
 
         function init() {
 
@@ -161,6 +163,39 @@
                         vm.error = "Failed to remove friend.";
                     }
                 );
+
+        }
+
+        function deleteUser() {
+
+            // ADMIN FUNCTION ONLY
+            UserService
+                .deleteUser(vm.friendId)
+                .then(
+                    function(succ) {
+                        $location.url("/user/" + vm.userId + "/friend");
+                    },
+                    function(err) {
+                        vm.error = "Could not remove user.";
+                    }
+                );
+
+        }
+
+        function removePuzzle(puzzleId) {
+
+            // ADMIN FUNCTION ONLY
+            PuzzleService
+                .deletePuzzle(puzzleId)
+                .then(
+                    function(succ) {
+                        init();
+                    },
+                    function(err) {
+                        vm.error = "Could not remove puzzle.";
+                    }
+                );
+
 
         }
 

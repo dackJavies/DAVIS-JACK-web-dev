@@ -611,6 +611,19 @@
                         }
                     );
 
+            } else {
+
+                UserService
+                    .findUserById(vm.userId)
+                    .then(
+                        function(succ) {
+                            vm.user = succ.data;
+                        },
+                        function(err) {
+                            vm.error = "Could not retrieve user.";
+                        }
+                    );
+
             }
 
         }

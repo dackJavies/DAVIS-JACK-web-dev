@@ -28,7 +28,7 @@
             <div class="row">
                 <p class="jgd-review col-xs-10">{{comment.text}}</p>
 
-                <span ng-show="comment.author === model.userId"
+                <span ng-show="comment.author === model.userId || model.user.isAdmin === true"
                       class="glyphicon glyphicon-remove pull-right btn jgd-remove-friend col-xs-2"
                       ng-click="model.deleteComment(comment._id)"></span>
             </div>
