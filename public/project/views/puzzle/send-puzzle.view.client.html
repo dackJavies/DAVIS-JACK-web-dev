@@ -1,0 +1,32 @@
+<nav class="navbar navbar-fixed-top">
+
+    <div class="container-fluid">
+
+        <a href="#/user/{{model.userId}}/puzzle"
+           class="glyphicon glyphicon-chevron-left pull-left btn navbar-btn jgd-button col-xs-2"> </a>
+
+        <p class="jgd-banner">Send</p>
+
+        <div class="col-xs-2"></div>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid jgd-underHeader">
+
+    <div class="alert alert-danger" ng-if="model.error">
+        {{model.error}}
+    </div>
+
+    <ul class="list-group">
+
+        <li class="row list-group-item" ng-repeat="friend in model.friends">
+
+            <a ng-click="model.sendPuzzle(friend._id)">{{friend.username}}</a>
+
+        </li>
+
+    </ul>
+
+</div>

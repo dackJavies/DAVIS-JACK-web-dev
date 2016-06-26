@@ -30,8 +30,7 @@ module.exports = function() {
     
     function findAllMessagesForUsers(userOne, userTwo) {
 
-        return Message.find({$or: [{author: userOne, recipient: userTwo}, {author: userTwo, recipient: userOne}]})
-            .sort({date: -1});
+        return Message.find({$or: [{author: userOne, recipient: userTwo}, {author: userTwo, recipient: userOne}]});
 
     }
 

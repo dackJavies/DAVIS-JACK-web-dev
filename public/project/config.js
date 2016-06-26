@@ -75,6 +75,11 @@
                 controller: "EditPuzzleController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/puzzle/:pid/send", {
+                templateUrl: "views/puzzle/send-puzzle.view.client.html",
+                controller: "SendPuzzleController",
+                controllerAs: "model"
+            })
             // Friend Pages
             .when("/user/:uid/friend/new", {
                 templateUrl: "views/friend/add-friend.view.client.html",

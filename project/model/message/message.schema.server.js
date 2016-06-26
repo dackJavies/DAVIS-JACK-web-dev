@@ -7,6 +7,8 @@ module.exports = function() {
         author: {type: mongoose.Schema.Types.ObjectId, ref: "projectUser"},
         recipient: {type: mongoose.Schema.Types.ObjectId, ref: "projectUser"},
         text: String,
+        url: String,
+        urlAuthor : String,
         date: Date
 
     }, {collection: "message"});

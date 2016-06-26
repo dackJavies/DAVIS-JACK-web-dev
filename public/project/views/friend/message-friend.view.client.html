@@ -18,14 +18,18 @@
     <ul class="list-group">
 
         <li class="list-group-item" ng-repeat="message in model.messages">
+            <!-- If the message is this user's -->
             <div ng-show="message.author === model.userId" class="row">
                 <span ng-click="model.deleteMessage(message._id)"
                    class="glyphicon glyphicon-remove pull-left btn jgd-remove-friend col-xs-2"></span>
                 <div class="col-xs-2"></div>
-                <p class="pull-right jgd-my-message col-xs-8">{{message.text}}</p>
+                <p class="pull-right jgd-my-message col-xs-8" ng-show="!message.urlAuthor">{{message.text}}</p>
+                <a class="pull-right jgd-my-message col-xs-8" ng-show="message.urlAuthor"
+                   href="{{message.urlAuthor}}">{{message.text}}</a>
             </div>
             <div ng-show="message.author !== model.userId" class="row">
-                <p class="pull-left jgd-your-message col-xs-8">{{message.text}}</p>
+                <p class="pull-left jgd-your-message col-xs-8" ng-show="!message.url">{{message.text}}</p>
+                <a class="pull-left jgd-your-message col-xs-8" ng-show="message.url" href="{{message.url}}">{{message.text}}</a>
                 <div class="col-xs-4"></div>
                 <span ng-click="model.deleteMessage(message._id)" ng-show="message.author.isAdmin === true"
                       class="glyphicon glyphicon-remove pull-left btn jgd-remove-friend col-xs-2"></span>

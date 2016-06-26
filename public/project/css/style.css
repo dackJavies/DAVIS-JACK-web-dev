@@ -143,3 +143,13 @@ h3 {
     color : black;
     background-color : #3399ff;
 }
+
+.jgd-send-puzzle {
+    color : white;
+    background-color : lightgreen;
+}
+
+.jgd-send-puzzle:hover {
+    color : black;
+    background-color : lightgreen;
+}

@@ -23,6 +23,7 @@
         <li ng-repeat="puzzle in model.puzzles" class="list-group-item row">
             <a class="col-xs-6" href="#/user/{{model.userId}}/puzzle/{{puzzle._id}}">{{puzzle.name}}</a>
             <div class="col-xs-6">
+                <a href="#/user/{{model.userId}}/puzzle/{{puzzle._id}}/send" class="glyphicon glyphicon-send pull-right btn jgd-send-puzzle"></a>
                 <span ng-click="model.deletePuzzle(puzzle._id)"
                       class="glyphicon glyphicon-remove pull-right btn jgd-remove-friend"></span>
                 <a href="#/user/{{model.userId}}/puzzle/{{puzzle._id}}/edit"

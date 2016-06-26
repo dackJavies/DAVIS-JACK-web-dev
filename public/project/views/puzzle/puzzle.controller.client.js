@@ -5,7 +5,8 @@
         .controller("PuzzleListController", PuzzleListController)
         .controller("SolvePuzzleController", SolvePuzzleController)
         .controller("PuzzleCommentController", PuzzleCommentController)
-        .controller("EditPuzzleController", EditPuzzleController);
+        .controller("EditPuzzleController", EditPuzzleController)
+        .controller("SendPuzzleController", SendPuzzleController);
 
     function NewPuzzleController(PuzzleService, $routeParams, $location) {
 
@@ -747,6 +748,94 @@
 
         }
 
+    }
+    
+    function SendPuzzleController(UserService, MessageService, $location, $routeParams) {
+        
+        var vm = this;
+
+        vm.sendPuzzle = sendPuzzle;
+        
+        function init() {
+            
+            vm.userId = $routeParams["uid"];
+            vm.puzzleId = $routeParams["pid"];
+
+            vm.friends = [];
+
+            UserService
+                .findAllFriendsForUser(vm.userId)
+                .then(
+                    function(succ) {
+                        vm.friendIds = succ.data;
+                        initHelper(0);
+                    },
+                    function(err) {
+                        vm.error = "Could not retrieve friend list.";
+                    }
+                );
+            
+        }
+        
+        init();
+
+        function initHelper(index) {
+
+            if (index < vm.friendIds.length) {
+
+                UserService
+                    .findUserById(vm.friendIds[index])
+                    .then(
+                        function(succ) {
+                            vm.friends.push(succ.data);
+                            initHelper(index+1);
+                        }
+                    );
+
+            }
+
+        }
+
+        function sendPuzzle(friendId) {
+
+            var myUrl = "#/user/" + friendId + "/puzzle/" + vm.puzzleId;
+            var authorUrl = "#/user/" + vm.userId + "/puzzle/" + vm.puzzleId;
+
+            var message = {author: vm.userId, recipient: friendId, text: "Puzzle Link", url: myUrl,
+                urlAuthor: authorUrl, date: getTodayDate()};
+
+            MessageService
+                .createMessage(message)
+                .then(
+                    function(succ) {
+                        $location.url("/user/" + vm.userId + "/friend/" + friendId + "/message");
+                    },
+                    function(err) {
+                        vm.error = "Could not send puzzle.";
+                    }
+                );
+
+        }
+
+        // Ripped from: http://stackoverflow.com/questions/1531093/how-to-get-current-date-in-javascript
+        function getTodayDate() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            }
+
+            if(mm<10) {
+                mm='0'+mm
+            }
+
+            today = mm+'/'+dd+'/'+yyyy;
+            return today;
+        }
+        
     }
 
 })();
